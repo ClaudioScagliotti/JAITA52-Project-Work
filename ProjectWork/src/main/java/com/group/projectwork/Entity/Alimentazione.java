@@ -3,16 +3,16 @@ package com.group.projectwork.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+import javax.persistence.Id;
+import javax.persistence.Table;
 @Entity
-@Table(value = "alimentazione")
+@Table(name = "alimentazione")
 public class Alimentazione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
+	
 	public int getId() {
 		return id;
 	}

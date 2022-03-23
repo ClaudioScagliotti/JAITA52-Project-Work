@@ -1,18 +1,19 @@
 package com.group.projectwork.Entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
+
 
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-@Table(value = "veicolo")
+@Table(name = "veicolo")
 public class Veicolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +34,7 @@ public class Veicolo {
 	private BigDecimal coordinata_x;
 	private BigDecimal coordinata_y;
 	private Boolean disponibilita;
+
 	public int getId() {
 		return id;
 	}
