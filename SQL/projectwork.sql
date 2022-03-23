@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `utente` (
 `email` varchar(50) NOT NULL,
 `password` varchar(20) NOT NULL,
 `ruolo` enum('RUOLO_ADMIN','RUOLO_UTENTE') NOT NULL,
-PRIMARY KEY (`utente_id`),
+PRIMARY KEY (`id`),
 KEY `k_email` (`email`)
 );
 
