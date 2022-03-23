@@ -1,0 +1,79 @@
+.btn-primary {
+    background-color: #59C567;
+    border-color: white;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
+    background-color: black;
+}
+
+#hero{
+    height:30rem; 
+    background: url(sfondomacchina.jpg);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#header{
+    font-family: 'Gugi', cursive;
+}
+
+#mainFooter {
+    background: #59C567;
+    color:white;
+    font-family: 'Quando', serif;
+}
+
+.nav-link{
+    color: #59C567;
+}
+
+.nav-link dropdown-toggle{
+    color: #59C567;
+}
+
+.nav-link:hover{
+    color: black;
+}
+
+.nav-link:focus{
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 991.98px) {
+    .offcanvas-collapse {
+      position: fixed;
+      top: 56px; /* Height of navbar */
+      bottom: 0;
+      left: 100%;
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      overflow-y: auto;
+      visibility: hidden;
+      background-color: #343a40;
+      transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+    }
+    .offcanvas-collapse.open {
+      visibility: visible;
+      transform: translateX(-100%);
+
+      z-index:99;
+    }
+  }
+
