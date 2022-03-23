@@ -55,10 +55,10 @@ CREATE TABLE IF NOT EXISTS `prenotazione` (
 `id` int NOT NULL AUTO_INCREMENT,
 `cliente_id` int NOT NULL,
 `veicolo_id` int NOT NULL,
-`ins` DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`ins` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 `inizio_noleggio` DATE NOT NULL,
 `fine_noleggio` DATE NOT NULL,
-`stato` enum(Corrente, Annullato, Completato, Prenotato) DEFAULT Prenotato,
+`stato` enum('Corrente', 'Annullato', 'Completato', 'Prenotato') DEFAULT 'Prenotato',
 PRIMARY KEY (id),
 FOREIGN KEY `fk_cliente` (`cliente_id`)
 REFERENCES utente(utente_id),
