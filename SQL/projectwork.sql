@@ -15,10 +15,6 @@ PRIMARY KEY (`id`),
 KEY `k_email` (`email`)
 );
 
-INSERT INTO `utente`(nome,cognome,dataNascita,email,password,ruolo)
-VALUES ('Paolo','Rossi','1994-06-07','admin@email.com','admin','RUOLO_ADMIN'),
-('Carlo','Verdi','2001-03-19','utente@email.com','utente','RUOLO_UTENTE');
-
 CREATE TABLE IF NOT EXISTS `categoria` (
 `id` int NOT NULL AUTO_INCREMENT,
 `nome` varchar(25) NOT NULL,
@@ -26,7 +22,6 @@ PRIMARY KEY (id)
 );
 INSERT INTO categoria (nome)
 value('Auto'), ('Bicicletta'),('Monopattino');
-
 
 
 CREATE TABLE IF NOT EXISTS `alimentazione` (
@@ -70,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `prenotazione` (
 `stato` enum('Corrente', 'Annullato', 'Completato', 'Prenotato') DEFAULT 'Prenotato',
 PRIMARY KEY (id),
 FOREIGN KEY `fk_cliente` (`cliente_id`)
-REFERENCES utente(utente_id),
+REFERENCES utente(id),
 FOREIGN KEY `fk_veicolo` (`veicolo_id`)
 REFERENCES veicolo(id)
 );
