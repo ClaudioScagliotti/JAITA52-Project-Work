@@ -2,7 +2,7 @@ package com.group.projectwork.Integration;
 
 import java.util.List;
 
-import com.group.projectwork.Entity.Veicolo;
+import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.repository.VeicoloRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;

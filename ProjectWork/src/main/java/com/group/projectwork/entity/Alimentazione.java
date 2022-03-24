@@ -1,4 +1,4 @@
-package com.group.projectwork.Entity;
+package com.group.projectwork.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,12 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name = "categoria")
-public class Categoria {
+@Table(name = "alimentazione")
+public class Alimentazione {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
+	
 	public int getId() {
 		return id;
 	}
@@ -26,8 +27,7 @@ public class Categoria {
 	}
 	@Override
 	public String toString() {
-		return "Categoria [id=" + id + ", nome=" + nome + "]";
+		return "Alimentazione [id=" + id + ", nome=" + nome + "]";
 	}
-	
 	
 }

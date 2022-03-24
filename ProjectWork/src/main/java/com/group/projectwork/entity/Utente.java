@@ -1,25 +1,51 @@
-package com.group.projectwork.Entity;
+package com.group.projectwork.entity;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
 @Table(name = "utente")
 public class Utente {
+	
+	public enum Role{
+		RUOLO_ADMIN,
+		RUOLO_UTENTE
+	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String nome;
 	private String cognome;
-	private String data_nascita;
+	
+	@Column(name = "data_nascita")
+	@Temporal(TemporalType.DATE)
+	private Date dataNascita;
+	
+	//specify that the email has to be unique
+	@Column(unique = true, nullable = false, length = 50)
 	private String email;
+	
+	//specify that doesn't have to be included in an eventual json
+	@JsonIgnore
 	private String password;
-	private String ruolo;
+	
+	@Enumerated(EnumType.STRING)
+	private Role ruolo;
 
 	public int getId() {
 		return id;
@@ -39,11 +65,11 @@ public class Utente {
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
-	public String getData_nascita() {
-		return data_nascita;
+	public Date getDataNascita() {
+		return dataNascita;
 	}
-	public void setData_nascita(String data_nascita) {
-		this.data_nascita = data_nascita;
+	public void setDataNascita(Date dataNascita) {
+		this.dataNascita = dataNascita;
 	}
 	public String getEmail() {
 		return email;
@@ -57,12 +83,10 @@ public class Utente {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getRuolo() {
+	public Role getRuolo() {
 		return ruolo;
 	}
-	public void setRuolo(String ruolo) {
+	public void setRuolo(Role ruolo) {
 		this.ruolo = ruolo;
 	}
-
-	
 }

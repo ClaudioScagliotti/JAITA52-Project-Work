@@ -1,4 +1,4 @@
-package com.group.projectwork.Entity;
+package com.group.projectwork.entity;
 
 
 
