@@ -1,6 +1,6 @@
 package com.group.projectwork;
 
-import com.group.projectwork.repository.VeicoloRepo;
+import com.group.projectwork.repository.VeicoloDB;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ class ProjectWorkApplicationTests {
 	void contextLoads() {
 	}
 	@Test
-	void testVeicoli(@Autowired VeicoloRepo vr){
+	void testVeicoli(@Autowired VeicoloDB vr){
 		System.out.println( vr.findAll());
 		
 	}
