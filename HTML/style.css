@@ -3,14 +3,15 @@
     border-color: white;
 }
 
-.btn-primary:hover, .btn-primary:active {
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
     background-color: black;
 }
 
 #hero{
-    height:30rem; 
-    background: url(sfondomacchina.jpg);
+    width: 100%;
+    height:auto; 
+    background: url();
 
     background-size: cover;
     background-repeat: no-repeat;
@@ -19,6 +20,10 @@
 
 #header{
     font-family: 'Gugi', cursive;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #2B2D42;
 }
 
 #mainFooter {
@@ -41,10 +46,23 @@
 
 .nav-link:focus{
     color: black;
+  
 }
 
 
-
+.swiper {
+    padding-bottom: 3rem;
+  }
+  
+  .swiper-slide img {
+      width: 100%;
+      height:auto;
+  }
+  
+  .swiper-button-next, .swiper-button-prev {
+      width:1rem;
+      height:1rem;
+  }
 
 
 
@@ -66,7 +84,7 @@
       padding-left: 1rem;
       overflow-y: auto;
       visibility: hidden;
-      background-color: #343a40;
+      background-color: #2B2D42;
       transition: transform .3s ease-in-out, visibility .3s ease-in-out;
     }
     .offcanvas-collapse.open {
