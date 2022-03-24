@@ -2,6 +2,8 @@ package com.group.projectwork.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+
 import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.repository.VeicoloDB;
 
@@ -19,7 +21,13 @@ public class VeicoloSRV {
     }
 
     public Veicolo addVeicolo(Veicolo v){
-       return this.vdb.save(v);
+    	return this.vdb.save(v);
+    }
+    
+    public Veicolo updVeicolo(Veicolo v) {
+    	if(this.vdb.existsById(v.getId()))
+    		return this.vdb.save(v);
+    	throw new EntityNotFoundException("Veicolo not found");
     }
 
     public List<Veicolo> getByDisponibilita(boolean b){
@@ -27,9 +35,10 @@ public class VeicoloSRV {
     }
 
     public Veicolo getVeicoloById(int id){
-        return this.vdb.getById(id);
+        return this.vdb.findById(id).get();
     }
 
-
-    
+    public void deleteById(int id) {
+    	this.vdb.deleteById(id);
+    }
 }
