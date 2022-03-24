@@ -1,9 +1,8 @@
 package com.group.projectwork.entity;
 
-
-
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +17,7 @@ public class Veicolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name="categoria_id")
 	private Categoria categoria;
@@ -31,8 +31,13 @@ public class Veicolo {
 	private String colore;
 	private String descrizione;
 	private String indirizzo;
-	private BigDecimal coordinata_x;
-	private BigDecimal coordinata_y;
+	
+	@Column(name = "coordinata_x")
+	private BigDecimal coordinataX;
+	
+	@Column(name = "coordinata_y")
+	private BigDecimal coordinataY;
+	
 	private Boolean disponibilita;
 
 	public int getId() {
@@ -83,17 +88,17 @@ public class Veicolo {
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
 	}
-	public BigDecimal getCoordinata_x() {
-		return coordinata_x;
+	public BigDecimal getCoordinataX() {
+		return coordinataX;
 	}
-	public void setCoordinata_x(BigDecimal coordinata_x) {
-		this.coordinata_x = coordinata_x;
+	public void setCoordinataX(BigDecimal coordinataX) {
+		this.coordinataX = coordinataX;
 	}
-	public BigDecimal getCoordinata_y() {
-		return coordinata_y;
+	public BigDecimal getCoordinataY() {
+		return coordinataY;
 	}
-	public void setCoordinata_y(BigDecimal coordinata_y) {
-		this.coordinata_y = coordinata_y;
+	public void setCoordinataY(BigDecimal coordinataY) {
+		this.coordinataY = coordinataY;
 	}
 	public Boolean getDisponibilita() {
 		return disponibilita;
@@ -101,18 +106,4 @@ public class Veicolo {
 	public void setDisponibilita(Boolean disponibilita) {
 		this.disponibilita = disponibilita;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
