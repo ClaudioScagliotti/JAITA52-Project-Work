@@ -3,7 +3,7 @@ package com.group.projectwork.integration;
 import java.util.List;
 
 import com.group.projectwork.entity.Veicolo;
-import com.group.projectwork.repository.VeicoloRepo;
+import com.group.projectwork.repository.VeicoloDB;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class VeicoloREST {
     
     @Autowired 
-    VeicoloRepo vr;
+    VeicoloDB vr;
 
     @GetMapping
     public List<Veicolo> findAll(){
