@@ -16,4 +16,5 @@ public interface VeicoloDB extends JpaRepository<Veicolo, Integer> {
 	List<Veicolo> findAllByDescrizioneContains(String model);
 	List<Veicolo> findAllByAlimentazione(Alimentazione a);
 	List<Veicolo> findAllByCategoria(Categoria a);
+	List<Veicolo> findAllByDisponibilita(Boolean b);
 }

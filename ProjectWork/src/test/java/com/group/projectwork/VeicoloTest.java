@@ -50,4 +50,13 @@ class VeicoloTest {
 		
 		assertEquals(2, this.repo.findAllByAlimentazione(aliId1).size());
 	}
+
+	@Test
+	@Transactional
+	void testingVeicolo() {
+		assertEquals(2,this.repo.findAllByDisponibilita(null).size());
+		assertEquals(1,this.repo.findAllByDisponibilita(true).size());
+		assertEquals(0,this.repo.findAllByDisponibilita(false).size());
+	}
+
 }
