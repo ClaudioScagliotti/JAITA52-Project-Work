@@ -2,19 +2,14 @@ package com.group.projectwork;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Date;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.repository.AlimentazioneDB;
 import com.group.projectwork.repository.CategoriaDB;
-import com.group.projectwork.repository.UtenteDB;
 import com.group.projectwork.repository.VeicoloDB;
-import com.group.projectwork.utility.DateUtils;
 
 @SpringBootTest
 class VeicoloTest {
@@ -50,4 +45,21 @@ class VeicoloTest {
 		
 		assertEquals(2, this.repo.findAllByAlimentazione(aliId1).size());
 	}
+
+	@Test
+	@Transactional
+	void testAliGetId() {
+		var ali = ali_db.findById(1);
+		assertNotEquals(null,ali.get());
+		assertEquals("elettrica",ali.get().getNome());
+	}
+	
+	@Test
+	@Transactional
+	void testingVeicolo() {
+		assertEquals(2,this.repo.findAllByDisponibilita(null).size());
+		assertEquals(1,this.repo.findAllByDisponibilita(true).size());
+		assertEquals(0,this.repo.findAllByDisponibilita(false).size());
+	}
+
 }
