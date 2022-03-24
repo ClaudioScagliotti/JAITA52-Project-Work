@@ -1,4 +1,4 @@
-package com.group.projectwork.integration;
+package com.group.projectwork.Integration;
 
 import java.util.List;
 
