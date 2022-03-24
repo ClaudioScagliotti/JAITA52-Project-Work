@@ -34,8 +34,10 @@ public class TokenSRV {
     	
     	Date date = new Date(System.currentTimeMillis());
     	var duration = Duration.between(token.getIns().toInstant(),date.toInstant());
-    	if(duration.abs().getSeconds()/60 > 15)
+    	if(duration.abs().getSeconds()/60 > 15) {
+    		this.db.delete(token);
     		throw new TokenExpiredException();
+    	}
     	
     	return this.updToken(token);
     }
