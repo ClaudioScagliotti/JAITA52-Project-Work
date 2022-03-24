@@ -13,7 +13,9 @@ h1, h2, h3, h4, h5, h6{
     font-family: "Cunia";
 }
 
-
+.titolino{
+    text-align: center;
+}
 .btn-primary {
     background-color: #59C567;
     border-color: white;
@@ -56,10 +58,13 @@ h1, h2, h3, h4, h5, h6{
     background-color: white;
 }
 
+.text-green{
+    color: #59C567;
+}
+
 #mainFooter {
-    background: #59C567;
+    background: #212529;
     color:white;
-    
 }
 
 
