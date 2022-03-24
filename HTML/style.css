@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+@font-face {
+    font-family: "Cunia";
+    src: url(fonts/Cunia.otf);
+  }
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Cunia";
+}
+
+
 .btn-primary {
     background-color: #59C567;
     border-color: white;
@@ -33,7 +49,7 @@
 }
 
 #header{
-    font-family: 'Gugi', cursive;
+    
     position: sticky;
     top: 0;
     z-index: 100;
@@ -43,16 +59,9 @@
 #mainFooter {
     background: #59C567;
     color:white;
-    font-family: 'Quando', serif;
+    
 }
 
-body{
-    font-family: 'Quando', serif;
-}
-
-h1{
-    font-family: 'Rocket Pop', sans-serif;
-}
 
 .cta {
    
