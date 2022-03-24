@@ -3,6 +3,7 @@ package com.group.projectwork.presentation;
 import javax.servlet.http.HttpSession;
 
 import com.group.projectwork.dto.LoginDTO;
+import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.UtenteSRV;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 public class UtenteCtrl {
 
-    @Autowired
+	@Autowired
+	TokenSRV tSrv;
+	
+	@Autowired
     UtenteSRV usrv;
 
     @GetMapping("/login-page")
@@ -34,10 +38,9 @@ public class UtenteCtrl {
         var utente= this.usrv.getByEmail(email);
         if(utente!= null && utente.getPassword().equals(data.getPassword())){
             session.setAttribute("utente", utente);
+            this.tSrv.generate(utente);
             return "index";
         }
-
-
         return "error";
     }
     
