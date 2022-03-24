@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "alimentazione")
 public class Alimentazione {
@@ -25,9 +26,4 @@ public class Alimentazione {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	@Override
-	public String toString() {
-		return "Alimentazione [id=" + id + ", nome=" + nome + "]";
-	}
-	
 }
