@@ -9,6 +9,7 @@ import com.group.projectwork.dto.UpdateVeicoloDTO;
 import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.exception.VeicoloParseException;
 import com.group.projectwork.factory.VeicoloFactory;
+import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.VeicoloSRV;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class VeicoloREST {
     
     @Autowired
     VeicoloFactory factory;
+    
+    @Autowired
+    TokenSRV tokenSrv;
 
     @GetMapping
     public ResponseEntity<List<Veicolo>> getAll(){
@@ -52,19 +56,21 @@ public class VeicoloREST {
     		@RequestBody() CreateVeicoloDTO v,
     		@RequestParam(name="token") String token){
     	
-    	//TODO check sul token
     	
-    	try {
-    		var toAdd = factory.parse(v);
-    		var saved=vsrv.addVeicolo(toAdd);
-    		//TODO addImg
-    		return ResponseEntity.ok(saved);
-    	}
-    	catch(VeicoloParseException ex)
+    	if(tokenSrv.isValid(token))
     	{
-    		//TODO specificare errore
-    		return ResponseEntity.badRequest().build();
+    		try {
+    			var toAdd = factory.parse(v);
+    			var saved=vsrv.addVeicolo(toAdd);
+    			//TODO addImg
+    			return ResponseEntity.ok(saved);
+    		}
+    		catch(VeicoloParseException ex)
+    		{
+    			//TODO specificare errore
+    		}    		
     	}
+    	return ResponseEntity.badRequest().build();
     }
     
     @PutMapping
@@ -72,7 +78,8 @@ public class VeicoloREST {
     		@RequestBody() UpdateVeicoloDTO v,
     		@RequestParam(name="token") String token){
     	
-    	//TODO check sul token
+    	if(!tokenSrv.isValid(token))
+    		return ResponseEntity.badRequest().build();
     	
     	try {
     		var toAdd = factory.parse(v);
@@ -92,7 +99,8 @@ public class VeicoloREST {
     		@PathVariable("id") int id,
     		@RequestParam(name="token") String token){
     	
-    	//TODO check sul token
+    	if(!tokenSrv.isValid(token))
+    		return ResponseEntity.badRequest().build();
     	
     	this.vsrv.deleteById(id);
         return ResponseEntity.ok().build();

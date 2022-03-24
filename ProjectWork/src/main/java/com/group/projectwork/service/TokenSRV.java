@@ -1,8 +1,10 @@
 package com.group.projectwork.service;
 
 import com.group.projectwork.entity.Token;
+import com.group.projectwork.entity.Utente;
 import com.group.projectwork.exception.TokenExpiredException;
 import com.group.projectwork.repository.TokenDB;
+import com.group.projectwork.utility.StringUtils;
 
 import java.time.Duration;
 import java.util.Date;
@@ -18,12 +20,12 @@ public class TokenSRV {
     @Autowired
     TokenDB db;
 
-    public Token updToken(Token token) {
+    private Token updToken(Token token) {
     	token.setIns(new Date(System.currentTimeMillis()));
     	return this.db.save(token);
     }
     
-    public Token getByValue(String tokenValue) throws TokenExpiredException {
+    private Token getByValue(String tokenValue) throws TokenExpiredException {
     	var opt = this.db.findByValore(tokenValue);
     	if(opt.isEmpty())
     		throw new EntityNotFoundException();
@@ -36,5 +38,30 @@ public class TokenSRV {
     		throw new TokenExpiredException();
     	
     	return this.updToken(token);
+    }
+
+    public boolean isValid(String token) {
+    	try {
+    		this.getByValue(token);
+    		return true;
+    	}catch(Exception e) {
+    		return false;
+    	}
+    }
+
+    public Token generate(Utente u) {
+    	Token token = new Token();
+    	token.setUtente(u);
+    	token.setValore(StringUtils.random(25));
+    	return this.updToken(token);
+    }
+
+    public void delete(Utente u) 
+    {
+    	var opt = this.db.findByUtente(u);
+    	if(opt.isEmpty())
+    		return;
+    		
+    	this.db.delete(opt.get());
     }
 }
