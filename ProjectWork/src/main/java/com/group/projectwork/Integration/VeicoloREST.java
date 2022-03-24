@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/veicolo")
 public class VeicoloREST {
+    
     @Autowired 
     VeicoloRepo vr;
 

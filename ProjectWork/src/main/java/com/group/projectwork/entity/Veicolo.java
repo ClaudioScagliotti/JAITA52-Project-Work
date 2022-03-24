@@ -101,13 +101,7 @@ public class Veicolo {
 	public void setDisponibilita(Boolean disponibilita) {
 		this.disponibilita = disponibilita;
 	}
-	@Override
-	public String toString() {
-		return "Veicolo [id=" + id + ", categoria=" + categoria + ", alimentazione=" + alimentazione + ", marca="
-				+ marca + ", modello=" + modello + ", colore=" + colore + ", descrizione=" + descrizione
-				+ ", indirizzo=" + indirizzo + ", coordinata_x=" + coordinata_x + ", coordinata_y=" + coordinata_y
-				+ ", disponibilita=" + disponibilita + "]";
-	}
+	
 	
 	
 	
