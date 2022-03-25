@@ -75,13 +75,14 @@ public class TokenSRV {
     	this.db.delete(opt.get());
     }
 
-	public void delete(String tokenValue) {
+	public boolean delete(String tokenValue) {
 		try {
 			var token = this.getByValue(tokenValue);
 			this.db.delete(token);
-		} catch (TokenExpiredException e) {
-			// TODO Auto-generated catch block
+			return true;
+		}catch (TokenExpiredException|EntityNotFoundException e) {
 			e.printStackTrace();
+			return false;
 		}
 	}
 }

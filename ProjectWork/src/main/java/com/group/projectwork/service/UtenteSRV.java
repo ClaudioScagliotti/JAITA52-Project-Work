@@ -13,7 +13,10 @@ public class UtenteSRV {
   UtenteDB udb;
 
   public Utente getByEmail(String email) {
-    return udb.findByEmail(email).get();
+	 var opt = udb.findByEmail(email);
+	 if(opt.isPresent())
+		 return opt.get();
+	 return null;
   }
 
 }

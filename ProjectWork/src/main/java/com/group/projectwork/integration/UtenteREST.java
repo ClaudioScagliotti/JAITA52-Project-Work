@@ -34,7 +34,8 @@ public class UtenteREST {
 
 	@GetMapping
 	public ResponseEntity<String> logout(@RequestParam("token") String token){
-		this.tokenSrv.delete(token);
+		if(this.tokenSrv.delete(token))			
+			return ResponseEntity.ok("see you again!");
 		return ResponseEntity.badRequest().build();
 	}
     
