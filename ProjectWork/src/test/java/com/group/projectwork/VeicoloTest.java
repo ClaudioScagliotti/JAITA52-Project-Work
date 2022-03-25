@@ -37,7 +37,6 @@ class VeicoloTest {
 	@Autowired
 	VeicoloSRV vsrv;
 
-	
 	@Test
 	@Transactional
 	void testingVeicoloAliAndCatRepo() {

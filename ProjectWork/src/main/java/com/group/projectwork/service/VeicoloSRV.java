@@ -5,11 +5,18 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import com.group.projectwork.dto.CreateVeicoloDTO;
+import com.group.projectwork.dto.UpdateVeicoloDTO;
 import com.group.projectwork.entity.Veicolo;
+import com.group.projectwork.exception.ImageSaveException;
+import com.group.projectwork.exception.VeicoloParseException;
+import com.group.projectwork.factory.VeicoloFactory;
 import com.group.projectwork.repository.VeicoloDB;
 import com.group.projectwork.service.FileSRV;
+import com.group.projectwork.utility.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,6 +28,9 @@ public class VeicoloSRV {
 
     @Autowired
     FileSRV fs;
+    
+    @Autowired
+    VeicoloFactory factory;
 
     public List<Veicolo> getAll() {
         return this.vdb.findAll();
@@ -48,17 +58,33 @@ public class VeicoloSRV {
     	this.vdb.deleteById(id);
     }
 
-    public Veicolo saveVeicolo( Veicolo veicoloForm, MultipartFile immagine) {
+    private String buildImgPath(Veicolo v) {
+    	return StringUtils.upTo(v.getMarca(), 5) +"_"+
+				StringUtils.upTo(v.getModello(), 5)+"_"+
+				StringUtils.random(5);
+    }
+    
+    public Veicolo addVeicolo(CreateVeicoloDTO v,MultipartFile img) throws ImageSaveException, VeicoloParseException {
+			var toAdd = factory.parse(v);
+			return this.saveVeicolo(toAdd, img);
+    }
+ 
+    public Veicolo updVeicolo(UpdateVeicoloDTO v,MultipartFile img) throws ImageSaveException, VeicoloParseException {
+			var toAdd = factory.parse(v);
+			return this.saveVeicolo(toAdd, img);
+    }
+    
+    public Veicolo saveVeicolo( Veicolo veicolo, MultipartFile immagine) throws ImageSaveException {
 
+    	//controlla se abbiamo un img
 		if (immagine != null) {
 			try {
-				String percorso = fs.saveFile("img/veicoli", veicoloForm.getDescrizione() + immagine.getName(),
-						immagine);
-				veicoloForm.setImmagine(percorso);
+				String imgPath = fs.saveFile("img/veicoli",this.buildImgPath(veicolo),immagine);
+				veicolo.setImmagine(imgPath);
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw new ImageSaveException();
 			}
 		}
-		return vdb.save(veicoloForm);
+		return vdb.save(veicolo);
 	}
 }

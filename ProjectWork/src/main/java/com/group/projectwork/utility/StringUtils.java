@@ -19,4 +19,12 @@ public class StringUtils {
 			sb.append(chars.charAt(rnd.nextInt(nChars)));
 		return sb.toString();
 	}
+	
+	public static String upTo(String string, int lenght) {
+		return upTo(string, 0, lenght);
+	}
+	
+	public static String upTo(String string, int startIndex, int lenght) {
+		return string.substring(startIndex, Math.min(lenght, string.length()-startIndex));
+	}
 }
