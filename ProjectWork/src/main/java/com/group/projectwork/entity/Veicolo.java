@@ -40,6 +40,8 @@ public class Veicolo {
 	
 	private Boolean disponibilita;
 
+	private String immagine;
+
 	public int getId() {
 		return id;
 	}
@@ -106,4 +108,12 @@ public class Veicolo {
 	public void setDisponibilita(Boolean disponibilita) {
 		this.disponibilita = disponibilita;
 	}
+	public String getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
+	}
+
+
 }
