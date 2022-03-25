@@ -25,17 +25,7 @@ public class VeicoloCTRL {
 	public String saveVeicolo(Model model, Veicolo veicoloForm,
 			@RequestParam(name = "image") MultipartFile immagine) {
 
-		if (immagine != null) {
-			try {
-				String percorso = fs.saveFile("img/veicoli", veicoloForm.getDescrizione() + immagine.getName(),
-						immagine);
-				veicoloForm.setImmagine(percorso);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		vsrv.addVeicolo(veicoloForm);
+		vsrv.saveVeicolo(veicoloForm, immagine);
 		return "redirect:/";
 	}
 
