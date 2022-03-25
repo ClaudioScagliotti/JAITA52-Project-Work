@@ -49,13 +49,14 @@ class UtenteTest {
 		//memorizzo la data di creazione inserita del srv
 		var creationDate = token.getIns();
 		//controllo che il token sia stato effettivamente creato per l'utente correto
-		assertEquals(testUser,token.getUtente());
+		assertEquals(testUser.getId(),token.getUtente().getId());
 		//effettuo un check sul token che dovrebbe resettare ins al tempo del check
 		this.tokenSrv.isValid(token.getValore());
 		//prendo nuovamente il token
 		var afterUpd = this.tokenDB.findById(token.getId()).get();
 		//controllo che i due token siano gli stessi
-		assertEquals(token,afterUpd);
+		assertEquals(token.getUtente().getId(),afterUpd.getUtente().getId());
+		assertEquals(token.getValore(),afterUpd.getValore());
 		//controllo che i due tempi differiscono
 		assertNotEquals(creationDate,afterUpd.getIns());
 	}

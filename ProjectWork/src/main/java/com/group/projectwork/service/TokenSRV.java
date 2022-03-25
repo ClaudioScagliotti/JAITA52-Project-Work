@@ -52,8 +52,16 @@ public class TokenSRV {
     }
 
     public Token generate(Utente u) {
-    	Token token = new Token();
-    	token.setUtente(u);
+    	Token token;
+    	var prevToken = this.db.findByUtente(u);
+    	if(prevToken.isEmpty())
+    	{
+    		token = new Token();
+    		token.setUtente(u);
+    	}
+    	else
+    		token = prevToken.get();
+    	
     	token.setValore(StringUtils.random(25));
     	return this.updToken(token);
     }
@@ -66,4 +74,15 @@ public class TokenSRV {
     		
     	this.db.delete(opt.get());
     }
+
+	public boolean delete(String tokenValue) {
+		try {
+			var token = this.getByValue(tokenValue);
+			this.db.delete(token);
+			return true;
+		}catch (TokenExpiredException|EntityNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

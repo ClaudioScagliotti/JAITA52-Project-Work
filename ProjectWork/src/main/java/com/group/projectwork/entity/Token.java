@@ -30,7 +30,7 @@ public class Token {
 	
 	private String valore;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	@JsonIgnore
 	private Date ins;
