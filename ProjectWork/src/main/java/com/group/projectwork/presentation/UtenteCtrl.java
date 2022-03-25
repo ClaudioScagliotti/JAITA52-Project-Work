@@ -43,5 +43,11 @@ public class UtenteCtrl {
         }
         return "error";
     }
+
+    @GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		session.setAttribute("utenteLoggato", null);
+		return "redirect:/login-page";
+	}
     
 }
