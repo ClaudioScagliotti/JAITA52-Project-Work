@@ -14,7 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class FileSRV {
-    @Value("file.basePath")
+	
+    @Value("${file.basePath}")
     private String basePath;
 
     public String saveFile(String cartellaDest, String nomeFile, MultipartFile file) throws IOException {
