@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/login-page">login</a>
+    <a th:if="${session.utente}" href="/logout">logout</a>
+    
+    <h1>HELLO!!</h1>
+    <h3 th:if="${session.utente}" th:text="|Welcome ${session.utente.nome} ${session.utente.cognome}|"></h3>
+</body>
+</html>
