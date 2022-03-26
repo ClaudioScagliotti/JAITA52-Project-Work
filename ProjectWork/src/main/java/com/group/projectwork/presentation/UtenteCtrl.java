@@ -52,7 +52,7 @@ public class UtenteCtrl {
     @GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 		session.setAttribute("utente", null);
-		return "redirect:/login-page";
+		return this.toIndex();
 	}
     
 }
