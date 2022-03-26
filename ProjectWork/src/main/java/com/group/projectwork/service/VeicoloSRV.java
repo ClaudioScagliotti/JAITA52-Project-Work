@@ -51,7 +51,11 @@ public class VeicoloSRV {
     }
 
     public Veicolo getVeicoloById(int id){
-        return this.vdb.findById(id).get();
+    	var v =  this.vdb.findById(id);
+    	if(v.isEmpty())
+    		return null;
+    	else
+    		return v.get();
     }
 
     public void deleteById(int id) {

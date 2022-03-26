@@ -11,8 +11,8 @@ public class CreateVeicoloDTO {
 	private String colore;
 	private String descrizione;
 	private String indirizzo;
-	private BigDecimal coordinataX;
-	private BigDecimal coordinataY;
+	private BigDecimal x;
+	private BigDecimal y;
 	
 	public int getCategoria() {
 		return categoria;
@@ -56,16 +56,16 @@ public class CreateVeicoloDTO {
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
 	}
-	public BigDecimal getCoordinataX() {
-		return coordinataX;
+	public BigDecimal getX() {
+		return x;
 	}
-	public void setCoordinataX(BigDecimal coordinataX) {
-		this.coordinataX = coordinataX;
+	public void setX(BigDecimal x) {
+		this.x = x;
 	}
-	public BigDecimal getCoordinataY() {
-		return coordinataY;
+	public BigDecimal getY() {
+		return y;
 	}
-	public void setCoordinataY(BigDecimal coordinataY) {
-		this.coordinataY = coordinataY;
+	public void setY(BigDecimal y) {
+		this.y = y;
 	}
 }

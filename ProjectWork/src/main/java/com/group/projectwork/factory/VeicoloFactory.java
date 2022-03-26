@@ -19,6 +19,22 @@ public class VeicoloFactory {
 	@Autowired
 	AlimentazioneSRV aliSrv;
 	
+	public UpdateVeicoloDTO createDto(Veicolo v) {
+		var dto = new UpdateVeicoloDTO();
+		dto.setAlimentazione(v.getAlimentazione().getId());
+		dto.setCategoria(v.getCategoria().getId());
+		dto.setColore(v.getColore());
+		dto.setX(v.getCoordinataX());
+		dto.setY(v.getCoordinataY());
+		dto.setDescrizione(v.getDescrizione());
+		dto.setDisponibilita(v.getDisponibilita());
+		dto.setId(v.getId());
+		dto.setIndirizzo(v.getIndirizzo());
+		dto.setMarca(v.getMarca());
+		dto.setModello(v.getModello());
+		return dto;
+	}
+	
 	public Veicolo parse(UpdateVeicoloDTO dto) throws VeicoloParseException {
 		var parsed = this.parse((CreateVeicoloDTO)dto);
 		parsed.setId(dto.getId());
@@ -38,8 +54,8 @@ public class VeicoloFactory {
 		parsed.setAlimentazione(ali);
 		parsed.setCategoria(cat);
 		parsed.setColore(dto.getColore());
-		parsed.setCoordinataX(dto.getCoordinataX());
-		parsed.setCoordinataY(dto.getCoordinataY());
+		parsed.setCoordinataX(dto.getX());
+		parsed.setCoordinataY(dto.getY());
 		parsed.setDescrizione(dto.getDescrizione());
 		parsed.setDisponibilita(null);
 		parsed.setIndirizzo(dto.getIndirizzo());
