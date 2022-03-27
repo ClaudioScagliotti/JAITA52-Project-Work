@@ -4,11 +4,12 @@ import static com.group.projectwork.utility.ErrorUtils.*;
 
 import java.util.Optional;
 
-import javax.websocket.server.PathParam;
-
+import com.group.projectwork.dto.CreateVeicoloDTO;
+import com.group.projectwork.dto.UpdateVeicoloDTO;
 import com.group.projectwork.entity.Utente;
 import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.exception.ImageSaveException;
+import com.group.projectwork.exception.VeicoloParseException;
 import com.group.projectwork.factory.VeicoloFactory;
 import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.service.AlimentazioneSRV;
@@ -20,12 +21,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller("/veicolo")
+@Controller
+@RequestMapping("/veicolo")
 public class VeicoloCTRL {
 
 	@Autowired
@@ -43,25 +47,39 @@ public class VeicoloCTRL {
 	@Autowired
 	VeicoloFactory factory;
 
+	private String toEditForm(Model model, CreateVeicoloDTO dto) {
+		model.addAttribute("edit", dto instanceof UpdateVeicoloDTO );
+		model.addAttribute("categorie",this.catSrv.getAll());
+		model.addAttribute("alimentazioni",this.aliSrv.getAll());
+		model.addAttribute("veicolo", dto);
+		return "form-admin-veicolo.html";
+	}
+	
 	@GetMapping("/edit/{id}")
 	public String editVeicolo(@SessionAttribute(name = "utente", required = true) Utente loggedIn,
-			@PathParam("id") int id, Model model) {
+			@PathVariable("id") int id, Model model) {
 
 		if (loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
 			accessDeniedMVC(model);
 
 		var selected = this.vsrv.getVeicoloById(id);
-		if (selected != null) {
-			model.addAttribute("edit", true);
-			model.addAttribute("categorie",this.catSrv.getAll());
-			model.addAttribute("alimentazioni",this.aliSrv.getAll());
-			model.addAttribute("veicolo", factory.createDto(selected));
-			return "test/save-veicolo.html";
-		}
+		if (selected != null)
+			return this.toEditForm(model, factory.createDto(selected));
 
-		return "redirect:/";
+		return "redire/ct:/";
 	}
+	
+	@GetMapping("/add-form")
+	public String preAddVeicolo(
+			@SessionAttribute(name = "utente", required = true) Utente loggedIn,
+			Model model) {
 
+		if (loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
+			accessDeniedMVC(model);
+
+		return this.toEditForm(model, new CreateVeicoloDTO());
+	}
+	
 	@GetMapping
 	public String getVeicolo(@SessionAttribute(name = "utente", required = false) Optional<Utente> optLoggedIn,
 			@RequestParam(name = "id", required = false) Optional<Integer> id,
@@ -84,17 +102,41 @@ public class VeicoloCTRL {
 		return "redirect:/index.html";
 	}
 
-	@PostMapping("/save")
-	public String saveVeicolo(@SessionAttribute(name = "utente", required = true) Utente loggedIn, Model model,
-			Veicolo veicoloForm, @RequestParam(name = "image") MultipartFile immagine) {
+	@PostMapping("/add")
+	public String addVeicolo(@SessionAttribute(name = "utente", required = true) Utente loggedIn, Model model,
+			CreateVeicoloDTO dto) {
 
 		if (!loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
 			accessDeniedMVC(model);
 
 		try {
-			vsrv.saveVeicolo(veicoloForm, immagine);
+			this.vsrv.addVeicolo(dto);
+			return "veicolo_list.html";
 		} catch (ImageSaveException e) {
 			// TODO ERROR
+			e.printStackTrace();
+		} catch (VeicoloParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/";
+	}
+	
+	@PostMapping("/upd")
+	public String updateVeicolo(@SessionAttribute(name = "utente", required = true) Utente loggedIn, Model model,
+			UpdateVeicoloDTO dto) {
+		
+		if (!loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
+			accessDeniedMVC(model);
+		
+		try {
+			this.vsrv.updVeicolo(dto);
+			return "veicolo_list.html";
+		} catch (ImageSaveException e) {
+			// TODO ERROR
+			e.printStackTrace();
+		} catch (VeicoloParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "redirect:/";

@@ -2,6 +2,8 @@ package com.group.projectwork.dto;
 
 import java.math.BigDecimal;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CreateVeicoloDTO {
     
 	private int categoria;
@@ -11,6 +13,7 @@ public class CreateVeicoloDTO {
 	private String colore;
 	private String descrizione;
 	private String indirizzo;
+	private MultipartFile file;
 	private BigDecimal x;
 	private BigDecimal y;
 	
@@ -55,6 +58,12 @@ public class CreateVeicoloDTO {
 	}
 	public void setIndirizzo(String indirizzo) {
 		this.indirizzo = indirizzo;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	public BigDecimal getX() {
 		return x;

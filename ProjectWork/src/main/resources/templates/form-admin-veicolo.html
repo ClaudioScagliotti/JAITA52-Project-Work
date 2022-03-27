@@ -9,7 +9,7 @@
 <body>
     
     <h2 th:text="${edit}?'Modifica':'Aggiungi'"></h2>
-    <form action="#" th:action="@{/veicolo/save}" method="post" th:object="${veicolo}">
+    <form action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data" th:object="${veicolo}">
         <div th:if="${edit}">
             <label th:text="|Id: *{id}|"></label>
             <input type="hidden" name="id" id="id" th:value="*{id}" >
@@ -17,42 +17,47 @@
         <div>
             <label>Categoria</label>
             <select name="categoria">
-                <option th:each="cat: ${categorie}" value="${cat.id}" th:text="${cat.nome}"></option>
+                <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
             </select>
         </div>
         <div>
             <label>Alimentazione</label>
             <select name="alimentazione">
-                <option th:each="ali: ${alimentazioni}" value="${ali.id}" th:text="${ali.nome}"></option>
+                <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
             </select>
         </div>
         <div>
             <label>Marca</label>
-            <input class="col" type="text" name="marca" th:value="*{marca}">
+            <input type="text" name="marca" th:value="*{marca}">
         </div>
         <div>
             <label>modello</label>
-            <input class="col" type="text" name="modello" th:value="*{modello}">
+            <input type="text" name="modello" th:value="*{modello}">
         </div>
         <div>
             <label>colore</label>
-            <input class="col" type="text" name="colore" th:value="*{colore}">
+            <input type="text" name="colore" th:value="*{colore}">
         </div>
         <div>
             <label>descrizione</label>
-            <input class="col" type="text" name="descrizione" th:value="*{descrizione}">
+            <input type="text" name="descrizione" th:value="*{descrizione}">
         </div>
         <div>
             <label>indirizzo</label>
-            <input class="col" type="text" name="indirizzo" th:value="*{indirizzo}">
+            <input type="text" name="indirizzo" th:value="*{indirizzo}">
+        </div>
+        <div>
+        	<img th:if="${edit}" th:src="*{immagine}" alt="no img yet">
+        	<label>immagine</label>
+        	<input type="file" name="file">
         </div>
         <div>
             <label>x</label>
-            <input class="col" type="number" name="x" th:value="*{x}">
+            <input type="number" name="x" th:value="*{x}">
         </div>
         <div>
             <label>y</label>
-            <input class="col" type="number" name="y" th:value="*{y}">
+            <input type="number" name="y" th:value="*{y}">
         </div>
 
         <input type="submit" value="Aggiungi">

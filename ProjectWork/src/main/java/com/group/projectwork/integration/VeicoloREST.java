@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/veicolo")
@@ -55,13 +54,13 @@ public class VeicoloREST {
 
 	@PostMapping
 	public ResponseEntity<Veicolo> addVeicolo(@RequestBody() CreateVeicoloDTO v,
-			@RequestParam(name = "image") MultipartFile img, @RequestParam(name = "token") String token) {
+			@RequestParam(name = "token") String token) {
 
 		if (!tokenSrv.isValid(token))
 			return ResponseEntity.badRequest().build();
 		
 		try {
-			var saved = this.vsrv.addVeicolo(v, img);
+			var saved = this.vsrv.addVeicolo(v);
 			return ResponseEntity.ok(saved);
 		} catch (ImageSaveException | VeicoloParseException ex) {
 			return ResponseEntity.badRequest().build();
@@ -70,13 +69,13 @@ public class VeicoloREST {
 
 	@PutMapping
 	public ResponseEntity<Veicolo> updVeicolo(@RequestBody() UpdateVeicoloDTO v,
-			@RequestParam(name = "image") MultipartFile img, @RequestParam(name = "token") String token) {
+			@RequestParam(name = "token") String token) {
 
 		if (!tokenSrv.isValid(token))
 			return ResponseEntity.badRequest().build();
 
 		try {
-			var saved = this.vsrv.updVeicolo(v, img);
+			var saved = this.vsrv.updVeicolo(v);
 			return ResponseEntity.ok(saved);
 		} catch (ImageSaveException | VeicoloParseException | EntityNotFoundException ex) {
 			return ResponseEntity.badRequest().build();

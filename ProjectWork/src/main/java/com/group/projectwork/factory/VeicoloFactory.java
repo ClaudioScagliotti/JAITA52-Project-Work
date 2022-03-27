@@ -32,6 +32,7 @@ public class VeicoloFactory {
 		dto.setIndirizzo(v.getIndirizzo());
 		dto.setMarca(v.getMarca());
 		dto.setModello(v.getModello());
+		dto.setImmagine(v.getImmagine());
 		return dto;
 	}
 	
