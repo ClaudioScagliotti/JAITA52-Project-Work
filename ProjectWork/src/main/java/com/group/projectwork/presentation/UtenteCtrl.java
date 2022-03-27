@@ -22,7 +22,7 @@ public class UtenteCtrl {
 	@Autowired
     UtenteSRV usrv;
 
-	@GetMapping
+	@GetMapping(value={"","/index"})
 	public String toIndex(){
 		return "index";
 	}

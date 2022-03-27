@@ -12,11 +12,9 @@ import com.group.projectwork.exception.ImageSaveException;
 import com.group.projectwork.exception.VeicoloParseException;
 import com.group.projectwork.factory.VeicoloFactory;
 import com.group.projectwork.repository.VeicoloDB;
-import com.group.projectwork.service.FileSRV;
 import com.group.projectwork.utility.StringUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -51,7 +49,11 @@ public class VeicoloSRV {
     }
 
     public Veicolo getVeicoloById(int id){
-        return this.vdb.findById(id).get();
+    	var v =  this.vdb.findById(id);
+    	if(v.isEmpty())
+    		return null;
+    	else
+    		return v.get();
     }
 
     public void deleteById(int id) {
@@ -64,14 +66,14 @@ public class VeicoloSRV {
 				StringUtils.random(5);
     }
     
-    public Veicolo addVeicolo(CreateVeicoloDTO v,MultipartFile img) throws ImageSaveException, VeicoloParseException {
+    public Veicolo addVeicolo(CreateVeicoloDTO v) throws ImageSaveException, VeicoloParseException {
 			var toAdd = factory.parse(v);
-			return this.saveVeicolo(toAdd, img);
+			return this.saveVeicolo(toAdd, v.getFile());
     }
  
-    public Veicolo updVeicolo(UpdateVeicoloDTO v,MultipartFile img) throws ImageSaveException, VeicoloParseException {
+    public Veicolo updVeicolo(UpdateVeicoloDTO v) throws ImageSaveException, VeicoloParseException {
 			var toAdd = factory.parse(v);
-			return this.saveVeicolo(toAdd, img);
+			return this.saveVeicolo(toAdd, v.getFile());
     }
     
     public Veicolo saveVeicolo( Veicolo veicolo, MultipartFile immagine) throws ImageSaveException {

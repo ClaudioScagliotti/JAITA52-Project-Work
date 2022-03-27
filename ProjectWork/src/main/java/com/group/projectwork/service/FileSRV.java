@@ -18,12 +18,33 @@ public class FileSRV {
     @Value("${file.basePath}")
     private String basePath;
 
+    private String applyExtension(String name, String originalFileName) {
+    	int lastDotIndex = originalFileName.lastIndexOf('.');
+    	if(lastDotIndex>0)
+    		return name+originalFileName.substring(lastDotIndex);
+    	return "";
+    }
+    
+    private String getName(String nomeFile, String oName) {
+       
+    	String fileName;
+        
+        if(nomeFile!=null && !nomeFile.isBlank())
+        	fileName = this.applyExtension(nomeFile,oName);
+        else
+        	fileName = oName;
+        if(fileName==null || fileName.isBlank())
+        	fileName = this.applyExtension("img"+System.currentTimeMillis(),oName);
+        
+        // Pulizia path e nome file da caratteri speciali
+        return StringUtils.cleanPath(fileName).replace(" ", "");        
+    }
+    
     public String saveFile(String cartellaDest, String nomeFile, MultipartFile file) throws IOException {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename()); // Pulizia path e nome file da caratteri
-                                                                             // speciali
-        fileName = fileName.replace(" ", "");
-
-        String cartellaOut = "/" + cartellaDest; // Percorso relativo del file
+        
+    	String fileName = this.getName(nomeFile, file.getOriginalFilename());
+        
+    	String cartellaOut = "/" + cartellaDest; // Percorso relativo del file
         cartellaDest = basePath + cartellaDest; // Percorso interno su cui il file verrà scritto
 
         // Costruisco il puntamento alla cartella di destinazione

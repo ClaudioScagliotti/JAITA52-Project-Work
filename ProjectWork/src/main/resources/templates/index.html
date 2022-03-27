@@ -10,6 +10,7 @@
     <a th:if="${session.utente}" href="/logout">logout</a>
     
     <h1>HELLO!!</h1>
-    <h3 th:if="${session.utente}" th:text="|Welcome ${session.utente.nome} ${session.utente.cognome}|"></h3>
+    <h3 th:if="${session.utente}" th:text="|Welcome ${session.utente.nome} ${session.utente.cognome} [${session.utente.ruolo}]|"></h3>
+	
 </body>
 </html>
