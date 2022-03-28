@@ -13,9 +13,7 @@ import com.group.projectwork.entity.Utente;
 public interface PrenotazioneDB extends JpaRepository<Prenotazione, Integer> {
 
 	List<Prenotazione> findAllByUtente (Utente u);
-	List<Prenotazione> findAllByInizio (Date model);
-	List<Prenotazione> findAllByFine (Date model);
-	List<Prenotazione> findAllByStato (State model);
-	
-	
+	List<Prenotazione> findAllByInizio (Date d);
+	List<Prenotazione> findAllByFine (Date d);
+	List<Prenotazione> findAllByStato (State s);
 }
