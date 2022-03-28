@@ -35,6 +35,10 @@ public class PrenotazioneSRV {
    		 return opt.get();
    	 return null;
      }
+
+	 public List<Prenotazione> getListaPrenotazioni() {
+		return this.pdb.findAll(); 
+	}
     
     List<Prenotazione> getByStato(State s){
     	return this.pdb.findAllByStato(s);
