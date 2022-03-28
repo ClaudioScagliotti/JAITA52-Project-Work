@@ -19,4 +19,11 @@ public class UtenteSRV {
 	 return null;
   }
 
+  public Utente getById(int id) {
+	 var opt = udb.findById(id);
+	 if(opt.isPresent())
+		 return opt.get();
+	 return null;
+  }
+  
 }
