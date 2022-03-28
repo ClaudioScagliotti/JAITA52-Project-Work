@@ -21,7 +21,10 @@ INSERT INTO veicolo
 
 
 INSERT INTO prenotazione (cliente_id,veicolo_id,inizio_noleggio,fine_noleggio,stato)
-      VALUES (1,2,'2022-03-23','2022-03-30','Corrente');
+      VALUES (1,2,'2022-03-23','2022-03-30','Corrente'),
+		(2,7,'2022-03-20','2022-03-27','Completato'),
+            (2,9,'2022-03-15','2022-04-30','Annullato'),
+            (1,4,'2022-03-23','2022-04-30','Annullato');
 
 
 INSERT INTO utente (nome,cognome,data_nascita,email,password,ruolo)
