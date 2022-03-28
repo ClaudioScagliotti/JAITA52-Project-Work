@@ -53,7 +53,7 @@ public class PrenotazioneREST {
 			return ResponseEntity.ok(saved);
 		}catch (TokenExpiredException|AccessDeniedException|VeicoloNotFoundException e) {
 			return ResponseEntity.badRequest().build();
-		}		
+		}
 	}
 	
 }

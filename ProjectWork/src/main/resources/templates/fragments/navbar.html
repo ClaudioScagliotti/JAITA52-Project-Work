@@ -31,12 +31,17 @@
               </ul>
             </li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="#"><i class="fa fa-user me-1"></i>Profilo</a>
+            <li th:if="${session.utente}" class="nav-item">
+              <a class="nav-link" href="#" ><i class="fa fa-user me-1"></i><span th:text="${session.utente.nome}">Profilo</span></a>
             </li>
 
             <li class="nav-item">
-              <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#loginForm"><i class="fa fa-right-to-bracket me-1"></i>
+            	<a href="/logout">
+	            	<button th:if="${session.utente}" type="button" class="btn btn-primary ms-2" ><i class="fa fa-right-to-bracket me-1"></i>
+	               		Logout
+	              	</button>
+            	</a>
+              <button th:if="${session.utente==null}" type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#loginForm"><i class="fa fa-right-to-bracket me-1"></i>
                 Login
               </button>
             </li>

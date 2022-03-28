@@ -44,7 +44,7 @@ public class UtenteCtrl {
         if(utente!= null && utente.getPassword().equals(data.getPassword())){
             session.setAttribute("utente", utente);
             this.tSrv.generate(utente);
-            return "index";
+            return "redirect:index";
         }
         return "error";
     }
