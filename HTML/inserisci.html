@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -83,9 +83,8 @@
   
                 <!--CHIEDERE A MILO PERCHE NON IL BOTTONE NON SI COLLEGA ALLA HOME-->
                 <li class="nav-item">
-                  <button type="button" class="btn btn-primary ms-2" id="logout"><a class="link-button" href="index.html" ><i class="fa fa-right-to-bracket me-1"></i>
+                  <button type="button" class="btn btn-primary ms-2" id="logout"><i class="fa fa-right-to-bracket me-1"></i>
                     Logout
-                    </a>
                   </button>
                 </li>
               </ul>
@@ -98,36 +97,37 @@
 
       
       <form action="#" method="GET">
+        <div class="inserimento">
 
-        <div>
+        <div class="separare">
             <label for="categoria_ID">Categoria Veicolo</label><br>
             <input type="text" name="categoria" id="categoria_ID" required>
         </div>
     
-        <div>
+        <div class="separare">
             <label for="descrizione_ID">Descrizione</label><br>
             <input type="text" name="descrizione" id="descrizione_ID" required>
         </div>
     
     
-        <div>
+        <div class="separare">
             <label for="alimentazione_ID">Alimentazione</label><br>
             <input type="text" name="alimentazione" id="alimentazione_ID" required>
         </div>
 
-        <div>
+        <div class="separare">
         <label for="indirizzo_ID">Indirizzo</label><br>
         <input type="text" name="indirizzo" id="indirizzo_ID" placeholder="via xxx n.3" required>
         </div>
-        <div>
-            <label for="coordinate_ID">TCoordinate GPS</label><br>
+        <div class="separare">
+            <label for="coordinate_ID">Coordinate GPS</label><br>
             <input type="coords" name="coordinate" id="coordinate_ID" 
             placeholder="00 00.0000,00 00.0000">
         </div>
     
     
         
-        <div>
+        <div class="separare">
             <label for="coordinate_ID">Disponibilità al noleggio</label><br>
             <input type="radio" name="disponibilita_al_noleggio" value="si" id="si_ID">
             <label for="si_ID">Si</label>
@@ -136,18 +136,20 @@
             
         </div>
     
-        <div>
+        <div class="separare">
             <input type="file" id="file" name="file">
         </div>
 
-        <div>
-            <input type="url" id="url" name="url" pattern="https://.*" size="30"> 
+        <div class="separare">
+          <label for="inserisciUrl_ID">Inserisci indirizzo url</label><br>
+          <input type="url" id="url" name="url" pattern="https://.*" size="30">
         </div>
     
+        <div class="separare">
         <input type="submit" value="Invia i dati">
+      </div>
     
-    
-    
+      </div>
     </form> 
 
 
