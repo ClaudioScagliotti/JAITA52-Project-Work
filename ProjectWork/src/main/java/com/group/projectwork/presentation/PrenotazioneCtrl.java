@@ -16,7 +16,9 @@ import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente;
 import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.entity.Veicolo;
+import com.group.projectwork.exception.AccessDeniedException;
 import com.group.projectwork.exception.ImageSaveException;
+import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.exception.VeicoloParseException;
 import com.group.projectwork.service.PrenotazioneSRV;
 import com.group.projectwork.service.VeicoloSRV;
@@ -32,27 +34,16 @@ public class PrenotazioneCtrl {
 	VeicoloSRV vSrv;
 
 	@PostMapping("/add")
-	public String addVeicolo( Utente loggedIn, Model model, PrenotazioneDTO p) {
+	public String addVeicolo( Utente loggedIn, Model model, PrenotazioneDTO dto) {
 
-		if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
-			return accessDeniedMVC(model);
-		
-		
-		Veicolo v= vSrv.getVeicoloById(p.getvId());
-		
-		if(v==null || !v.getDisponibilita())
-				return genericErrorMVC(model, "Veicolo non disponibile");
-		
-			Prenotazione pr= new Prenotazione();
-			pr.setInizio(p.getInizio());
-			pr.setFine(p.getFine());
-			pr.setVeicolo(v);
-			pr.setUtente(loggedIn);
-			pr.setStato(State.Prenotato);
-			
-			this.srv.addPrenotazione(pr);
+		try {
+			var p = this.srv.addPrenotazione(dto, loggedIn);
 			model.addAttribute("prenotazione", p);
 			return "utente";
-
+		}catch (AccessDeniedException e) {
+			return accessDeniedMVC(model);
+		}catch (VeicoloNotFoundException e) {
+			return genericErrorMVC(model, "Veicolo non disponibile");
+		}
 	}
 }
