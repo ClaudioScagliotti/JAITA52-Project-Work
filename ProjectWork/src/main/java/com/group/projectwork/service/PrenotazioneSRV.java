@@ -16,7 +16,7 @@ public class PrenotazioneSRV {
 	@Autowired
 	PrenotazioneDB pdb;
 	
-	List<Prenotazione> getAll(){
+	public List<Prenotazione> getAll(){
 		return this.pdb.findAll();
 	}
 		
@@ -36,19 +36,19 @@ public class PrenotazioneSRV {
    	 return null;
      }
     
-    List<Prenotazione> getByStato(State s){
+    public List<Prenotazione> getByStato(State s){
     	return this.pdb.findAllByStato(s);
     }
     
-    List<Prenotazione> getByInizio(Date d){
+    public List<Prenotazione> getByInizio(Date d){
     	return this.pdb.findAllByInizio(d);
     }
     
-    List<Prenotazione> getByFine(Date d){
+    public List<Prenotazione> getByFine(Date d){
     	return this.pdb.findAllByFine(d);
     }
     
-    List<Prenotazione> getByUtente(Utente u){
+    public List<Prenotazione> getByUtente(Utente u){
     	return this.pdb.findAllByUtente(u);
     }
     
