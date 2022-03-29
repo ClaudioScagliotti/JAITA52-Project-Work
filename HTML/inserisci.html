@@ -42,8 +42,9 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    
+<body class="stradissima" background="immaginiFinalEsperiamobene/stradissima.jpg">
+  
+  
     <div id="header">
         <nav class="navbar navbar-expand-lg bg-dark" aria-label="Main navigation">
           <div class="container-lg">
@@ -81,7 +82,7 @@
                   <a class="nav-link" href="#"><i class="fa fa-user me-1"></i>Profilo</a>
                 </li>
   
-                <!--CHIEDERE A MILO PERCHE NON IL BOTTONE NON SI COLLEGA ALLA HOME-->
+                <!--DA COLLEGARE ALLA HOME CON IL JS-->
                 <li class="nav-item">
                   <button type="button" class="btn btn-primary ms-2" id="logout"><i class="fa fa-right-to-bracket me-1"></i>
                     Logout
@@ -96,7 +97,13 @@
 
 
       
+
       <form action="#" method="GET">
+        <div class="proviamoci">
+        <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+        
         <div class="inserimento">
 
         <div class="separare">
@@ -137,19 +144,26 @@
         </div>
     
         <div class="separare">
-            <input type="file" id="file" name="file">
+          <label for="formFile" class="form-label"></label>
+          <input class="form-control" type="file" id="formFile">
         </div>
 
         <div class="separare">
-          <label for="inserisciUrl_ID">Inserisci indirizzo url</label><br>
+          <label for="inserisciUrl_ID" id="label_url">Inserisci indirizzo url</label><br>
           <input type="url" id="url" name="url" pattern="https://.*" size="30">
         </div>
     
-        <div class="separare">
-        <input type="submit" value="Invia i dati">
+        
+        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm" id="dati">
+         Invia dati
+        </button>
+
+     
       </div>
-    
-      </div>
+    </div>
+    </div>
+  </div>
+</div>
     </form> 
 
 
@@ -205,6 +219,36 @@
 
     </footer>
 
+    <div class="modal fade" id="confirmForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-door-open"></i>Conferma</h5>
+            
+          </div>
+          <div class="modal-body">
+            
+           
+            <form action="#">
+             
+              <p>Sei sicuro di voler registrare questi dati?</p>
+              
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+              <div class="col-sm-6 text-left">
+                <button type="submit" class="btn btn-primary">Registra</button>
+              </div>
+              <div class="col-sm-6 text-right">
+                <button type="submit" class="btn btn-light" data-bs-dismiss="modal">Annulla</button>
+              </div>
+            </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
 
 
 
