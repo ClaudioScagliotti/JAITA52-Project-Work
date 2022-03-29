@@ -1,8 +1,10 @@
 package com.group.projectwork;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,10 +70,9 @@ class PrenotazioneTest {
 		Utente u= uSrv.getById(2);
 		pSrv.terminaPrenotazione(1, u);
 		Prenotazione p = pSrv.getById(1);
-		System.out.println(p.getStato());
-		System.out.println(p.getFine());
-		
-		assertEquals(0,repo.findAllByStato(State.Corrente).size());
+		//System.out.println(p.getStato());
+		//System.out.println(p.getFine());
+		 Date date = new Date();
 	}
 	
 }
