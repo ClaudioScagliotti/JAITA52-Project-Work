@@ -1,8 +1,5 @@
 package com.group.projectwork.service;
 
-import static com.group.projectwork.utility.ErrorUtils.accessDeniedMVC;
-import static com.group.projectwork.utility.ErrorUtils.genericErrorMVC;
-
 import java.util.Date;
 import java.util.List;
 
@@ -36,66 +33,43 @@ public class PrenotazioneSRV {
     	return this.pdb.save(p);
     }
     
-    public Prenotazione addPrenotazione(PrenotazioneDTO p, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException{
+    public Prenotazione addPrenotazione(PrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException{
 		
     	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
 			throw new AccessDeniedException();
 
-		Veicolo v = vSrv.getVeicoloById(p.getvId());
+		Veicolo v = vSrv.getVeicoloById(dto.getvId());
 
 		if (v == null || !v.getDisponibilita())
 			throw new VeicoloNotFoundException();
 
+		var prenotazioni = this.pdb.findPrenotazioniAttive(v.getId());
+		//controlla che non ci siano altre prenotazioni attive per
+		//il veicolo nella data selezionata
+		if(prenotazioni.stream().anyMatch(p->
+			p.getFine().compareTo(dto.getInizio())>0 &&
+			p.getInizio().compareTo(dto.getFine())<0			
+			))
+			throw new VeicoloNotFoundException();
+		
 		Prenotazione pr = new Prenotazione();
-		pr.setInizio(p.getInizio());
-		pr.setFine(p.getFine());
+		pr.setInizio(dto.getInizio());
+		pr.setFine(dto.getFine());
 		pr.setVeicolo(v);
 		pr.setUtente(loggedIn);
 		pr.setStato(State.Prenotato);
 
-		return this.addPrenotazione(pr);
+		var prenotazione =  this.addPrenotazione(pr);
+		
+		prenotazione.getVeicolo().setDisponibilita(false);
+		this.vSrv.save(v);
+		
+		return prenotazione;
     }
     
     public void delPrenotazioneById(int id){
     	this.pdb.deleteById(id);
     }
-    
-    
-    public Prenotazione getById(int id) {
-   	 var opt = pdb.findById(id);
-   	 if(opt.isPresent())
-   		 return opt.get();
-   	 return null;
-     }
-    
-    public List<Prenotazione> getByStato(State s){
-    	return this.pdb.findAllByStato(s);
-    }
-    
-    public List<Prenotazione> getByInizio(Date d){
-    	return this.pdb.findAllByInizio(d);
-    }
-    
-    public List<Prenotazione> getByFine(Date d){
-    	return this.pdb.findAllByFine(d);
-    }
-    
-    public List<Prenotazione> getByUtente(Utente u){
-    	return this.pdb.findAllByUtente(u);
-    }
-    
-
-	List<Prenotazione> getAll() {
-		return this.pdb.findAll();
-	}
-
-	public Prenotazione addPrenotazione(Prenotazione p) {
-		return this.pdb.save(p);
-	}
-
-	public void delPrenotazioneById(int id) {
-		this.pdb.deleteById(id);
-	}
 
 	public Prenotazione getById(int id) {
 		var opt = pdb.findById(id);
@@ -122,5 +96,9 @@ public class PrenotazioneSRV {
 
 	public List<Prenotazione> getByUtente(Utente u) {
 		return this.pdb.findAllByUtente(u);
+	}
+	
+	public List<Prenotazione> getByVeicolo(Veicolo v) {
+		return this.pdb.findAllByVeicolo(v);
 	}
 }

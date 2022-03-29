@@ -48,4 +48,11 @@ class PrenotazioneTest {
 		assertEquals(2,repo.findAllByStato(state).size());
 	}
 	
+	@Test
+	@Transactional
+	void testingPrenotazioniAttiveByVeicolo() {
+		var pre = this.repo.findPrenotazioniAttive(6);
+		assertEquals(1,pre.size());
+	}
+	
 }
