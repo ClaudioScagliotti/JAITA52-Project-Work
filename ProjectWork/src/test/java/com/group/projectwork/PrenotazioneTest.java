@@ -67,6 +67,10 @@ class PrenotazioneTest {
 	void testingPrenotazioniService() throws AccessDeniedException {
 		Utente u= uSrv.getById(2);
 		pSrv.terminaPrenotazione(1, u);
+		Prenotazione p = pSrv.getById(1);
+		System.out.println(p.getStato());
+		System.out.println(p.getFine());
+		
 		assertEquals(0,repo.findAllByStato(State.Corrente).size());
 	}
 	

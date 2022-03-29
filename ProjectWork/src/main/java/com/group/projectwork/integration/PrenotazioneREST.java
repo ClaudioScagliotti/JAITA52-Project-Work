@@ -2,6 +2,7 @@ package com.group.projectwork.integration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +45,7 @@ public class PrenotazioneREST {
 		}
 	}
 	
-	@PostMapping("/termina")
+	@DeleteMapping("/termina")
 	public ResponseEntity<Prenotazione> terPrenotazione(
 			@RequestBody() int id,
 			@RequestParam(name = "token") String token) {

@@ -82,21 +82,18 @@ public class PrenotazioneSRV {
     
     public Prenotazione terminaPrenotazione(int id, Utente loggedIn) throws AccessDeniedException{
     	
-    	Prenotazione p= getById(id);
     	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
 			throw new AccessDeniedException();
-    	  
+    	Prenotazione p= getById(id);
     	   Date date = new Date();    
-    	   System.out.println(date);
-    	if(p.getInizio().before(date)) {
+    	if(p.getInizio().after(date)) {
     		p.setStato(State.Annullato);
     	}else {
     	p.setStato(State.Completato);
     	p.setFine(date);
     	}
     	p.getVeicolo().setDisponibilita(true);
-    	this.pdb.save(p);
-    	return p;
+    	return  this.pdb.save(p);
     		
     }
     

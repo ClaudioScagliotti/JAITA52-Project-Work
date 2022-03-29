@@ -80,7 +80,7 @@ public class PrenotazioneCtrl {
 		return "prenotazioni";
 	}
 	
-	@PostMapping("/terminaPrenotazione")
+	@PostMapping("/termina")
 	public String terPrenotazione( Utente loggedIn, Model model, int id) {
 
 		try {
@@ -92,7 +92,7 @@ public class PrenotazioneCtrl {
 		}
 	}
 	
-	@DeleteMapping
+	@PostMapping("/del")
 	public String delPrenotazione(Utente loggedIn, Model model, int id) {
 		
 		try {
