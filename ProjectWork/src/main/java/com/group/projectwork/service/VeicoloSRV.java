@@ -89,4 +89,8 @@ public class VeicoloSRV {
 		}
 		return vdb.save(veicolo);
 	}
+    
+    public Veicolo save(Veicolo veicolo) {
+    	return vdb.save(veicolo);
+	}
 }

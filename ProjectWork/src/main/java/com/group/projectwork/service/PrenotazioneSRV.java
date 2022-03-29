@@ -6,28 +6,70 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.group.projectwork.dto.PrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.entity.Prenotazione.State;
+import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.entity.Utente;
+import com.group.projectwork.entity.Veicolo;
+import com.group.projectwork.exception.AccessDeniedException;
+import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.repository.PrenotazioneDB;
 
 @Service
 public class PrenotazioneSRV {
 
 	@Autowired
+	VeicoloSRV vSrv;
+	
+	@Autowired
 	PrenotazioneDB pdb;
-
-	List<Prenotazione> getAll() {
+	
+	public List<Prenotazione> getAll(){
 		return this.pdb.findAll();
 	}
+		
+    public Prenotazione addPrenotazione(Prenotazione p){
+    	return this.pdb.save(p);
+    }
+    
+    public Prenotazione addPrenotazione(PrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException{
+		
+    	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
+			throw new AccessDeniedException();
 
-	public Prenotazione addPrenotazione(Prenotazione p) {
-		return this.pdb.save(p);
-	}
+		Veicolo v = vSrv.getVeicoloById(dto.getvId());
 
-	public void delPrenotazioneById(int id) {
-		this.pdb.deleteById(id);
-	}
+		if (v == null || !v.getDisponibilita())
+			throw new VeicoloNotFoundException();
+
+		var prenotazioni = this.pdb.findPrenotazioniAttive(v.getId());
+		//controlla che non ci siano altre prenotazioni attive per
+		//il veicolo nella data selezionata
+		if(prenotazioni.stream().anyMatch(p->
+			p.getFine().compareTo(dto.getInizio())>0 &&
+			p.getInizio().compareTo(dto.getFine())<0			
+			))
+			throw new VeicoloNotFoundException();
+		
+		Prenotazione pr = new Prenotazione();
+		pr.setInizio(dto.getInizio());
+		pr.setFine(dto.getFine());
+		pr.setVeicolo(v);
+		pr.setUtente(loggedIn);
+		pr.setStato(State.Prenotato);
+
+		var prenotazione =  this.addPrenotazione(pr);
+		
+		prenotazione.getVeicolo().setDisponibilita(false);
+		this.vSrv.save(v);
+		
+		return prenotazione;
+    }
+    
+    public void delPrenotazioneById(int id){
+    	this.pdb.deleteById(id);
+    }
 
 	public Prenotazione getById(int id) {
 		var opt = pdb.findById(id);
@@ -54,5 +96,9 @@ public class PrenotazioneSRV {
 
 	public List<Prenotazione> getByUtente(Utente u) {
 		return this.pdb.findAllByUtente(u);
+	}
+	
+	public List<Prenotazione> getByVeicolo(Veicolo v) {
+		return this.pdb.findAllByVeicolo(v);
 	}
 }
