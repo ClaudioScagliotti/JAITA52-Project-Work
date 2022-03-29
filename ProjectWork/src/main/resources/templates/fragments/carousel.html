@@ -6,7 +6,7 @@
 			<!-- Slides -->
 
 			<div th:each="veicolo: ${disponibili}" class="swiper-slide">
-				<a href="https://www.w3schools.com/tags/tag_em.asp"  class="text-decoration-none">
+				<a th:href="|/veicolo/?id=${veicolo.id}|"  class="text-decoration-none">
 					<div class="carousel-image">
 						<img th:src="${veicolo.immagine}" alt="">
 					</div>
