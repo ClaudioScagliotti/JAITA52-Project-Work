@@ -103,7 +103,7 @@ public class VeicoloSRV {
     	List<Double> count = new ArrayList<>(dataQuery.size());
     	List<String> names = new ArrayList<>(dataQuery.size());
     	dataQuery.forEach(data->{
-    		count.add(data.getCount()*data.getFdr());
+    		count.add(data.getVal());
     		names.add(data.getNome());
     	});
     	table.put("names", names);

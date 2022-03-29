@@ -21,8 +21,9 @@ public interface VeicoloDB extends JpaRepository<Veicolo, Integer> {
 	List<Veicolo> findAllByDisponibilita(Boolean b);
 	
 	@Query(nativeQuery = true, value = 
-			"select c.nome as nome, count(c.nome) as count, c.fattore as fdr \r\n"
+			"select c.nome as nome, count(c.nome)*c.fattore as val\r\n"
 			+ "	from projectwork.veicolo v, projectwork.categoria c\r\n"
-			+ "			where v.categoria_id = c.id group by c.nome;")
+			+ "	where v.categoria_id = c.id group by c.nome\r\n"
+			+ "    order by -val;")
 	List<ChatDataProjection> getChartData();
 }
