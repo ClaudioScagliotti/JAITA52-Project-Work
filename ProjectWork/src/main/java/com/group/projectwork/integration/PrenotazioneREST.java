@@ -30,7 +30,7 @@ public class PrenotazioneREST {
 	@Autowired
 	UtenteSRV usrv;
 	
-	@PostMapping
+	@PostMapping("/aggiungi")
 	public ResponseEntity<Prenotazione> addPrenotazione(
 			@RequestBody() PrenotazioneDTO dto,
 			@RequestParam(name = "token") String token) {
@@ -40,6 +40,20 @@ public class PrenotazioneREST {
 			var saved = this.srv.addPrenotazione(dto, user);
 			return ResponseEntity.ok(saved);
 		}catch (TokenExpiredException|AccessDeniedException|VeicoloNotFoundException e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@PostMapping("/termina")
+	public ResponseEntity<Prenotazione> terPrenotazione(
+			@RequestBody() int id,
+			@RequestParam(name = "token") String token) {
+		
+		try {
+			var user = this.tokenSrv.getUtente(token);
+			var saved = this.srv.terminaPrenotazione(id, user);
+			return ResponseEntity.ok(saved);
+		}catch (TokenExpiredException|AccessDeniedException e) {
 			return ResponseEntity.badRequest().build();
 		}
 	}

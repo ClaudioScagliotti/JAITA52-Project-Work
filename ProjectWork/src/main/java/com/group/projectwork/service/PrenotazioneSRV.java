@@ -1,9 +1,14 @@
 package com.group.projectwork.service;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.query.criteria.internal.expression.function.CurrentDateFunction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.auditing.CurrentDateTimeProvider;
 import org.springframework.stereotype.Service;
 
 import com.group.projectwork.dto.PrenotazioneDTO;
@@ -67,9 +72,35 @@ public class PrenotazioneSRV {
 		return prenotazione;
     }
     
-    public void delPrenotazioneById(int id){
+    public void delPrenotazioneById(int id, Utente loggedIn)throws AccessDeniedException{
+    	
+    	if (!loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
+			throw new AccessDeniedException();
+    	
     	this.pdb.deleteById(id);
     }
+    
+    public Prenotazione terminaPrenotazione(int id, Utente loggedIn) throws AccessDeniedException{
+    	
+    	Prenotazione p= getById(id);
+    	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
+			throw new AccessDeniedException();
+    	  
+    	   Date date = new Date();    
+    	   System.out.println(date);
+    	if(p.getInizio().before(date)) {
+    		p.setStato(State.Annullato);
+    	}else {
+    	p.setStato(State.Completato);
+    	p.setFine(date);
+    	}
+    	p.getVeicolo().setDisponibilita(true);
+    	this.pdb.save(p);
+    	return p;
+    		
+    }
+    
+    
 
 	public Prenotazione getById(int id) {
 		var opt = pdb.findById(id);

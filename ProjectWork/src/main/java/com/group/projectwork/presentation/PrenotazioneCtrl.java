@@ -22,6 +22,8 @@ import com.group.projectwork.exception.AccessDeniedException;
 import com.group.projectwork.exception.ImageSaveException;
 import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.exception.VeicoloParseException;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -44,7 +46,7 @@ public class PrenotazioneCtrl {
 	VeicoloSRV vSrv;
 
 	@PostMapping("/add")
-	public String addVeicolo( Utente loggedIn, Model model, PrenotazioneDTO dto) {
+	public String addPrenotazione( Utente loggedIn, Model model, PrenotazioneDTO dto) {
 
 		try {
 			var p = this.srv.addPrenotazione(dto, loggedIn);
@@ -76,5 +78,28 @@ public class PrenotazioneCtrl {
 		model.addAttribute("attive", attive);
 		model.addAttribute("concluse", concluse);
 		return "prenotazioni";
+	}
+	
+	@PostMapping("/terminaPrenotazione")
+	public String terPrenotazione( Utente loggedIn, Model model, int id) {
+
+		try {
+			var p = this.srv.terminaPrenotazione(id, loggedIn);
+			model.addAttribute("prenotazione", p);
+			return "utente";
+		}catch (AccessDeniedException e) {
+			return accessDeniedMVC(model);
+		}
+	}
+	
+	@DeleteMapping
+	public String delPrenotazione(Utente loggedIn, Model model, int id) {
+		
+		try {
+			this.srv.delPrenotazioneById(id, loggedIn);
+			return "utente";
+		}catch (AccessDeniedException e) {
+			return accessDeniedMVC(model);
+		}
 	}
 }
