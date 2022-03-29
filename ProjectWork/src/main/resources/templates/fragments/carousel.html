@@ -6,16 +6,16 @@
 			<!-- Slides -->
 
 			<div th:each="veicolo: ${disponibili}" class="swiper-slide">
-				<a href="https://www.w3schools.com/tags/tag_em.asp">
+				<a href="https://www.w3schools.com/tags/tag_em.asp"  class="text-decoration-none">
 					<div class="carousel-image">
 						<img th:src="${veicolo.immagine}" alt="">
 					</div>
+					<div class="slideText">
+						<h2 th:text="|${veicolo.marca} ${veicolo.modello}|"></h2>
+						<p th:text="${veicolo.descrizione}"></p>
+						<h5 th:text="${veicolo.indirizzo}"></h5>					
+					</div>
 				</a>
-				<div class="slideText">
-					<h2 th:text="|${veicolo.marca} ${veicolo.modello}|"></h2>
-					<p th:text="${veicolo.descrizione}"></p>
-					<h5 th:text="${veicolo.indirizzo}"></h5>					
-				</div>
 			</div>
 
 		</div>

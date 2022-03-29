@@ -120,6 +120,23 @@ h1, h2, h3, h4, h5, h6{
 
 /*  SWIPER CAROUSEL  */
 
+.swiper-slide{
+
+    transition: 0.3s;
+}
+
+.swiper-slide:hover{
+    border: .3rem solid rgba(30, 255, 0, 0.178);
+    background-color: #ddd;
+    border-radius: .5rem;
+    padding: .5rem;
+    transition: 0.3s;
+}
+
+.swiper-slide a{
+    color: black;
+}
+
 .swiper {
     padding-bottom: 3rem;
 }
