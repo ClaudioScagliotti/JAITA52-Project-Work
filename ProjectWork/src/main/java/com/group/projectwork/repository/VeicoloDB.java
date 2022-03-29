@@ -3,10 +3,12 @@ package com.group.projectwork.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.group.projectwork.entity.Alimentazione;
 import com.group.projectwork.entity.Categoria;
 import com.group.projectwork.entity.Veicolo;
+import com.group.projectwork.projection.ChatDataProjection;
 
 public interface VeicoloDB extends JpaRepository<Veicolo, Integer> {
 
@@ -17,4 +19,10 @@ public interface VeicoloDB extends JpaRepository<Veicolo, Integer> {
 	List<Veicolo> findAllByAlimentazione(Alimentazione a);
 	List<Veicolo> findAllByCategoria(Categoria a);
 	List<Veicolo> findAllByDisponibilita(Boolean b);
+	
+	@Query(nativeQuery = true, value = 
+			"select c.nome as nome, count(c.nome) as count, c.fattore as fdr \r\n"
+			+ "	from projectwork.veicolo v, projectwork.categoria c\r\n"
+			+ "			where v.categoria_id = c.id group by c.nome;")
+	List<ChatDataProjection> getChartData();
 }
