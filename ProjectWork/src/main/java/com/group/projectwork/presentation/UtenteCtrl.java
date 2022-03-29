@@ -21,11 +21,6 @@ public class UtenteCtrl {
 	
 	@Autowired
     UtenteSRV usrv;
-
-	@GetMapping(value={"","/index"})
-	public String toIndex(){
-		return "index";
-	}
 	
     @GetMapping("/login-page")
 	public String loginForm(Model model, HttpSession session) {
@@ -52,7 +47,6 @@ public class UtenteCtrl {
     @GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 		session.setAttribute("utente", null);
-		return this.toIndex();
+		return "redirect:index";
 	}
-    
 }
