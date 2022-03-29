@@ -155,9 +155,6 @@ h1, h2, h3, h4, h5, h6{
 
 
 
-
-
-
 .mappona iframe{
     width: 100%;
     min-height: 450px;
@@ -204,6 +201,17 @@ h1, h2, h3, h4, h5, h6{
     color: white;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.cta2 .btn-primary{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #212529;
+    color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
 }
 
 
@@ -289,3 +297,39 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+/*INIZIO PANNELLO*/
+
+#titolo_pannello{
+    padding-top: 2rem;
+    color: #E09200;
+    text-align: center;
+}
+
+.stradaccia{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-body{
+    background: #212529;
+}
+
+.card-text{
+    font-family: 'Nunito', sans-serif;
+    color: white;
+}
+
+.card-title{
+
+    color: white;
+}
+
+.card-body .btn-primary{
+    background-color: #E09200;
+}
+
+.blur{
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,.2);
+}
