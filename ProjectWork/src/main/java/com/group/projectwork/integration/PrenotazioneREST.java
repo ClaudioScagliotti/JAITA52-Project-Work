@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.group.projectwork.dto.PrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.exception.AccessDeniedException;
+import com.group.projectwork.exception.PrenotazioneException;
 import com.group.projectwork.exception.TokenExpiredException;
 import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.service.PrenotazioneSRV;
@@ -31,7 +32,7 @@ public class PrenotazioneREST {
 	@Autowired
 	UtenteSRV usrv;
 	
-	@PostMapping("/aggiungi")
+	@PostMapping()
 	public ResponseEntity<Prenotazione> addPrenotazione(
 			@RequestBody() PrenotazioneDTO dto,
 			@RequestParam(name = "token") String token) {
@@ -45,18 +46,17 @@ public class PrenotazioneREST {
 		}
 	}
 	
-	@DeleteMapping("/termina")
+	@DeleteMapping()
 	public ResponseEntity<Prenotazione> terPrenotazione(
-			@RequestBody() int id,
+			@RequestParam(name = "id") int id,
 			@RequestParam(name = "token") String token) {
 		
 		try {
 			var user = this.tokenSrv.getUtente(token);
-			var saved = this.srv.terminaPrenotazione(id, user);
-			return ResponseEntity.ok(saved);
-		}catch (TokenExpiredException|AccessDeniedException e) {
+			var terminated = this.srv.terminaPrenotazione(id, user);
+			return ResponseEntity.ok(terminated);
+		}catch (TokenExpiredException|AccessDeniedException|PrenotazioneException e) {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
 }

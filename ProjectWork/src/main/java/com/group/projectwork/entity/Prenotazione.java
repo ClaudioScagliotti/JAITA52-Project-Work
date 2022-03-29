@@ -18,7 +18,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.group.projectwork.entity.Utente.Role;
 
 @Entity
 @Table(name = "prenotazione")
