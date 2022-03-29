@@ -91,4 +91,10 @@ public class VeicoloREST {
 		this.vsrv.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
+	
+	@GetMapping("/chart")
+	public ResponseEntity<?> getChartData() {
+		var data = this.vsrv.getChartData();
+		return ResponseEntity.ok(data);
+	}
 }
