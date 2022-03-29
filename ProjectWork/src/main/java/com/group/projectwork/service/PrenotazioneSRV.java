@@ -13,6 +13,7 @@ import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.entity.Utente;
 import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.exception.AccessDeniedException;
+import com.group.projectwork.exception.PrenotazioneException;
 import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.repository.PrenotazioneDB;
 
@@ -21,21 +22,22 @@ public class PrenotazioneSRV {
 
 	@Autowired
 	VeicoloSRV vSrv;
-	
+
 	@Autowired
 	PrenotazioneDB pdb;
-	
-	public List<Prenotazione> getAll(){
+
+	public List<Prenotazione> getAll() {
 		return this.pdb.findAll();
 	}
-		
-    public Prenotazione addPrenotazione(Prenotazione p){
-    	return this.pdb.save(p);
-    }
-    
-    public Prenotazione addPrenotazione(PrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException{
-		
-    	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
+
+	public Prenotazione addPrenotazione(Prenotazione p) {
+		return this.pdb.save(p);
+	}
+
+	public Prenotazione addPrenotazione(PrenotazioneDTO dto, Utente loggedIn)
+			throws AccessDeniedException, VeicoloNotFoundException {
+
+		if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
 			throw new AccessDeniedException();
 
 		Veicolo v = vSrv.getVeicoloById(dto.getvId());
@@ -44,14 +46,12 @@ public class PrenotazioneSRV {
 			throw new VeicoloNotFoundException();
 
 		var prenotazioni = this.pdb.findPrenotazioniAttive(v.getId());
-		//controlla che non ci siano altre prenotazioni attive per
-		//il veicolo nella data selezionata
-		if(prenotazioni.stream().anyMatch(p->
-			p.getFine().compareTo(dto.getInizio())>0 &&
-			p.getInizio().compareTo(dto.getFine())<0			
-			))
+		// controlla che non ci siano altre prenotazioni attive per
+		// il veicolo nella data selezionata
+		if (prenotazioni.stream().anyMatch(
+				p -> p.getFine().compareTo(dto.getInizio()) > 0 && p.getInizio().compareTo(dto.getFine()) < 0))
 			throw new VeicoloNotFoundException();
-		
+
 		Prenotazione pr = new Prenotazione();
 		pr.setInizio(dto.getInizio());
 		pr.setFine(dto.getFine());
@@ -59,17 +59,56 @@ public class PrenotazioneSRV {
 		pr.setUtente(loggedIn);
 		pr.setStato(State.Prenotato);
 
-		var prenotazione =  this.addPrenotazione(pr);
-		
+		var prenotazione = this.addPrenotazione(pr);
+
 		prenotazione.getVeicolo().setDisponibilita(false);
 		this.vSrv.save(v);
-		
+
 		return prenotazione;
-    }
-    
-    public void delPrenotazioneById(int id){
-    	this.pdb.deleteById(id);
-    }
+	}
+
+	private boolean isRunning(Prenotazione p) {
+		return p.getStato() == State.Prenotato || p.getStato() == State.Corrente;
+	}
+
+	public void delPrenotazioneById(int id, Utente loggedIn) throws AccessDeniedException {
+
+		if (!loggedIn.getRuolo().equals(Role.RUOLO_ADMIN))
+			throw new AccessDeniedException();
+
+		Prenotazione p = getById(id);
+
+		if (p.getFine().after(new Date()))
+			if (this.isRunning(p))
+				p.getVeicolo().setDisponibilita(true);
+
+		this.pdb.delete(p);
+	}
+
+	public Prenotazione terminaPrenotazione(int id, Utente loggedIn)
+			throws AccessDeniedException, PrenotazioneException {
+
+		if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
+			throw new AccessDeniedException();
+
+		Prenotazione p = getById(id);
+		if (loggedIn != p.getUtente())
+			throw new AccessDeniedException();
+		else if (!this.isRunning(p)) 
+			throw new PrenotazioneException("Prenotazione not attiva");
+			
+		Date date = new Date();
+		if (p.getInizio().after(date)) {
+			p.setStato(State.Annullato);
+		} else if (p.getFine().after(date)) {
+			p.setFine(date);
+			p.setStato(State.Completato);
+		} else
+			throw new PrenotazioneException("Prenotazione passata");
+
+		p.getVeicolo().setDisponibilita(true);
+		return this.pdb.save(p);
+	}
 
 	public Prenotazione getById(int id) {
 		var opt = pdb.findById(id);
@@ -97,7 +136,7 @@ public class PrenotazioneSRV {
 	public List<Prenotazione> getByUtente(Utente u) {
 		return this.pdb.findAllByUtente(u);
 	}
-	
+
 	public List<Prenotazione> getByVeicolo(Veicolo v) {
 		return this.pdb.findAllByVeicolo(v);
 	}
