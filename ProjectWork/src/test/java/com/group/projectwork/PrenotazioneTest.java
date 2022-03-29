@@ -8,10 +8,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente;
 import com.group.projectwork.entity.Utente.Role;
+import com.group.projectwork.presentation.PrenotazioneCtrl;
 import com.group.projectwork.repository.PrenotazioneDB;
 import com.group.projectwork.repository.TokenDB;
 import com.group.projectwork.repository.UtenteDB;
@@ -27,6 +29,9 @@ class PrenotazioneTest {
 	
 	@Autowired
 	UtenteSRV uSrv;
+
+	@Autowired
+	PrenotazioneCtrl ctrl;
 	
 
 	@Test
@@ -43,5 +48,11 @@ class PrenotazioneTest {
 		assertEquals(2,repo.findAllByStato(state).size());
 	}
 	
-
+	@Test
+	@Transactional
+	void testingPrenotazioniAttiveByVeicolo() {
+		var pre = this.repo.findPrenotazioniAttive(6);
+		assertEquals(1,pre.size());
+	}
+	
 }

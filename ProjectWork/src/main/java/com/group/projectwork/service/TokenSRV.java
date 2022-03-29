@@ -20,6 +20,10 @@ public class TokenSRV {
     @Autowired
     TokenDB db;
 
+    public Utente getUtente(String token) throws TokenExpiredException {
+    	return this.getByValue(token).getUtente();
+    }
+    
     private Token updToken(Token token) {
     	token.setIns(new Date(System.currentTimeMillis()));
     	return this.db.save(token);
