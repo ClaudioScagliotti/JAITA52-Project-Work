@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login admin</title>
+  <!--INIZIO DEL FAVICON-->
+  <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--IMPORT DEI FONT-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gugi&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quando&display=swap" rel="stylesheet">
+  <link href="http://fonts.cdnfonts.com/css/rocket-pop" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pannello.css">
+</head>
+
+<body class="stradaccia" background="img/stradaccia.jpg">
+
+  <div id="header">
+    <nav class="navbar navbar-expand-lg bg-dark" aria-label="Main navigation">
+      <div class="container-lg">
+        <a class="navbar-brand" href="index.html">
+          <img class="logo" src="img/logo2.png">
+        </a>
+
+
+        <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse"
+          aria-label="Toggle navigation">
+          <img src="img/hamburger.png" id="hamburger"></i>
+        </button>
+
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+            <li class="nav-item">
+              <a class="nav-link" href="index.html"><i class="fa fa-house me-1"></i> Home</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#ambiente"><i class="fa fa-seedling me-1"></i>Ambiente</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
+                aria-expanded="false"><i class="fa fa-car-on me-1"></i>Veicoli</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                <li><a class="dropdown-item" href="#"><i class="fa fa-car-side me-1"></i> Automobili</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa fa-motorcycle me-1"></i> Moto</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fa fa-bicycle me-1"></i> Biciclette</a></li>
+              </ul>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#"><i class="fa fa-user me-1"></i>Profilo</a>
+            </li>
+
+            <li class="nav-item">
+              <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#loginForm"><i
+                  class="fa fa-right-to-bracket me-1"></i>
+                Login
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+  <!--BOTTONI DASHBOARD-->
+
+
+
+<div class ="blur">
+  <div class="container">
+    <h2 class="title pb-3 mb-5" id ="titolo_pannello">Benvenuto alla dashboard, *nome amministratore*
+    </h2>
+    <div class="row">
+      <div class="col-lg-6 px-5">
+        <div class="card mb-5">
+          <img class="card-img-top" src="ImmaginiFinalEsperiamobene/mucchione.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title pac">Aggiungi veicolo</h5>
+            <p class="card-text">Fare click sul bottone sottostante per accedere alla pagina di inserimento veicoli.</p>
+            <a href="inserisci.html" class="btn btn-primary">Entra</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 px-5">
+        <div class="card mb-5">
+          <img class="card-img-top" src="ImmaginiFinalEsperiamobene/veicolando_1.jpg" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title pactext">Gestisci i veicoli</h5>
+            <p class="card-text">Fare click sul bottone sottostante per accedere alla lista dei veicoli amministrabili.</p>
+            <a href="lista.html" class="btn btn-primary">Entra</a>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <footer id="mainFooter">
+
+    <div class="container">
+      <div class="row d-flex align-items-center">
+        <div class="col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
+          <!-- classi per: colonna | allineamento testo su small e large, margine su small e large -->
+          Vicolo Corto 12<br>
+          10100 Barletta<br>
+          ITALY
+        </div>
+        <div class="col-lg-4 text-center mb-3 mb-lg-0 text-green">
+          <i class="fab fa-facebook"></i> <i class="fab fa-instagram"> </i> <i class="fab fa-twitter"></i>
+        </div>
+        <div class="col-lg-4 text-center text-lg-end">
+          ©JAITA52 2022
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+  <script>
+    //gestione off-canvas
+    (function () {
+      'use strict'
+
+      document.querySelector('#navbarSideCollapse').addEventListener('click', function () {
+        document.querySelector('.offcanvas-collapse').classList.toggle('open')
+      })
+    })()
+  </script>
+
+</body>
+
+</html>

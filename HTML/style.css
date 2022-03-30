@@ -13,9 +13,7 @@ h1, h2, h3, h4, h5, h6{
     font-family: "Cunia";
 }
 
-.titolino{
-    text-align: center;
-}
+
 .btn-primary {
     background-color: #59C567;
     border-color: white;
@@ -40,15 +38,7 @@ h1, h2, h3, h4, h5, h6{
     color: #59C567;
 }
 
-#hero{
-    width: 100%;
-    height:auto; 
-    background: url();
 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
 
 #header{
     
@@ -84,21 +74,9 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
     justify-content: center;
     text-shadow: 1px 1px black;
-  
 }
 
-#logone{
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    background: url(img/viaggi.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .nav-link{
     color: #59C567;
@@ -118,25 +96,9 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-
-.swiper {
-    padding-bottom: 3rem;
-  }
-  
-  .swiper-slide img {
-      width: 100%;
-      height:auto;
-  }
-  
-  .swiper-button-next, .swiper-button-prev {
-      width:1rem;
-      height:1rem;
-  }
-
-
-
-
-
+   #hamburger{
+       width: 60%;
+   }
 
 
 
@@ -157,11 +119,27 @@ h1, h2, h3, h4, h5, h6{
       background-color: #2B2D42;
       transition: transform .3s ease-in-out, visibility .3s ease-in-out;
     }
-    .offcanvas-collapse.open {
-      visibility: visible;
-      transform: translateX(-100%);
+}
+    
 
-      z-index:99;
-    }
-  }
+    
+  
+
+
+.cta2 .btn-primary{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #212529;
+    color: white;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 20px;
+}
+
+
+
+
+
+/*INIZIO PANNELLO*/
 
