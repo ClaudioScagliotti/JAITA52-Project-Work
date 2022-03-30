@@ -1,0 +1,8 @@
+.sfondo{
+    width: 100%;
+background-image: url('..static/img/inserisci/sfondone.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+width: 100%;
+
+}
