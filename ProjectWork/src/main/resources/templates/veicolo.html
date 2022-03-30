@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutoIo</title>
+
+  <!--INIZIO DEL FAVICON-->
+  <link th:replace="fragments/favicons.html">
+
+  <!--IMPORT DI BOOTSTRAP-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--IMPORT DEI FONT-->
+  <link th:replace="fragments/fonts.html">
+
+  <!-- IMPORTO IL CSS DI SWIPER (slider) -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/veicolo.css">
+
+</head>
+
+<body>
+  <!--INIZIO DELLA NAVBAR-->
+  <div id="header" th:insert="fragments/navbar.html"></div>
+
+
+  <div id="foto_veicolo">
+    <div class="cta2">
+      <div class="content2">
+        <h1 class="titolo_veicolo"> TESLA MODEL S </h1> 
+        <p class="descrizione_veicolo"> Descrizione descrizione descrizione</p>
+        <a href="#!" class="btn btn-primary">Noleggia</a>
+      </div>
+    </div>
+
+
+    </div>
+  </div>
+
+  <div class="container-fluid py-4">
+    <div class="row">
+
+      <div class="col-lg-6 d-flex flex-column justify-content-center align-items-start order-lg-2">
+
+        <p>Con la gamma veicoli Auto.io, potrai avere tutti i vantaggi del noleggio a lungo termine in un veicolo nuovo
+          e rispettoso dell'ambiente.
+          Assicurazione, manutenzione e bollo non saranno più un problema e potrai guidare senza pensieri e a consumi
+          ridotti.
+          Tutti i veicoli proposti sono nuovi e potrai scegliere come configurare i tuoi mezzi, adattandoli alle tue
+          esigenze di guida.</p>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="mappona">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720257.0005782874!2d6.827425100092934!3d45.156644856573266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47884595931bc5ff%3A0x305e67d473c7d70!2sCitt%C3%A0%20Metropolitana%20di%20Torino!5e0!3m2!1sit!2sit!4v1648199258517!5m2!1sit!2sit"
+            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!--FOOTER-->
+  <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
+
+  <!--Gestione off-canvas navbar quando piccolo-->
+  <script src="js/common/navbar_canvas.js"></script>
+	
+  </script>
+</body>
+
+</html>
