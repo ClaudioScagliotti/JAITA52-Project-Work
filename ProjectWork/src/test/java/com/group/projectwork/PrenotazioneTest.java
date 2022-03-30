@@ -2,23 +2,33 @@ package com.group.projectwork;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties.Build;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
-import com.group.projectwork.entity.Prenotazione.State;
+import com.group.projectwork.dto.UpdatePrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
+import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente;
+import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.exception.AccessDeniedException;
 import com.group.projectwork.exception.PrenotazioneException;
+import com.group.projectwork.exception.VeicoloNotFoundException;
 import com.group.projectwork.presentation.PrenotazioneCtrl;
 import com.group.projectwork.repository.PrenotazioneDB;
+import com.group.projectwork.repository.TokenDB;
+import com.group.projectwork.repository.UtenteDB;
 import com.group.projectwork.service.PrenotazioneSRV;
+import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.UtenteSRV;
 import com.group.projectwork.utility.DateUtils;
+import com.mysql.cj.protocol.x.Ok;
 
 @SpringBootTest
 class PrenotazioneTest {
@@ -34,6 +44,7 @@ class PrenotazioneTest {
 	
 	@Autowired
 	PrenotazioneSRV pSrv;
+	
 
 	@Test
 	@Transactional
@@ -56,33 +67,31 @@ class PrenotazioneTest {
 		assertEquals(1,pre.size());
 	}
 	
-	
 	@Test
 	@Transactional
-	void testingTerminaPrenotazioniService() {
-		Utente u = uSrv.getById(2);
+	void testingPrenotazioneSRV() {
+		Prenotazione p= pSrv.getById(1);
+		UpdatePrenotazioneDTO dto= new UpdatePrenotazioneDTO();
+		Utente u= uSrv.getById(2);
+		SimpleDateFormat d2= new SimpleDateFormat("2022-04-02");
+		Date today= new Date();
+		dto.setId(p.getId());
+		dto.setInizio(p.getInizio());
+		dto.setFine(today);
+		dto.setvId(9);
 		try {
-			pSrv.terminaPrenotazione(32, u);
+			pSrv.updPrenotazione(dto, u);
+		} catch (AccessDeniedException e) {
 			fail();
 		} catch (PrenotazioneException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
+			fail(); //fallisce qui ma è corretto che fallisca
+		} catch (VeicoloNotFoundException e) {
 			fail();
 		}
 		
-		try {
-			var p = pSrv.getById(35);
-			var oldDate = p.getFine().getTime();
-			var pAfter = pSrv.terminaPrenotazione(35, u);
-			var timeAfter = pAfter.getFine().getTime();
-			assertNotEquals(oldDate,
-					timeAfter);
-			Date currDate = new Date();
-			assertEquals(timeAfter, currDate.getTime(),10000.0);
-			assertEquals(Prenotazione.State.Completato, pAfter.getStato());
-		} catch (Exception e) {
-			fail();
-		}
+		//var pre = this.repo.findPrenotazioniAttive(9);
+		//assertEquals(1, pre.size());
 	}
+	
 	
 }

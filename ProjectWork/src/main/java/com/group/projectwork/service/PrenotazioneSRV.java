@@ -68,11 +68,19 @@ public class PrenotazioneSRV {
 		return prenotazione;
     }
     
-	public Prenotazione updPrenotazione(UpdatePrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException 
+	public Prenotazione updPrenotazione(UpdatePrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException, PrenotazioneException 
 	{
     	
     	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
 			throw new AccessDeniedException();
+    	
+    	
+    	
+    	if(dto.getInizio().compareTo(dto.getFine())>=0)
+    		throw new PrenotazioneException("Data fine precedente a data inizio");
+    	
+    	if(dto.getFine().compareTo(new Date())<=0)
+    		throw new PrenotazioneException("Prenotazione terminata");
     	
     	Veicolo newV = vSrv.getVeicoloById(dto.getvId());
     	
@@ -99,9 +107,6 @@ public class PrenotazioneSRV {
 			this.vSrv.setDisp(oldP.getVeicolo(), true);
 			this.vSrv.setDisp(newV, false);
 			oldP.setVeicolo(newV);
-
-			
-			
 		}
 		
 		oldP.setInizio(dto.getInizio());

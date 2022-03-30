@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.group.projectwork.dto.PrenotazioneDTO;
+import com.group.projectwork.dto.UpdatePrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente;
@@ -93,5 +94,21 @@ public class PrenotazioneCtrl {
 		}catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		}
+	}
+	
+	@PostMapping("/upd")
+	public String updPrenotazione(Utente loggedIn, Model model, UpdatePrenotazioneDTO dto) {
+		
+		try {
+			var p = this.srv.updPrenotazione(dto, loggedIn);
+			return "utente";
+		} catch (AccessDeniedException e) {
+			return accessDeniedMVC(model);
+		} catch (VeicoloNotFoundException e) {
+			return genericErrorMVC(model, "Veicolo non disponibile");
+		} catch (PrenotazioneException e) {
+			return genericErrorMVC(model, "Errore nella selezione delle date");
+		}
+		
 	}
 }
