@@ -1,6 +1,6 @@
 package com.group.projectwork.presentation;
 
-import static com.group.projectwork.utility.ErrorUtils.accessDeniedMVC;
+import static com.group.projectwork.utility.ErrorUtils.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -38,4 +38,12 @@ public class AdminCtrl {
     	model.addAttribute("veicoli",this.vSrv.getAll());
 		return "view";
     }
+	
+	@GetMapping("/pannello")
+	public String toPannello(Utente u, Model model){
+		if(u.getRuolo()!=Role.RUOLO_ADMIN)
+			accessDeniedMVC(model);
+
+		return "pannello";
+	}  
 }

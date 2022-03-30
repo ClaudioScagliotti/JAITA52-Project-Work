@@ -1,0 +1,54 @@
+.link-button{
+    
+    color: white;
+    text-decoration: none;
+    
+}
+.link-button:hover, .link-button:active .link-button:focus {
+    /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
+    background-color: none;
+    color: white;
+}
+
+
+
+/* MODIFICA INSERISCI*/
+
+
+
+
+#file{
+   
+    margin-bottom: 2rem;
+
+    
+}
+#label_url{
+    margin-top:1rem;
+   
+    }
+
+#url{
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    
+
+}
+
+#categoria_ID, #descrizione_ID, #alimentazione_ID, #indirizzo_ID, #coordinate_ID{
+    margin-bottom: 1rem;
+
+}
+#dati{
+    margin-top: 1rem;
+}
+
+
+.stradissima{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.proviamoci{
+    margin-right: 15rem;
+}

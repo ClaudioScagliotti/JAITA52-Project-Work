@@ -13,9 +13,13 @@ h1, h2, h3, h4, h5, h6{
     font-family: "Cunia";
 }
 
-.titolino{
-    text-align: center;
+footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
+
 .btn-primary {
     background-color: #59C567;
     border-color: white;
@@ -78,18 +82,7 @@ h1, h2, h3, h4, h5, h6{
     text-shadow: 1px 1px black;
 }
 
-#logone{
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    background: url(img/viaggi.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .nav-link{
     color: #59C567;
@@ -108,59 +101,10 @@ h1, h2, h3, h4, h5, h6{
   
 }
 
-.swiper {
-    padding-bottom: 3rem;
-  }
-  
-  .swiper-slide img {
-      width: 100%;
-      height:auto;
-  }
-  
-  .swiper-button-next, .swiper-button-prev {
-      width:1rem;
-      height:1rem;
-  }
-
-  .swiper-slide img:hover{
-    -o-transition:.5s;
-    -ms-transition:.5s;
-    -moz-transition:.5s;
-    -webkit-transition:.5s;
-    transition:.5s;
-    box-shadow: 10px 10px 5px #888888;
-   }
 
    #hamburger{
        width: 60%;
    }
-
-
-
-
-/* INIZIO VEICOLO */
-
-#foto_veicolo{
-    color: white;
-    min-height: calc(100vh - 90px);
-    width: 100%;
-    position: relative;
-    background: url(img/teslona.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    display: flex;
-    padding: 3rem;
-}
-
-
-
-.mappona iframe{
-    width: 100%;
-    min-height: 450px;
-}
-
-
 
 
 
@@ -181,27 +125,12 @@ h1, h2, h3, h4, h5, h6{
       background-color: #2B2D42;
       transition: transform .3s ease-in-out, visibility .3s ease-in-out;
     }
-    .offcanvas-collapse.open {
-      visibility: visible;
-      transform: translateX(-100%);
-
-      z-index:99;
-    }
-
-    #foto_veicolo{
-        color: #212529;
-    }
-  }
-
-.descrizione_veicolo{
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: #212529;
-    color: white;
-    padding-left: 20px;
-    padding-right: 20px;
 }
+    
+
+    
+  
+
 
 .cta2 .btn-primary{
     position: absolute;
@@ -215,121 +144,8 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-/* INIZIO INSERISCI */
 
-.link-button{
-    
-    color: white;
-    text-decoration: none;
-    
-}
-.link-button:hover, .link-button:active .link-button:focus {
-    /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
-    background-color: none;
-    color: white;
-}
-
-/*errore*/
-#errore{
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
-    background: url(ImmaginiFinalEsperiamobene/erroremadornale.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position:center;
-    display: flex;
-    justify-content:center;
-    align-items:center;
-}
-
-#madornale{
-    color:#ff6666;
-    font-size: 4rem;
-}
-#scritta{
-    color:#ff6666;
-    font-size: 1.5rem;
-    padding: 2rem;
-    background-color: rgba(255,255,255,.8);
-    border-radius: 1rem;
-}
-
-/* MODIFICA INSERISCI*/
-
-
-
-
-#file{
-   
-    margin-bottom: 2rem;
-
-    
-}
-#label_url{
-    margin-top:1rem;
-   
-    }
-
-#url{
-    margin-bottom: 2rem;
-    margin-top: 1rem;
-    
-
-}
-
-#categoria_ID, #descrizione_ID, #alimentazione_ID, #indirizzo_ID, #coordinate_ID{
-    margin-bottom: 1rem;
-
-}
-#dati{
-    margin-top: 1rem;
-}
-
-
-.stradissima{
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.proviamoci{
-    margin-right: 15rem;
-}
 
 
 /*INIZIO PANNELLO*/
 
-#titolo_pannello{
-    padding-top: 2rem;
-    color: #E09200;
-    text-align: center;
-}
-
-.stradaccia{
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.card-body{
-    background: #212529;
-}
-
-.card-text{
-    font-family: 'Nunito', sans-serif;
-    color: white;
-}
-
-.card-title{
-
-    color: white;
-}
-
-.card-body .btn-primary{
-    background-color: #E09200;
-}
-
-.blur{
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background-color: rgba(0,0,0,.2);
-}
