@@ -52,7 +52,7 @@ public class VeicoloCTRL {
 		model.addAttribute("categorie",this.catSrv.getAll());
 		model.addAttribute("alimentazioni",this.aliSrv.getAll());
 		model.addAttribute("veicolo", dto);
-		return "form-admin-veicolo.html";
+		return "inserisci";
 	}
 	
 	@GetMapping("/edit/{id}")

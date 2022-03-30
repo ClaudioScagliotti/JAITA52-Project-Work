@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,22 +21,19 @@
   <!--IMPORT DEI FONT-->
   <link th:replace="fragments/fonts.html">
 
-  <!-- IMPORTO IL CSS DI SWIPER (slider) -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="inserisci.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/inserisci.css">
 
 </head>
 
 <body>
 
   <!--NAVBAR-->
-  <div id="header" th:insert="fragments/navbar.html"></div>
+  <div id="header" th:insert="/fragments/navbar.html"></div>
+
   <div class="sfondo">
 
-    <form action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data"
+    <form class="mt-5 mb-5" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data"
       th:object="${veicolo}">
       <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
       <div class="container">
@@ -73,7 +70,19 @@
                 th:value="*{indirizzo}">
             </div>
 
+
+
+          </div>
+
+          <div class="col-lg-6 mb-6">
+            <!--TODO disponibilità
             <div class="mb-3">
+              <label>Disponibilità Veicolo</label><br>
+              <input type="checkbox" id="disponibilita" name="disponibilita" th:value="*{disponibilita}">
+            </div>
+            -->
+
+            <div class="mt-4 mb-3">
               <label for="coordinataX_ID">Coordinata x</label><br>
               <input type="number" name="x" id="coordinataX_ID" th:value="*{x}" placeholder="00 00.0000">
             </div>
@@ -83,26 +92,9 @@
               <input type="number" name="x" id="coordinataX_ID" th:value="*{y}" placeholder="00 00.0000">
             </div>
 
-          </div>
-
-          <div class="col-lg-6 mb-6">
-
-            <div class="mb-3">
-              <label>Disponibilità Veicolo</label><br>
-              <select name="Disponibilità">
-                <option th:each="disp: ${disponibilita}" th:value="${disp.id}" th:text="${disp.nome}"></option>
-              </select>
-            </div>
-
-
             <div class="mb-3">
               <label for="formFile" class="form-label"></label>
               <input class="form-control" type="file" id="formFile">
-            </div>
-
-            <div class="mb-3">
-              <label for="inserisciUrl_ID" id="label_url">Inserisci indirizzo url</label><br>
-              <input type="url" id="url" name="url" pattern="https://.*" size="30">
             </div>
 
             <div class="mb-3">
