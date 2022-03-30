@@ -165,3 +165,35 @@ h1, h2, h3, h4, h5, h6{
     }
   }
 
+
+  /*INIZIO DI UTENTE*/
+
+.profile-card{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.5rem;
+    padding: 1.5rem 0.5rem;
+}
+
+.profile-card img{
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin:0 auto 1rem;
+    display:block;
+}
+
+.profile-card h1{
+    text-align: center;
+}
+
+.disp_utente{
+    margin-bottom: 2rem;
+}
+
+.disp_utente li span{
+    width: 33.33%;
+}
+
+.lista_pren h2{
+    margin-bottom: 2rem;
+}
