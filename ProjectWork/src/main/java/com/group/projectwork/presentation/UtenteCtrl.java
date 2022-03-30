@@ -21,7 +21,7 @@ public class UtenteCtrl {
 	
 	@Autowired
     UtenteSRV usrv;
-
+	
     @GetMapping("/login-page")
 	public String loginForm(Model model, HttpSession session) {
 		
@@ -33,15 +33,20 @@ public class UtenteCtrl {
     }
 
     @PostMapping("/login")
-    public String executeLogin(@RequestBody() LoginDTO data, Model model, HttpSession session){
+    public String executeLogin(LoginDTO data, Model model, HttpSession session){
         var email= data.getEmail();
         var utente= this.usrv.getByEmail(email);
         if(utente!= null && utente.getPassword().equals(data.getPassword())){
             session.setAttribute("utente", utente);
             this.tSrv.generate(utente);
-            return "index";
+            return "redirect:index";
         }
         return "error";
     }
-    
+
+    @GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		session.setAttribute("utente", null);
+		return "redirect:index";
+	}
 }

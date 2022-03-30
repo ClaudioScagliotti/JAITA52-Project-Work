@@ -1,0 +1,40 @@
+
+<!-- Slider main container -->
+<div class="container-fluid py-5">
+	<div class="swiper">
+		<div class="swiper-wrapper">
+			<!-- Slides -->
+
+			<div th:each="veicolo: ${disponibili}" class="swiper-slide">
+				<a th:href="|/veicolo/?id=${veicolo.id}|"  class="text-decoration-none">
+					<div class="carousel-image">
+						<img th:src="${veicolo.immagine}" alt="">
+					</div>
+					<div class="slideText">
+						<h2 th:text="|${veicolo.marca} ${veicolo.modello}|"></h2>
+						<p th:text="${veicolo.descrizione}"></p>
+						<h5 th:text="${veicolo.indirizzo}"></h5>					
+					</div>
+				</a>
+			</div>
+
+		</div>
+
+		<!-- If we need pagination -->
+		<div class="swiper-pagination"></div>
+
+		<!-- If we need navigation buttons -->
+		<div class="swiper-button-prev"></div>
+		<div class="swiper-button-next"></div>
+
+		<!-- If we need scrollbar -->
+		<div class="swiper-scrollbar"></div>
+	</div>
+</div>
+
+<!-- IMPORTO JS PER SWIPER -->
+
+<script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+<!-- INIZIALIZZO SWIPER CON I RELATIVI PARAMETRI -->
+<script src="/js/index/swiper_init.js"></script>

@@ -9,15 +9,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class UtenteSRV {
 
-    @Autowired 
-    UtenteDB udb;
+  @Autowired
+  UtenteDB udb;
 
-    public Utente getByEmail(String email) {
-		return udb.findByEmail(email).get();
-	}
-	
-		
+  public Utente getByEmail(String email) {
+	 var opt = udb.findByEmail(email);
+	 if(opt.isPresent())
+		 return opt.get();
+	 return null;
+  }
+
+  public Utente getById(int id) {
+	 var opt = udb.findById(id);
+	 if(opt.isPresent())
+		 return opt.get();
+	 return null;
+  }
+  
 }
-
-    
-

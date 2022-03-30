@@ -41,6 +41,15 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+#hero{
+    width: 100%;
+    height:auto; 
+    background: url();
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 
 #header{
     
@@ -76,6 +85,7 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
     justify-content: center;
     text-shadow: 1px 1px black;
+  
 }
 
 #logone{
@@ -107,6 +117,8 @@ h1, h2, h3, h4, h5, h6{
     color: white;
   
 }
+
+
 
 .swiper {
     padding-bottom: 3rem;

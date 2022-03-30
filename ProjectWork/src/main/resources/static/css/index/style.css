@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+
+@font-face {
+    font-family: "Cunia";
+    src: url(/fonts/Cunia.otf);
+  }
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Cunia";
+}
+
+.titolino{
+    text-align: center;
+}
+.btn-primary {
+    background-color: #59C567;
+    border-color: white;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
+    background-color: black;
+}
+
+.dropdown-menu{
+    background-color: #212529 ;
+    
+}
+
+.dropdown-item:active, .dropdown-item:focus {
+    
+    background-color: black;
+}
+
+.dropdown-item{
+    color: #59C567;
+}
+
+#hero{
+    width: 100%;
+    height:auto; 
+    background: url();
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#header{
+    
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
+}
+
+.text-green{
+    color: #59C567;
+}
+
+#mainFooter {
+    background: #212529;
+    color:white;
+}
+
+
+.cta {
+   
+    color:#efefef;
+
+    left:0;
+    top:0;
+   
+    width: 100%;
+    height: 100%;
+   
+    text-align: center;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 1px 1px black;
+  
+}
+
+#logone{
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background: url(/img/index/viaggi.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link{
+    color: #59C567;
+}
+
+.nav-link dropdown-toggle{
+    color: #59C567;
+}
+
+.nav-link:hover{
+    color: white;
+}
+
+.nav-link:focus{
+    color: white;
+  
+}
+
+
+/*  SWIPER CAROUSEL  */
+
+.swiper-slide{
+
+    transition: 0.3s;
+}
+
+.swiper-slide:hover{
+    border: .3rem solid rgba(30, 255, 0, 0.178);
+    background-color: #ddd;
+    border-radius: .5rem;
+    padding: .5rem;
+    transition: 0.3s;
+}
+
+.swiper-slide a{
+    color: black;
+}
+
+.swiper {
+    padding-bottom: 3rem;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    width:1rem;
+    height:1rem;
+}
+
+.carousel-image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+
+.carousel-image img{
+    position:absolute;
+    height:100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+@media (max-width: 991.98px) {
+    .offcanvas-collapse {
+      position: fixed;
+      top: 56px; /* Height of navbar */
+      bottom: 0;
+      left: 100%;
+      width: 100%;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      overflow-y: auto;
+      visibility: hidden;
+      background-color: #2B2D42;
+      transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+    }
+    .offcanvas-collapse.open {
+      visibility: visible;
+      transform: translateX(-100%);
+
+      z-index:99;
+    }
+  }
+
