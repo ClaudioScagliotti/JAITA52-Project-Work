@@ -93,4 +93,10 @@ public class VeicoloSRV {
     public Veicolo save(Veicolo veicolo) {
     	return vdb.save(veicolo);
 	}
+    
+    public Veicolo setDisp(Veicolo veicolo, boolean disp) {
+    	
+    	veicolo.setDisponibilita(disp);
+    	return this.save(veicolo);
+    }
 }
