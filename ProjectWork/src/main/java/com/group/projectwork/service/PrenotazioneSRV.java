@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.group.projectwork.dto.PrenotazioneDTO;
+import com.group.projectwork.dto.UpdatePrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente.Role;
@@ -65,8 +66,51 @@ public class PrenotazioneSRV {
 		this.vSrv.save(v);
 
 		return prenotazione;
-	}
+    }
+    
+	public Prenotazione updPrenotazione(UpdatePrenotazioneDTO dto, Utente loggedIn) throws AccessDeniedException, VeicoloNotFoundException, PrenotazioneException 
+	{	
+    	if (!loggedIn.getRuolo().equals(Role.RUOLO_UTENTE))
+    		throw new AccessDeniedException();
+    	if((dto.getFine().getTime()-dto.getInizio().getTime())/(60000)<15)
+    		throw new PrenotazioneException("Durata non valida");
+    	if(dto.getFine().compareTo(new Date())<=0)
+    		throw new PrenotazioneException("Prenotazione terminata");
+    	
+    	Veicolo newV = vSrv.getVeicoloById(dto.getvId());
+		
+		Prenotazione oldP= this.getById(dto.getId());
+		
+		//veicolo cambia?
+		if(newV == null)
+			throw new VeicoloNotFoundException();
+		else if(newV.getId()!=oldP.getVeicolo().getId()) {
+			
+			if (!newV.getDisponibilita())
+				throw new VeicoloNotFoundException();
+			
+			var prenotazioni = this.pdb.findPrenotazioniAttive(newV.getId());
+			//controlla che non ci siano altre prenotazioni attive per
+			//il veicolo nella data selezionata
+			if(prenotazioni.stream()
+					.filter(p-> p.getId()!=dto.getId())
+					.anyMatch(p->
+						p.getFine().compareTo(dto.getInizio())>0 &&
+						p.getInizio().compareTo(dto.getFine())<0			
+					))
+				throw new VeicoloNotFoundException();
+			
+			this.vSrv.setDisp(oldP.getVeicolo(), true);
+			this.vSrv.setDisp(newV, false);
+			oldP.setVeicolo(newV);
+		}
+		
+		oldP.setInizio(dto.getInizio());
+		oldP.setFine(dto.getFine());
 
+		return this.pdb.save(oldP);
+    }
+    
 	private boolean isRunning(Prenotazione p) {
 		return p.getStato() == State.Prenotato || p.getStato() == State.Corrente;
 	}

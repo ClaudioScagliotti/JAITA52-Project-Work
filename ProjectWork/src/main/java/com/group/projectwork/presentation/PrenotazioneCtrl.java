@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.group.projectwork.dto.PrenotazioneDTO;
+import com.group.projectwork.dto.UpdatePrenotazioneDTO;
 import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.entity.Prenotazione.State;
 import com.group.projectwork.entity.Utente;
@@ -92,6 +94,22 @@ public class PrenotazioneCtrl {
 			return "utente";
 		}catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
+		}
+	}
+	
+	@PostMapping("/upd")
+	public String updPrenotazione(Utente loggedIn, Model model,
+			@RequestBody UpdatePrenotazioneDTO dto) {
+		
+		try {
+			this.srv.updPrenotazione(dto, loggedIn);
+			return "redirect:utente";
+		} catch (AccessDeniedException e) {
+			return accessDeniedMVC(model);
+		} catch (VeicoloNotFoundException e) {
+			return genericErrorMVC(model, "Veicolo non disponibile");
+		} catch (PrenotazioneException e) {
+			return genericErrorMVC(model, e.getMessage());
 		}
 	}
 }

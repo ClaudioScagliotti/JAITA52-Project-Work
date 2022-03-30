@@ -97,6 +97,11 @@ public class VeicoloSRV {
     	return vdb.save(veicolo);
 	}
     
+    public Veicolo setDisp(Veicolo veicolo, boolean disp) {
+    	veicolo.setDisponibilita(disp);
+    	return this.save(veicolo);
+	}
+
     public Map<String, List<?>> getChartData(){
     	var dataQuery = this.vdb.getChartData();
     	Map<String, List<?>> table = new HashMap<>();
