@@ -9,15 +9,15 @@
 
   <!--INIZIO DEL FAVICON-->
   <link th:replace="fragments/favicons.html">
-  
+
   <!--IMPORT DI BOOTSTRAP-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-  crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!--IMPORT DEI FONT-->
   <link th:replace="fragments/fonts.html">
 
@@ -29,107 +29,106 @@
   <link rel="stylesheet" href="inserisci.css">
 
 </head>
+
 <body>
 
-  	<!--NAVBAR-->
-    <div id="header" th:insert="fragments/navbar.html"></div>
-<div class="sfondo">
+  <!--NAVBAR-->
+  <div id="header" th:insert="fragments/navbar.html"></div>
+  <div class="sfondo">
 
-<form action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data"
-  th:object="${veicolo}">
-  <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 mb-6">
+    <form action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data"
+      th:object="${veicolo}">
+      <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-6">
 
-        <div th:if="${edit}">
-          <label th:text="|Id: *{id}|"></label>
-          <input type="hidden" name="id" id="id" th:value="*{id}">
-        </div>
+            <div th:if="${edit}">
+              <label th:text="|Id: *{id}|"></label>
+              <input type="hidden" name="id" id="id" th:value="*{id}">
+            </div>
 
-        <div class="mt-4 mb-3">
-          <label>Categoria Veicolo</label><br>
-          <select name="categoria">
-            <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
-          </select>
-        </div>
+            <div class="mt-4 mb-3">
+              <label>Categoria Veicolo</label><br>
+              <select name="categoria">
+                <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+              </select>
+            </div>
 
-        <div class="mb-3">
-          <label for="descrizione_ID">Descrizione</label><br>
-          <input type="text" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
-        </div>
+            <div class="mb-3">
+              <label for="descrizione_ID">Descrizione</label><br>
+              <input type="text" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
+            </div>
 
 
-        <div class="mb-3">
-          <label>Alimentazione</label>
-          <select name="alimentazione">
-            <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="indirizzo_ID">Indirizzo</label><br>
-          <input type="text" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
-            th:value="*{indirizzo}">
-        </div>
+            <div class="mb-3">
+              <label>Alimentazione</label>
+              <select name="alimentazione">
+                <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="indirizzo_ID">Indirizzo</label><br>
+              <input type="text" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
+                th:value="*{indirizzo}">
+            </div>
 
-        <div class="mb-3">
-          <label for="coordinataX_ID">Coordinata x</label><br>
-          <input type="number" name="x" id="coordinataX_ID" th:value="*{x}" placeholder="00 00.0000">
-        </div>
-        
-        <div class="mb-3">
-          <label for="coordinataY_ID">Coordinata y</label><br>
-          <input type="number" name="x" id="coordinataX_ID" th:value="*{y}" placeholder="00 00.0000">
-        </div>
-      
-      </div>
-   
-            <div class="col-lg-6 mb-6">
-        
-              <div class="mb-3">
+            <div class="mb-3">
+              <label for="coordinataX_ID">Coordinata x</label><br>
+              <input type="number" name="x" id="coordinataX_ID" th:value="*{x}" placeholder="00 00.0000">
+            </div>
+
+            <div class="mb-3">
+              <label for="coordinataY_ID">Coordinata y</label><br>
+              <input type="number" name="x" id="coordinataX_ID" th:value="*{y}" placeholder="00 00.0000">
+            </div>
+
+          </div>
+
+          <div class="col-lg-6 mb-6">
+
+            <div class="mb-3">
               <label>Disponibilità Veicolo</label><br>
               <select name="Disponibilità">
                 <option th:each="disp: ${disponibilita}" th:value="${disp.id}" th:text="${disp.nome}"></option>
               </select>
             </div>
-        
-    
-              <div class="mb-3">
-          <label for="formFile" class="form-label"></label>
-          <input class="form-control" type="file" id="formFile">
-              </div>
 
-              <div class="mb-3">
-          <label for="inserisciUrl_ID" id="label_url">Inserisci indirizzo url</label><br>
-          <input type="url" id="url" name="url" pattern="https://.*" size="30">
-              </div>
-    
-              <div class="mb-3">
-        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm" id="dati">
-         Invia dati
-        </button>
-              </div>
+
+            <div class="mb-3">
+              <label for="formFile" class="form-label"></label>
+              <input class="form-control" type="file" id="formFile">
             </div>
-      
+
+            <div class="mb-3">
+              <label for="inserisciUrl_ID" id="label_url">Inserisci indirizzo url</label><br>
+              <input type="url" id="url" name="url" pattern="https://.*" size="30">
+            </div>
+
+            <div class="mb-3">
+              <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm"
+                id="dati">
+                Invia dati
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
   </div>
-</div>
-    </form> 
+  <!--FOOTER-->
+  <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
 
-</div>
-    <!--FOOTER-->
-    <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 
-<!--Gestione off-canvas navbar quando piccolo-->
+  <!--Gestione off-canvas navbar quando piccolo-->
   <script src="js/common/navbar_canvas.js"></script>
 
 
 </body>
+
 </html>
-
-
-
-
