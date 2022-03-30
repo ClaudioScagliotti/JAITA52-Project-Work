@@ -42,7 +42,7 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="stradissima" background="immaginiFinalEsperiamobene/stradissima.jpg">
+<body class="stradissima" background="immaginiFinalEsperiamobene/sfondone.jpg">
   
   
     <div id="header">
@@ -99,69 +99,69 @@
       
 
       <form action="#" method="GET">
-        <div class="proviamoci">
+        <h2 class="text-center mt-3 mb-3">INSERIRE DATI NUOVO VEICOLO</h2>
         <div class="container">
         <div class="row">
-          <div class="col-lg-4 mb-4">
+          <div class="col-lg-6 mb-6">
         
-        <div class="inserimento">
-
-        <div class="separare">
+        
+        <div class="mt-4 mb-3">
             <label for="categoria_ID">Categoria Veicolo</label><br>
             <input type="text" name="categoria" id="categoria_ID" required>
-        </div>
+          </div>
     
-        <div class="separare">
-            <label for="descrizione_ID">Descrizione</label><br>
+          <div class="mb-3">
+          <label for="descrizione_ID">Descrizione</label><br>
             <input type="text" name="descrizione" id="descrizione_ID" required>
-        </div>
+          </div>
     
     
-        <div class="separare">
+          <div class="mb-3">
             <label for="alimentazione_ID">Alimentazione</label><br>
             <input type="text" name="alimentazione" id="alimentazione_ID" required>
-        </div>
+          </div>
 
-        <div class="separare">
+          <div class="mb-3">
         <label for="indirizzo_ID">Indirizzo</label><br>
         <input type="text" name="indirizzo" id="indirizzo_ID" placeholder="via xxx n.3" required>
-        </div>
-        <div class="separare">
+          </div>
+        
+          <div class="mb-3">
             <label for="coordinate_ID">Coordinate GPS</label><br>
             <input type="coords" name="coordinate" id="coordinate_ID" 
             placeholder="00 00.0000,00 00.0000">
         </div>
+          </div>
+
     
-    
+            <div class="col-lg-6 mb-6">
         
-        <div class="separare">
+              <div class="mt-4 mb-3">
             <label for="coordinate_ID">Disponibilità al noleggio</label><br>
             <input type="radio" name="disponibilita_al_noleggio" value="si" id="si_ID">
             <label for="si_ID">Si</label>
             <input type="radio" name="disponibilita_al_noleggio" value="no" id="no_ID">
             <label for="no_ID">No</label>
-            
-        </div>
+              </div>
+        
     
-        <div class="separare">
+              <div class="mb-3">
           <label for="formFile" class="form-label"></label>
           <input class="form-control" type="file" id="formFile">
-        </div>
+              </div>
 
-        <div class="separare">
+              <div class="mb-3">
           <label for="inserisciUrl_ID" id="label_url">Inserisci indirizzo url</label><br>
           <input type="url" id="url" name="url" pattern="https://.*" size="30">
-        </div>
+              </div>
     
-        
+              <div class="mb-3">
         <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm" id="dati">
          Invia dati
         </button>
-
-     
-      </div>
-    </div>
-    </div>
+              </div>
+            </div>
+      
   </div>
 </div>
     </form> 
@@ -173,51 +173,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-
-
-
-<footer id="mainFooter">
-
-      <div class="container">
-        <div class="row d-flex align-items-center">
-          <div class="col-lg-4 text-center text-lg-start mb-3 mb-lg-0">
-            <!-- classi per: colonna | allineamento testo su small e large, margine su small e large -->
-            Vicolo Corto 12<br>
-            10100 Barletta<br>
-            ITALY
-          </div>
-          <div class="col-lg-4 text-center mb-3 mb-lg-0 text-green">
-            <i class="fab fa-facebook"></i> <i class="fab fa-instagram"> </i> <i class="fab fa-twitter"></i>
-          </div>
-          <div class="col-lg-4 text-center text-lg-end">
-            ©JAITA52 2022
-          </div>
-        </div>
-      </div>
-
-    </footer>
+<link rel="import" href="footer.html">
 
     <div class="modal fade" id="confirmForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered">
