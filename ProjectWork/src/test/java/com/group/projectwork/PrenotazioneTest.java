@@ -73,24 +73,19 @@ class PrenotazioneTest {
 		Prenotazione p= pSrv.getById(1);
 		UpdatePrenotazioneDTO dto= new UpdatePrenotazioneDTO();
 		Utente u= uSrv.getById(2);
-		SimpleDateFormat d2= new SimpleDateFormat("2022-04-02");
-		Date today= new Date();
+		Date fine = DateUtils.parseDate("2022-04-02");
 		dto.setId(p.getId());
 		dto.setInizio(p.getInizio());
-		dto.setFine(today);
+		dto.setFine(fine);
 		dto.setvId(9);
+		
 		try {
-			pSrv.updPrenotazione(dto, u);
-		} catch (AccessDeniedException e) {
-			fail();
-		} catch (PrenotazioneException e) {
-			fail(); //fallisce qui ma è corretto che fallisca
-		} catch (VeicoloNotFoundException e) {
+			var after = pSrv.updPrenotazione(dto, u);
+			assertEquals(9,after.getVeicolo().getId());
+			assertEquals(fine.getTime(),after.getFine().getTime());	
+		} catch (Exception e) {
 			fail();
 		}
-		
-		//var pre = this.repo.findPrenotazioniAttive(9);
-		//assertEquals(1, pre.size());
 	}
 	
 	

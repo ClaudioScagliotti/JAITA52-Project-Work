@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.group.projectwork.dto.PrenotazioneDTO;
@@ -97,18 +98,18 @@ public class PrenotazioneCtrl {
 	}
 	
 	@PostMapping("/upd")
-	public String updPrenotazione(Utente loggedIn, Model model, UpdatePrenotazioneDTO dto) {
+	public String updPrenotazione(Utente loggedIn, Model model,
+			@RequestBody UpdatePrenotazioneDTO dto) {
 		
 		try {
-			var p = this.srv.updPrenotazione(dto, loggedIn);
-			return "utente";
+			this.srv.updPrenotazione(dto, loggedIn);
+			return "redirect:utente";
 		} catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		} catch (VeicoloNotFoundException e) {
 			return genericErrorMVC(model, "Veicolo non disponibile");
 		} catch (PrenotazioneException e) {
-			return genericErrorMVC(model, "Errore nella selezione delle date");
+			return genericErrorMVC(model, e.getMessage());
 		}
-		
 	}
 }
