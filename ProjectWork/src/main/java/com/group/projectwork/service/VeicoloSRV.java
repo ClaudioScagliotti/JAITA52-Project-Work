@@ -1,7 +1,10 @@
 package com.group.projectwork.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -95,8 +98,21 @@ public class VeicoloSRV {
 	}
     
     public Veicolo setDisp(Veicolo veicolo, boolean disp) {
-    	
     	veicolo.setDisponibilita(disp);
     	return this.save(veicolo);
+	}
+
+    public Map<String, List<?>> getChartData(){
+    	var dataQuery = this.vdb.getChartData();
+    	Map<String, List<?>> table = new HashMap<>();
+    	List<Double> count = new ArrayList<>(dataQuery.size());
+    	List<String> names = new ArrayList<>(dataQuery.size());
+    	dataQuery.forEach(data->{
+    		count.add(data.getVal());
+    		names.add(data.getNome());
+    	});
+    	table.put("names", names);
+    	table.put("count", count);
+    	return table;
     }
 }

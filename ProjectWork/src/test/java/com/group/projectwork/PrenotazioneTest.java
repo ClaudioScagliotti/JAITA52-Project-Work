@@ -8,16 +8,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
 import com.group.projectwork.entity.Prenotazione.State;
+import com.group.projectwork.entity.Prenotazione;
 import com.group.projectwork.entity.Utente;
-import com.group.projectwork.entity.Utente.Role;
+import com.group.projectwork.exception.AccessDeniedException;
+import com.group.projectwork.exception.PrenotazioneException;
 import com.group.projectwork.presentation.PrenotazioneCtrl;
 import com.group.projectwork.repository.PrenotazioneDB;
-import com.group.projectwork.repository.TokenDB;
-import com.group.projectwork.repository.UtenteDB;
-import com.group.projectwork.service.TokenSRV;
+import com.group.projectwork.service.PrenotazioneSRV;
 import com.group.projectwork.service.UtenteSRV;
 import com.group.projectwork.utility.DateUtils;
 
@@ -33,6 +32,8 @@ class PrenotazioneTest {
 	@Autowired
 	PrenotazioneCtrl ctrl;
 	
+	@Autowired
+	PrenotazioneSRV pSrv;
 
 	@Test
 	@Transactional
@@ -53,6 +54,35 @@ class PrenotazioneTest {
 	void testingPrenotazioniAttiveByVeicolo() {
 		var pre = this.repo.findPrenotazioniAttive(6);
 		assertEquals(1,pre.size());
+	}
+	
+	
+	@Test
+	@Transactional
+	void testingTerminaPrenotazioniService() {
+		Utente u = uSrv.getById(2);
+		try {
+			pSrv.terminaPrenotazione(32, u);
+			fail();
+		} catch (PrenotazioneException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			fail();
+		}
+		
+		try {
+			var p = pSrv.getById(35);
+			var oldDate = p.getFine().getTime();
+			var pAfter = pSrv.terminaPrenotazione(35, u);
+			var timeAfter = pAfter.getFine().getTime();
+			assertNotEquals(oldDate,
+					timeAfter);
+			Date currDate = new Date();
+			assertEquals(timeAfter, currDate.getTime(),10000.0);
+			assertEquals(Prenotazione.State.Completato, pAfter.getStato());
+		} catch (Exception e) {
+			fail();
+		}
 	}
 	
 }
