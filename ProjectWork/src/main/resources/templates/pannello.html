@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login admin</title>
+	
+	<!--INIZIO DEL FAVICON-->
+	<link th:replace="fragments/favicons.html">
+	
+	<!--IMPORT DI BOOTSTRAP-->
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+		crossorigin="anonymous">
+	
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	<!--IMPORT DEI FONT-->
+	<link th:replace="fragments/fonts.html">
+	
+	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/pannello.css">
+</head>
+
+<body>
+
+	<div class="stradaccia blur">
+
+		<!--NAVBAR-->
+		<div id="header" th:insert="fragments/navbar.html"></div>
+
+
+		<!--BOTTONI DASHBOARD-->
+		<div class="blur">
+			<div class="container">
+				<h2 class="title pb-3 mb-5" id="titolo_pannello" th:text="|Benvenuto alla
+					dashboard, ${session.utente.nome} ${session.utente.cognome}|"></h2>
+				<div class="row">
+					<div class="col-lg-6 px-5">
+						<div class="card mb-5">
+							<img class="card-img-top"
+								src="/img/pannello/cars.png"
+								alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title pac">Aggiungi veicolo</h5>
+								<p class="card-text">Fare click sul bottone sottostante per
+									accedere alla pagina di inserimento veicoli.</p>
+								<a href="/veicolo/add-form" class="btn btn-primary">Entra</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-6 px-5">
+						<div class="card mb-5">
+							<img class="card-img-top"
+								src="/img/pannello/veicolando_1.jpg"
+								alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title pactext">Gestisci i veicoli</h5>
+								<p class="card-text">Fare click sul bottone sottostante per
+									accedere alla lista dei veicoli amministrabili.</p>
+								<a href="lista.html" class="btn btn-primary">Entra</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--FOOTER-->
+    <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous">
+    </script>
+
+	<!--Gestione off-canvas navbar quando piccolo-->
+    <script src="js/common/navbar_canvas.js"></script>
+</body>
+</html>
