@@ -1,0 +1,14 @@
+.carddiv
+{
+    padding: 2rem;
+}
+
+.btn-nol {
+    background-color: #59C567;
+    border-color: white;
+   
+}
+
+#map { 
+    height: 180px; 
+}
