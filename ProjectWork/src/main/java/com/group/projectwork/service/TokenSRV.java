@@ -2,6 +2,7 @@ package com.group.projectwork.service;
 
 import com.group.projectwork.entity.Token;
 import com.group.projectwork.entity.Utente;
+import com.group.projectwork.entity.Utente.Role;
 import com.group.projectwork.exception.TokenExpiredException;
 import com.group.projectwork.repository.TokenDB;
 import com.group.projectwork.utility.StringUtils;
@@ -55,6 +56,15 @@ public class TokenSRV {
     	}
     }
 
+    public boolean isValid(String tokenValue, Role ruolo) {
+    	try {
+    		var token = this.getByValue(tokenValue);
+    		return token.getUtente().getRuolo().equals(ruolo);
+    	}catch(Exception e) {
+    		return false;
+    	}
+    }
+    
     public Token generate(Utente u) {
     	Token token;
     	var prevToken = this.db.findByUtente(u);

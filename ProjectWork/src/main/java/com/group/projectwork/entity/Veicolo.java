@@ -38,7 +38,11 @@ public class Veicolo {
 	@Column(name = "coordinata_y")
 	private BigDecimal coordinataY;
 	
-	private Boolean disponibilita;
+	@Column(name="disponibilita")
+	private Boolean disponibile;
+	
+	@Column(nullable = false)
+	private boolean visibile;
 
 	private String immagine;
 
@@ -102,11 +106,17 @@ public class Veicolo {
 	public void setCoordinataY(BigDecimal coordinataY) {
 		this.coordinataY = coordinataY;
 	}
-	public Boolean getDisponibilita() {
-		return disponibilita;
+	public Boolean getDisponibile() {
+		return disponibile;
 	}
-	public void setDisponibilita(Boolean disponibilita) {
-		this.disponibilita = disponibilita;
+	public void setDisponibile(Boolean disponibile) {
+		this.disponibile = disponibile;
+	}
+	public Boolean getVisibile() {
+		return visibile;
+	}
+	public void setVisibile(Boolean visibile) {
+		this.visibile = visibile;
 	}
 	public String getImmagine() {
 		return immagine;
@@ -114,6 +124,4 @@ public class Veicolo {
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
-
-
 }

@@ -18,12 +18,12 @@ public interface VeicoloDB extends JpaRepository<Veicolo, Integer> {
 	List<Veicolo> findAllByDescrizioneContains(String model);
 	List<Veicolo> findAllByAlimentazione(Alimentazione a);
 	List<Veicolo> findAllByCategoria(Categoria a);
-	List<Veicolo> findAllByDisponibilita(Boolean b);
+	List<Veicolo> findAllByDisponibile(Boolean b);
 	
 	@Query(nativeQuery = true, value = 
-			"select c.nome as nome, count(c.nome)*c.fattore as val\r\n"
-			+ "	from projectwork.veicolo v, projectwork.categoria c\r\n"
-			+ "	where v.categoria_id = c.id group by c.nome\r\n"
-			+ "    order by -val;")
+			"select c.nome as nome, count(c.nome)*c.fattore as val"
+			+ " from projectwork.veicolo v, projectwork.categoria c"
+			+ " where v.categoria_id = c.id group by c.nome"
+			+ " order by -val;")
 	List<ChatDataProjection> getChartData();
 }

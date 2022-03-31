@@ -20,6 +20,10 @@ INSERT INTO veicolo
                               48.22325425,9.2342555,'BMWiX.jpg');   
 
 
+
+
+
+
 INSERT INTO prenotazione (cliente_id,veicolo_id,inizio_noleggio,fine_noleggio,stato)
       VALUES (1,2,'2022-03-23','2022-03-30','Corrente'),
 		(2,7,'2022-03-20','2022-03-27','Completato'),

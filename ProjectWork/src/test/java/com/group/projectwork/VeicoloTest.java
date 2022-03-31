@@ -73,8 +73,8 @@ class VeicoloTest {
 	@Test
 	@Transactional
 	void testingVeicolo() {
-		assertEquals(2,this.repo.findAllByDisponibilita(null).size());
-		assertEquals(1,this.repo.findAllByDisponibilita(true).size());
-		assertEquals(0,this.repo.findAllByDisponibilita(false).size());
+		assertEquals(2,this.repo.findAllByDisponibile(null).size());
+		assertEquals(1,this.repo.findAllByDisponibile(true).size());
+		assertEquals(0,this.repo.findAllByDisponibile(false).size());
 	}
 }

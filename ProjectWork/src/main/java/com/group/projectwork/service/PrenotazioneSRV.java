@@ -43,7 +43,7 @@ public class PrenotazioneSRV {
 
 		Veicolo v = vSrv.getVeicoloById(dto.getvId());
 
-		if (v == null || !v.getDisponibilita())
+		if (v == null || !v.getDisponibile())
 			throw new VeicoloNotFoundException();
 
 		var prenotazioni = this.pdb.findPrenotazioniAttive(v.getId());
@@ -62,7 +62,7 @@ public class PrenotazioneSRV {
 
 		var prenotazione = this.addPrenotazione(pr);
 
-		prenotazione.getVeicolo().setDisponibilita(false);
+		prenotazione.getVeicolo().setDisponibile(false);
 		this.vSrv.save(v);
 
 		return prenotazione;
@@ -86,7 +86,7 @@ public class PrenotazioneSRV {
 			throw new VeicoloNotFoundException();
 		else if(newV.getId()!=oldP.getVeicolo().getId()) {
 			
-			if (!newV.getDisponibilita())
+			if (!newV.getDisponibile())
 				throw new VeicoloNotFoundException();
 			
 			var prenotazioni = this.pdb.findPrenotazioniAttive(newV.getId());
@@ -124,7 +124,7 @@ public class PrenotazioneSRV {
 
 		if (p.getFine().after(new Date()))
 			if (this.isRunning(p))
-				p.getVeicolo().setDisponibilita(true);
+				p.getVeicolo().setDisponibile(true);
 
 		this.pdb.delete(p);
 	}
@@ -150,7 +150,7 @@ public class PrenotazioneSRV {
 		} else
 			throw new PrenotazioneException("Prenotazione passata");
 
-		p.getVeicolo().setDisponibilita(true);
+		p.getVeicolo().setDisponibile(true);
 		return this.pdb.save(p);
 	}
 

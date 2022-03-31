@@ -4,7 +4,8 @@ public class UpdateVeicoloDTO extends CreateVeicoloDTO{
     
 	private int id;
 	private String immagine;
-	private Boolean disponibilita;
+	private Boolean disponibile;
+	private Boolean visibile;
 	
 	public int getId() {
 		return id;
@@ -18,10 +19,16 @@ public class UpdateVeicoloDTO extends CreateVeicoloDTO{
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
-	public Boolean getDisponibilita() {
-		return disponibilita;
+	public Boolean getDisponibile() {
+		return disponibile;
 	}
-	public void setDisponibilita(Boolean disponibilita) {
-		this.disponibilita = disponibilita;
+	public void setDisponibile(Boolean disponibile) {
+		this.disponibile = disponibile;
+	}
+	public Boolean getVisibile() {
+		return visibile;
+	}
+	public void setVisibile(Boolean visibile) {
+		this.visibile = visibile;
 	}	
 }
