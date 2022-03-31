@@ -49,4 +49,5 @@ public class UtenteCtrl {
 		session.setAttribute("utente", null);
 		return "redirect:index";
 	}
+
 }

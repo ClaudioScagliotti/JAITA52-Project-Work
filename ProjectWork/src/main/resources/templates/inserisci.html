@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto.Io</title>
+
+  <!--INIZIO DEL FAVICON-->
+  <link th:replace="fragments/favicons.html">
+
+  <!--IMPORT DI BOOTSTRAP-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!--IMPORT DEI FONT-->
+  <link th:replace="fragments/fonts.html">
+
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/inserisci.css">
+
+</head>
+
+<body>
+
+  <!--NAVBAR-->
+  <div id="header" th:insert="/fragments/navbar.html"></div>
+
+  <div class="sfondo">
+    
+
+    <form class="border-bottom-3" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post"
+      enctype="multipart/form-data" th:object="${veicolo}">
+      <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-6">
+
+            <div th:if="${edit}">
+              <label th:text="|Id: *{id}|"></label>
+              <input type="hidden" name="id" id="id" th:value="*{id}">
+            </div>
+
+            <div class="mt-4 mb-3 colore">
+            <label class="form-label">Categoria Veicolo:</label><br>
+            <select name="categoria">
+                <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
+              </select>
+            </div>
+
+            <div class="mb-3 colore">
+            <label class="form-label" for="descrizione_ID">Descrizione:</label><br>
+            <input type="text" class="form-control lunghezza" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
+            </div>
+
+
+            <div class="mb-3 colore">
+            <label class="form-label">Alimentazione:</label><br>
+            <select name="alimentazione">
+                <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
+              </select>
+            </div>
+            <div class="mb-3 colore">
+            <label class="form-label" for="indirizzo_ID">Indirizzo:</label><br>
+            <input type="text" class="form-control lunghezza" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
+                th:value="*{indirizzo}">
+            </div>
+
+            <div class="mb-3 colore">
+              <label class="form-label" for="marca_ID">Marca:</label><br>
+                <input type="text" class="form-control lunghezza" name="marca" id="marca_ID" th:value="*{marca}">
+            </div>
+
+          </div>
+
+            <div class="col-lg-6 mb-6">
+                      <!--TODO disponibilità
+                    <div class="mb-3">
+                      <label>Disponibilità Veicolo</label><br>
+                      <input type="checkbox" id="disponibilita" name="disponibilita" th:value="*{disponibilita}">
+                    </div>
+                    -->
+
+                    <div class="mt-4 mb-3 colore">
+                      <label class="form-label" for="modello_ID">Modello:</label><br>
+                      <input type="text" class="form-control lunghezza" name="modello" id="modello_ID" th:value="*{modello}">
+                    </div>
+
+              <div class=" mb-3 px-2 colore">
+                <label class="form-label" for="color">Colore:</label>
+                <input type="color" id="color" class="form-control lunghezza" name="colore" th:value="*{colore}" value="#59C567">
+              </div>
+
+              <div class="mb-3 colore">
+                <label class="form-label" for="coordinataX_ID">Coordinata x - Longitudine:</label><br>
+                <input type="number" class="form-control lunghezza" step="000.00001" min="-180" max="180" name="x" id="coordinataX_ID" th:value="*{x}"
+                  value="16.70707" placeholder="000.00000">
+              </div>
+
+              <div class="mb-3 colore">
+                <label class="form-label" for="coordinataY_ID">Coordinata y - Latitudine:</label><br>
+                <input type="number" class="form-control lunghezza" step="00.00001" name="y" min="-90" max="90" id="coordinataX_ID" th:value="*{y}"
+                  value="16.70707" placeholder="00.00000">
+              </div>
+
+              <div class="mb-3 colore">
+                <label for="formFile" class="form-label">Inserisci immagine:</label>
+                <input class="form-control" name="file" type="file" id="formFile">
+              </div>
+
+              <div class="mb-3 colore">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm"
+                  id="dati">
+                  Invia dati
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+    </form>
+
+  </div>
+  <!--FOOTER-->
+  <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!--Gestione off-canvas navbar quando piccolo-->
+  <script src="/js/common/navbar_canvas.js"></script>
+
+
+</body>
+
+</html>
