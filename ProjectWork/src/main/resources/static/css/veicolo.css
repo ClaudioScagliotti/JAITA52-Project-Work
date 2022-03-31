@@ -11,6 +11,10 @@
     padding: 3rem;
 }
 
+.map-container{
+    margin-bottom: 5rem;
+}
+
 #map {
  height: 180px; 
 }
