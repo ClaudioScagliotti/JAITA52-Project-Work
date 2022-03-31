@@ -11,23 +11,16 @@
     padding: 3rem;
 }
 
-
-
-.mappona iframe{
-    width: 100%;
-    min-height: 450px;
+#map {
+ height: 180px; 
 }
 
+.offcanvas-collapse.open {
+    visibility: visible;
+    transform: translateX(-100%);
 
-    .offcanvas-collapse.open {
-      visibility: visible;
-      transform: translateX(-100%);
-
-      z-index:99;
-    }
-
- 
-  
+    z-index:99;
+}
 
 .descrizione_veicolo{
     position: absolute;
