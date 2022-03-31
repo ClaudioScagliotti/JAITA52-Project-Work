@@ -2,11 +2,37 @@
     background-image: url('/img/inserisci/sfondone.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-   height: 100%;
-    background-position: 50% 50%;
+    position: relative;
+    width: 100%;
+   min-height: calc(100vh - 97px);
+    background-position: center;
 
 }
+
+.sfondo form{
+padding: 3rem 2rem;
+background-color: rgba(0,0,0, .3);
+backdrop-filter: blur(4px);
+-webkit-backdrop-filter: blur(4px);
+height: 100%;
+}
+
+
 
 #formFile{
     width: 20rem;
 }
+
+.colore{
+    color: white;
+    
+}
+
+.lunghezza{
+    width: 15rem;
+}
+
+h2{
+    color: white;
+}
+
