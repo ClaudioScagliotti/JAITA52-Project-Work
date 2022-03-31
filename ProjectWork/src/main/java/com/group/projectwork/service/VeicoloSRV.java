@@ -75,14 +75,21 @@ public class VeicoloSRV {
     }
  
     public Veicolo updVeicolo(UpdateVeicoloDTO v) throws ImageSaveException, VeicoloParseException {
-			var toAdd = factory.parse(v);
-			return this.saveVeicolo(toAdd, v.getFile());
+			var toUpd = factory.parse(v);
+			var old = this.vdb.findById(toUpd.getId());
+			if(old.isEmpty())
+				throw new VeicoloParseException("id not present");
+			
+			if(v.getFile().isEmpty())
+				toUpd.setImmagine(old.get().getImmagine());
+			
+			return this.saveVeicolo(toUpd, v.getFile());
     }
     
     public Veicolo saveVeicolo( Veicolo veicolo, MultipartFile immagine) throws ImageSaveException {
 
     	//controlla se abbiamo un img
-		if (immagine != null) {
+		if (immagine != null && !immagine.isEmpty()) {
 			try {
 				String imgPath = fs.saveFile("img/veicoli",this.buildImgPath(veicolo),immagine);
 				veicolo.setImmagine(imgPath);
@@ -90,6 +97,7 @@ public class VeicoloSRV {
 				throw new ImageSaveException();
 			}
 		}
+			
 		return vdb.save(veicolo);
 	}
     

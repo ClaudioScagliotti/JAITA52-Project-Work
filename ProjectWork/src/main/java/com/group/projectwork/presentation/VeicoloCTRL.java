@@ -132,7 +132,7 @@ public class VeicoloCTRL {
 		
 		try {
 			this.vsrv.updVeicolo(dto);
-			return "veicolo_list.html";
+			return "redirect:/view";
 		} catch (ImageSaveException e) {
 			// TODO ERROR
 			e.printStackTrace();

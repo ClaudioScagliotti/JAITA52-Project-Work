@@ -26,9 +26,13 @@
 	<link th:replace="fragments/fonts.html">
 	
 	<link rel="stylesheet" href="/css/style.css">
+	<link rel="stylesheet" href="/css/veiw.css">
 <title>AutoIo</title>
 </head>
 <body>
+
+	<input id="rest_token" type="hidden" th:value="${session.utente.token.valore}">
+
 	<!--INIZIO DELLA NAVBAR-->
 	<div id="header" th:insert="fragments/navbar.html"></div>
 

@@ -24,5 +24,11 @@ public class UpdateVeicoloDTO extends CreateVeicoloDTO{
 	}
 	public void setDisponibile(Boolean disponibile) {
 		this.disponibile = disponibile;
+	}
+	public Boolean getVisibile() {
+		return visibile;
+	}
+	public void setVisibile(Boolean visibile) {
+		this.visibile = visibile;
 	}	
 }

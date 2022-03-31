@@ -28,6 +28,7 @@ public class VeicoloFactory {
 		dto.setY(v.getCoordinataY());
 		dto.setDescrizione(v.getDescrizione());
 		dto.setDisponibile(v.getDisponibile());
+		dto.setVisibile(v.getVisibile());
 		dto.setId(v.getId());
 		dto.setIndirizzo(v.getIndirizzo());
 		dto.setMarca(v.getMarca());

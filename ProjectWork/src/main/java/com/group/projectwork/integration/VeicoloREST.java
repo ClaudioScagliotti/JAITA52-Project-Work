@@ -18,6 +18,7 @@ import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.VeicoloSRV;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -114,8 +115,13 @@ public class VeicoloREST {
 		if (!tokenSrv.isValid(token,Role.RUOLO_ADMIN))
 			return ResponseEntity.badRequest().build();
 
-		this.vsrv.deleteById(id);
-		return ResponseEntity.ok().build();
+		try {
+			this.vsrv.deleteById(id);
+			return ResponseEntity.ok().build();
+		}catch(DataIntegrityViolationException e) {
+			return ResponseEntity.unprocessableEntity().build();
+		}
+
 	}
 	
 	@GetMapping("/chart")

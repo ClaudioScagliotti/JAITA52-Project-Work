@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -46,6 +47,10 @@ public class Utente {
 	
 	@Enumerated(EnumType.STRING)
 	private Role ruolo;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "utente")
+	private Token token;
 
 	public int getId() {
 		return id;
@@ -88,5 +93,11 @@ public class Utente {
 	}
 	public void setRuolo(Role ruolo) {
 		this.ruolo = ruolo;
+	}
+	public Token getToken() {
+		return token;
+	}
+	public void setToken(Token token) {
+		this.token = token;
 	}
 }
