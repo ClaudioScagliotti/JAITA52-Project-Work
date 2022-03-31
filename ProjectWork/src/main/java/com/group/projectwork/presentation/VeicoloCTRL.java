@@ -91,7 +91,8 @@ public class VeicoloCTRL {
 		if (id.isPresent()) {
 			var selected = this.vsrv.getVeicoloById(id.get());
 			if (selected != null) {
-
+				model.addAttribute("veicolo", selected);
+				return "veicolo";
 			}
 		} else if (page.isPresent()) {
 			// TODO
