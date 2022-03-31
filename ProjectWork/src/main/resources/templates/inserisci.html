@@ -67,13 +67,13 @@
               </select>
             </div>
             <div class="mb-3 colore">
-            <label for="indirizzo_ID">Indirizzo:</label><br>
+            <label class="form-label" for="indirizzo_ID">Indirizzo:</label><br>
             <input type="text" class="form-control lunghezza" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
                 th:value="*{indirizzo}">
             </div>
 
             <div class="mb-3 colore">
-              <labe for="marca_ID">Marca:</label><br>
+              <label class="form-label" for="marca_ID">Marca:</label><br>
                 <input type="text" class="form-control lunghezza" name="marca" id="marca_ID" th:value="*{marca}">
             </div>
 
@@ -88,29 +88,29 @@
                     -->
 
                     <div class="mt-4 mb-3 colore">
-                      <label for="modello_ID">Modello:</label><br>
+                      <label class="form-label" for="modello_ID">Modello:</label><br>
                       <input type="text" class="form-control lunghezza" name="modello" id="modello_ID" th:value="*{modello}">
                     </div>
 
               <div class=" mb-3 px-2 colore">
-                <label for="color">Colore:</label>
-                <input type="color" id="color" name="colore" th:value="*{colore}" value="#59C567">
+                <label class="form-label" for="color">Colore:</label>
+                <input type="color" id="color" class="form-control lunghezza" name="colore" th:value="*{colore}" value="#59C567">
               </div>
 
               <div class="mb-3 colore">
-                <label for="coordinataX_ID">Coordinata x - Longitudine:</label><br>
+                <label class="form-label" for="coordinataX_ID">Coordinata x - Longitudine:</label><br>
                 <input type="number" class="form-control lunghezza" step="000.00001" min="-180" max="180" name="x" id="coordinataX_ID" th:value="*{x}"
                   value="16.70707" placeholder="000.00000">
               </div>
 
               <div class="mb-3 colore">
-                <label for="coordinataY_ID">Coordinata y - Latitudine:</label><br>
+                <label class="form-label" for="coordinataY_ID">Coordinata y - Latitudine:</label><br>
                 <input type="number" class="form-control lunghezza" step="00.00001" name="y" min="-90" max="90" id="coordinataX_ID" th:value="*{y}"
                   value="16.70707" placeholder="00.00000">
               </div>
 
               <div class="mb-3 colore">
-                <label for="formFile" class="form-label"></label>
+                <label for="formFile" class="form-label">Inserisci immagine:</label>
                 <input class="form-control" name="file" type="file" id="formFile">
               </div>
 

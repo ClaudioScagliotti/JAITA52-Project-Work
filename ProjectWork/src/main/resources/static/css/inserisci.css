@@ -11,9 +11,10 @@
 
 .sfondo form{
 padding: 3rem 2rem;
+/*backdrop-filter: blur(4px);
 background-color: rgba(0,0,0, .3);
-backdrop-filter: blur(4px);
 -webkit-backdrop-filter: blur(4px);
+*/
 height: 100%;
 }
 
@@ -25,6 +26,7 @@ height: 100%;
 
 .colore{
     color: white;
+    font-weight: bold;
     
 }
 
