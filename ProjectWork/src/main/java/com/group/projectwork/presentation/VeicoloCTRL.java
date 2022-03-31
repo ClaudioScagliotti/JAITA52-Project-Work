@@ -52,7 +52,7 @@ public class VeicoloCTRL {
 		model.addAttribute("categorie",this.catSrv.getAll());
 		model.addAttribute("alimentazioni",this.aliSrv.getAll());
 		model.addAttribute("veicolo", dto);
-		return "form-admin-veicolo.html";
+		return "inserisci";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -91,7 +91,8 @@ public class VeicoloCTRL {
 		if (id.isPresent()) {
 			var selected = this.vsrv.getVeicoloById(id.get());
 			if (selected != null) {
-
+				model.addAttribute("veicolo", selected);
+				return "veicolo";
 			}
 		} else if (page.isPresent()) {
 			// TODO
@@ -111,7 +112,7 @@ public class VeicoloCTRL {
 
 		try {
 			this.vsrv.addVeicolo(dto);
-			return "veicolo_list.html";
+			return "index.html";
 		} catch (ImageSaveException e) {
 			// TODO ERROR
 			e.printStackTrace();
