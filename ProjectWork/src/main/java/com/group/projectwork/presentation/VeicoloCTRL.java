@@ -111,7 +111,7 @@ public class VeicoloCTRL {
 
 		try {
 			this.vsrv.addVeicolo(dto);
-			return "veicolo_list.html";
+			return "index.html";
 		} catch (ImageSaveException e) {
 			// TODO ERROR
 			e.printStackTrace();

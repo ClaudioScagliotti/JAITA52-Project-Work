@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,8 +34,8 @@
 
   <div class="sfondo">
 
-    <form class="mt-5 mb-5" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post" enctype="multipart/form-data"
-      th:object="${veicolo}">
+    <form class="mt-5 mb-5" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post"
+      enctype="multipart/form-data" th:object="${veicolo}">
       <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
       <div class="container">
         <div class="row">
@@ -46,67 +47,82 @@
             </div>
 
             <div class="mt-4 mb-3">
-              <label>Categoria Veicolo</label><br>
+              <label>Categoria Veicolo:</label><br>
               <select name="categoria">
                 <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
               </select>
             </div>
 
             <div class="mb-3">
-              <label for="descrizione_ID">Descrizione</label><br>
+              <label for="descrizione_ID">Descrizione:</label><br>
               <input type="text" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
             </div>
 
 
             <div class="mb-3">
-              <label>Alimentazione</label>
+              <label>Alimentazione:</label><br>
               <select name="alimentazione">
                 <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
               </select>
             </div>
             <div class="mb-3">
-              <label for="indirizzo_ID">Indirizzo</label><br>
+              <label for="indirizzo_ID">Indirizzo:</label><br>
               <input type="text" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
                 th:value="*{indirizzo}">
             </div>
 
-
+            <div class="mb-3">
+              <labe for="marca_ID">Marca:</label><br>
+                <input type="text" name="marca" id="marca_ID" th:value="*{marca}">
+            </div>
 
           </div>
 
-          <div class="col-lg-6 mb-6">
-            <!--TODO disponibilità
-            <div class="mb-3">
-              <label>Disponibilità Veicolo</label><br>
-              <input type="checkbox" id="disponibilita" name="disponibilita" th:value="*{disponibilita}">
-            </div>
-            -->
+            <div class="col-lg-6 mb-6">
+                      <!--TODO disponibilità
+                    <div class="mb-3">
+                      <label>Disponibilità Veicolo</label><br>
+                      <input type="checkbox" id="disponibilita" name="disponibilita" th:value="*{disponibilita}">
+                    </div>
+                    -->
 
-            <div class="mt-4 mb-3">
-              <label for="coordinataX_ID">Coordinata x</label><br>
-              <input type="number" name="x" id="coordinataX_ID" th:value="*{x}" placeholder="00 00.0000">
+                    <div class="mt-4 mb-3">
+                      <label for="modello_ID">Modello:</label><br>
+                      <input type="text" name="modello" id="modello_ID" th:value="*{modello}">
+                    </div>
+
+              <div class=" mb-3 px-2">
+                <label for="color">Colore:</label>
+                <input type="color" id="color" name="colore" th:value="*{colore}" value="#59C567">
+              </div>
+
+              <div class="mb-3">
+                <label for="coordinataX_ID">Coordinata x - Longitudine:</label><br>
+                <input type="number" step="000.00001" min="-180" max="180" name="x" id="coordinataX_ID" th:value="*{x}"
+                  value="16.70707" placeholder="000.00000">
+              </div>
+
+              <div class="mb-3">
+                <label for="coordinataY_ID">Coordinata y - Latitudine:</label><br>
+                <input type="number" step="00.00001" name="x" min="-90" max="90" id="coordinataX_ID" th:value="*{y}"
+                  value="16.70707" placeholder="00.00000">
+              </div>
+
+              <div class="mb-3">
+                <label for="formFile" class="form-label"></label>
+                <input class="form-control" type="file" id="formFile">
+              </div>
+
+              <div class="mb-3">
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm"
+                  id="dati">
+                  Invia dati
+                </button>
+              </div>
             </div>
 
-            <div class="mb-3">
-              <label for="coordinataY_ID">Coordinata y</label><br>
-              <input type="number" name="x" id="coordinataX_ID" th:value="*{y}" placeholder="00 00.0000">
-            </div>
-
-            <div class="mb-3">
-              <label for="formFile" class="form-label"></label>
-              <input class="form-control" type="file" id="formFile">
-            </div>
-
-            <div class="mb-3">
-              <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm"
-                id="dati">
-                Invia dati
-              </button>
-            </div>
           </div>
-
         </div>
-      </div>
     </form>
 
   </div>
@@ -118,7 +134,7 @@
     crossorigin="anonymous"></script>
 
   <!--Gestione off-canvas navbar quando piccolo-->
-  <script src="js/common/navbar_canvas.js"></script>
+  <script src="/js/common/navbar_canvas.js"></script>
 
 
 </body>
