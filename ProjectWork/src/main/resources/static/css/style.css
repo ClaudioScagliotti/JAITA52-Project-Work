@@ -18,7 +18,7 @@ footer{
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .btn-primary {
@@ -51,7 +51,7 @@ footer{
     
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background-color: white;
 }
 
@@ -109,9 +109,6 @@ footer{
 
 
 
-
-
-
 @media (max-width: 991.98px) {
     .offcanvas-collapse {
       position: fixed;
@@ -129,9 +126,6 @@ footer{
 }
     
 
-    
-  
-
 
 .cta2 .btn-primary{
     position: absolute;
@@ -143,10 +137,3 @@ footer{
     padding-right: 50px;
     font-size: 20px;
 }
-
-
-
-
-
-/*INIZIO PANNELLO*/
-
