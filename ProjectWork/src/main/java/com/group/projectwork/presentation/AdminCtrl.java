@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import com.group.projectwork.dto.LoginDTO;
 import com.group.projectwork.entity.Utente;
 import com.group.projectwork.entity.Utente.Role;
+import com.group.projectwork.service.AlimentazioneSRV;
+import com.group.projectwork.service.CategoriaSRV;
 import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.UtenteSRV;
 import com.group.projectwork.service.VeicoloSRV;
@@ -29,12 +31,19 @@ public class AdminCtrl {
 	@Autowired
     VeicoloSRV vSrv;
 	
+	@Autowired
+	CategoriaSRV catSrv;
+	
+	@Autowired
+	AlimentazioneSRV aliSrv;
+	
     @GetMapping("/view")
 	public String loginForm(Utente user, Model model) {
     	
     	if(user.getRuolo()!= Role.RUOLO_ADMIN)
     		return accessDeniedMVC(model);
-		
+		model.addAttribute("categorie",this.catSrv.getAll());
+		model.addAttribute("alimentazioni",this.aliSrv.getAll());
     	model.addAttribute("veicoli",this.vSrv.getAll());
 		return "view";
     }

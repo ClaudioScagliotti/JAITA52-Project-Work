@@ -48,7 +48,7 @@ public class VeicoloSRV {
     }
 
     public List<Veicolo> getByDisponibilita(boolean b){
-        return this.vdb.findAllByDisponibilita(b);
+        return this.vdb.findAllByDisponibile(b);
     }
 
     public Veicolo getVeicoloById(int id){
@@ -98,7 +98,7 @@ public class VeicoloSRV {
 	}
     
     public Veicolo setDisp(Veicolo veicolo, boolean disp) {
-    	veicolo.setDisponibilita(disp);
+    	veicolo.setDisponibile(disp);
     	return this.save(veicolo);
 	}
 

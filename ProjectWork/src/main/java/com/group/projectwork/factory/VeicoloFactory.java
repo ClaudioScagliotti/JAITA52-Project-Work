@@ -27,7 +27,7 @@ public class VeicoloFactory {
 		dto.setX(v.getCoordinataX());
 		dto.setY(v.getCoordinataY());
 		dto.setDescrizione(v.getDescrizione());
-		dto.setDisponibilita(v.getDisponibilita());
+		dto.setDisponibile(v.getDisponibile());
 		dto.setId(v.getId());
 		dto.setIndirizzo(v.getIndirizzo());
 		dto.setMarca(v.getMarca());
@@ -39,7 +39,7 @@ public class VeicoloFactory {
 	public Veicolo parse(UpdateVeicoloDTO dto) throws VeicoloParseException {
 		var parsed = this.parse((CreateVeicoloDTO)dto);
 		parsed.setId(dto.getId());
-		parsed.setDisponibilita(dto.getDisponibilita());
+		parsed.setDisponibile(dto.getDisponibile());
 		return parsed;
 	}
 	
@@ -58,7 +58,7 @@ public class VeicoloFactory {
 		parsed.setCoordinataX(dto.getX());
 		parsed.setCoordinataY(dto.getY());
 		parsed.setDescrizione(dto.getDescrizione());
-		parsed.setDisponibilita(null);
+		parsed.setDisponibile(null);
 		parsed.setIndirizzo(dto.getIndirizzo());
 		parsed.setMarca(dto.getMarca());
 		parsed.setModello(dto.getModello());
