@@ -50,9 +50,4 @@ public class UtenteCtrl {
 		return "redirect:index";
 	}
 
-    @GetMapping("/veicolo_prova")
-	public String veicolo(Model model) {
-		return "veicolo";
-	}
-
 }
