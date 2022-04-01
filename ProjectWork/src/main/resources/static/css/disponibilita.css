@@ -73,6 +73,7 @@ p {
 	height: 100%;
 }
 
-.row{
-	
-}
+#searchbar{
+	padding:15px;
+	border-radius: 10px;
+  }

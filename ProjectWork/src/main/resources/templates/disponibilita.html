@@ -43,10 +43,15 @@
 	<div class="blur">
 		<h2>VEICOLI DISPONIBILI</h2>
 		<div class="container">
+			<div>
+			<input id="searchbar" type="text"
+        name="search" placeholder="Search word..">
+		<button id="cerca">Cerca</button>
+			</div>
 			<div class="contenitore">
 				<div th:each="veicolo : ${veicoli}"
 					th:if="${veicolo.visibile && veicolo.disponibile}"
-					class="row justify-content-center">
+					class="row justify-content-center ric">
 					<div class="col-lg-3 px-5 mt-3">
 						<div class="card mb-5">
 							<img class="card-img-top" th:src="${veicolo.immagine}"
@@ -119,6 +124,8 @@
 
 	<!--Gestione off-canvas navbar quando piccolo-->
 	<script src="/js/common/navbar_canvas.js"></script>
+
+	<script src="/js/disponibilita/script.js"></script>
 </body>
 
 </html>
