@@ -10,6 +10,7 @@ import javax.persistence.EntityNotFoundException;
 
 import com.group.projectwork.dto.CreateVeicoloDTO;
 import com.group.projectwork.dto.UpdateVeicoloDTO;
+import com.group.projectwork.entity.Categoria;
 import com.group.projectwork.entity.Veicolo;
 import com.group.projectwork.exception.ImageSaveException;
 import com.group.projectwork.exception.VeicoloParseException;
@@ -122,5 +123,9 @@ public class VeicoloSRV {
     	table.put("names", names);
     	table.put("count", count);
     	return table;
+    }
+    
+    public List<Veicolo> getAllByCategoria(Categoria cat) {
+        return this.vdb.findAllByCategoria(cat);
     }
 }
