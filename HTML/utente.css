@@ -1,0 +1,21 @@
+.sfondo-utente{
+    background-image: url("img/natura.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    background-position: 50% 50%;
+    
+}
+
+.blur{
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background-color: rgba(0,0,0,.2);
+    height: 100%;
+}
