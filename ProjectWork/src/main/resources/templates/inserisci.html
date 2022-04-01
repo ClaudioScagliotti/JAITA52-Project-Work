@@ -39,8 +39,8 @@
       enctype="multipart/form-data" th:object="${veicolo}">
       <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6 mb-6">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-4 mb-6">
 
             <div th:if="${edit}">
               <label th:text="|Id: *{id}|"></label>
@@ -49,37 +49,37 @@
 
             <div class="mt-4 mb-3 colore">
             <label class="form-label">Categoria Veicolo:</label><br>
-            <select name="categoria">
+            <select name="categoria" class="form-select">
                 <option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
               </select>
             </div>
 
             <div class="mb-3 colore">
             <label class="form-label" for="descrizione_ID">Descrizione:</label><br>
-            <input type="text" class="form-control lunghezza" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
+            <input type="text" class="form-control" name="descrizione" id="descrizione_ID" required th:value="*{descrizione}">
             </div>
 
 
             <div class="mb-3 colore">
             <label class="form-label">Alimentazione:</label><br>
-            <select name="alimentazione">
+            <select name="alimentazione" class="form-select">
                 <option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
               </select>
             </div>
             <div class="mb-3 colore">
             <label class="form-label" for="indirizzo_ID">Indirizzo:</label><br>
-            <input type="text" class="form-control lunghezza" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
+            <input type="text" class="form-control" name="indirizzo" id="indirizzo_ID" placeholder="via Roma 100, Torino" required
                 th:value="*{indirizzo}">
             </div>
 
             <div class="mb-3 colore">
               <label class="form-label" for="marca_ID">Marca:</label><br>
-                <input type="text" class="form-control lunghezza" name="marca" id="marca_ID" th:value="*{marca}">
+                <input type="text" class="form-control" name="marca" id="marca_ID" th:value="*{marca}">
             </div>
 
           </div>
 
-            <div class="col-lg-6 mb-6">
+            <div class="col-md-6 col-lg-4 mb-6">
                       <!--TODO disponibilità
                     <div class="mb-3">
                       <label>Disponibilità Veicolo</label><br>
@@ -89,23 +89,23 @@
 
                     <div class="mt-4 mb-3 colore">
                       <label class="form-label" for="modello_ID">Modello:</label><br>
-                      <input type="text" class="form-control lunghezza" name="modello" id="modello_ID" th:value="*{modello}">
+                      <input type="text" class="form-control" name="modello" id="modello_ID" th:value="*{modello}">
                     </div>
 
               <div class=" mb-3 px-2 colore">
                 <label class="form-label" for="color">Colore:</label>
-                <input type="color" id="color" class="form-control lunghezza" name="colore" th:value="*{colore}" value="#59C567">
+                <input type="color" id="color" class="form-control form-control-color" name="colore" th:value="*{colore}" value="#59C567">
               </div>
 
               <div class="mb-3 colore">
                 <label class="form-label" for="coordinataX_ID">Coordinata x - Longitudine:</label><br>
-                <input type="number" class="form-control lunghezza" step="000.00001" min="-180" max="180" name="x" id="coordinataX_ID" th:value="*{x}"
+                <input type="number" class="form-control" step="000.00001" min="-180" max="180" name="x" id="coordinataX_ID" th:value="*{x}"
                   value="16.70707" placeholder="000.00000">
               </div>
 
               <div class="mb-3 colore">
                 <label class="form-label" for="coordinataY_ID">Coordinata y - Latitudine:</label><br>
-                <input type="number" class="form-control lunghezza" step="00.00001" name="y" min="-90" max="90" id="coordinataX_ID" th:value="*{y}"
+                <input type="number" class="form-control" step="00.00001" name="y" min="-90" max="90" id="coordinataX_ID" th:value="*{y}"
                   value="16.70707" placeholder="00.00000">
               </div>
 
@@ -114,7 +114,7 @@
                 <input class="form-control" name="file" type="file" id="formFile">
               </div>
 
-              <div class="mb-3 colore">
+              <div class="mb-3 colore text-end">
                 <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmForm"
                   id="dati">
                   Invia dati
