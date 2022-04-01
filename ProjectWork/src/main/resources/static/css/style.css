@@ -13,12 +13,9 @@ h1, h2, h3, h4, h5, h6{
     font-family: "Cunia";
 }
 
-footer{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
+.spingi-footer{
+    min-height: calc(100vh - 187px);
+    z-index: 2;
 }
 
 .btn-primary {
