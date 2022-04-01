@@ -69,7 +69,7 @@ public class PrenotazioneCtrl {
 		});
 		model.addAttribute("attive", attive);
 		model.addAttribute("concluse", concluse);
-		return "prenotazioni";
+		return "utente";
 	}
 	
 	@PostMapping("/termina")
