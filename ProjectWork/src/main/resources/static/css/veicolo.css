@@ -1,9 +1,9 @@
-#foto_veicolo{
-    color: white;
+#dati_veicolo{
+    color: black;
     min-height: calc(100vh - 90px);
     width: 100%;
     position: relative;
-    background: url(/img/veicolo/teslona.jpg);
+    background-color: white;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

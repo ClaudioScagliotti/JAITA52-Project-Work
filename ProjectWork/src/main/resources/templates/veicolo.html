@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,8 +21,7 @@
   <!--IMPORT DEI FONT-->
   <link th:replace="fragments/fonts.html">
 
-  <!-- IMPORTO IL CSS DI SWIPER (slider) -->
-  <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+
 
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/veicolo.css">
@@ -41,18 +40,44 @@
 	<div th:replace="fragments/login-modal.html"></div>
 
 
-  <div id="foto_veicolo">
-    <div class="cta2">
-      <div class="content2">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 mb-6">
         <h1 class="titolo_veicolo" th:text="|${veicolo.marca} ${veicolo.modello}|"> </h1> 
-        <p class="descrizione_veicolo" th:text="${veicolo.descrizione}"> </p>
-        <a href="/veicolo/add" class="btn btn-primary">Noleggia</a>
+        <h2 class="" th:text="${veicolo.descrizione}"> </h2>
+      </div>
+      
+      <div class="col-lg-6 mb-6">
+        <img th:src="${veicolo.immagine}" alt="immagine veicolo">
+        
+      </div>
+    </div>
+  </div>
+
+    <div id="form" class="container">
+      <div class="row">
+        <form action="#" th:action="@{/prenotazione/add}" method="post">
+        <div class="col-lg-6 mb-6">
+          <input type="hidden" name="vId" th:value="*{veicolo.id}">
+          <label class="form-label" for="inizio_id">Data e ora inizio noleggio:</label><br>
+          <input type="datetime-local" id="inizio_id" class="form-control" name="inizio" required th:value="*{inizio}">
+          <label class="form-label" for="fine_id">Data e ora fine noleggio:</label><br>
+          <input type="datetime-local" id="fine_id" class="form-control" name="fine" required th:value="*{fine}">
+        </div>
+        <div class="col-lg-6 mb-6">
+          <div class="mt-3">
+            <button type="submit" class="btn btn-primary" id="dati">
+              Invia dati
+            </button>
+          </div>
+        </div>
+      </form>
       </div>
     </div>
 
-
-    </div>
-  </div>
+    <input type="hidden" id="x" th:value="${veicolo.coordinataX}">
+    <input type="hidden" id="y" th:value="${veicolo.coordinataY}">  
+  
 
   <div class="container-fluid py-4 map-container" >
     <div class="row">
@@ -89,7 +114,10 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""></script>
 
-  <script>var map = L.map('map').setView([51.505, -0.09], 13);
+  <script>
+  var x= document.getElementById("x").value;
+  var y= document.getElementById("y").value;
+  var map = L.map('map').setView([x, y], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
