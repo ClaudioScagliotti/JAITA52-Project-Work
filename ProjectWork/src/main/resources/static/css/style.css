@@ -1,136 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap')
+	;
 
 @font-face {
-    font-family: "Cunia";
-    src: url(/fonts/Cunia.otf);
-  }
-
-body{
-    font-family: 'Nunito', sans-serif;
+	font-family: "Cunia";
+	src: url(/fonts/Cunia.otf);
 }
 
-h1, h2, h3, h4, h5, h6{
-    font-family: "Cunia";
+body {
+	font-family: 'Nunito', sans-serif;
 }
 
-.spingi-footer{
-    min-height: calc(100vh - 187px);
-    z-index: 2;
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Cunia";
+}
+
+.spingi-footer {
+	min-height: calc(100vh - 187px);
+	z-index: 2;
 }
 
 .btn-primary {
-    background-color: #59C567;
-    border-color: white;
+	background-color: #59C567;
+	border-color: white;
 }
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
-    /*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
-    background-color: black;
+	/*sovrascrivo i colori dei pulsanti  al passaggio del mouse*/
+	background-color: black;
 }
 
-.dropdown-menu{
-    background-color: #212529 ;
-    
+.dropdown-menu {
+	background-color: #212529;
 }
 
 .dropdown-item:active, .dropdown-item:focus {
-    
-    background-color: black;
+	background-color: black;
 }
 
-.dropdown-item{
-    color: #59C567;
+.dropdown-item {
+	color: #59C567;
 }
 
-
-
-#header{
-    
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: white;
+#header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	background-color: white;
 }
 
-.text-green{
-    color: #59C567;
+.text-green {
+	color: #59C567;
 }
 
 #mainFooter {
-    background: #212529;
-    color:white;
+	background: #212529;
+	color: white;
 }
-
 
 .cta {
-   
-    color:#efefef;
-
-    left:0;
-    top:0;
-   
-    width: 100%;
-    height: 100%;
-   
-    text-align: center;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-shadow: 1px 1px black;
+	color: #efefef;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-shadow: 1px 1px black;
 }
 
-
-
-.nav-link{
-    color: #59C567;
+.nav-link {
+	color: #59C567;
 }
 
-.nav-link dropdown-toggle{
-    color: #59C567;
+.nav-link dropdown-toggle {
+	color: #59C567;
 }
 
-.nav-link:hover{
-    color: white;
+.nav-link:hover {
+	color: white;
 }
 
-.nav-link:focus{
-    color: white;
-  
+.nav-link:focus {
+	color: white;
 }
 
-
-   #hamburger{
-       width: 60%;
-   }
-
-
-
-@media (max-width: 991.98px) {
-    .offcanvas-collapse {
-      position: fixed;
-      top: 56px; /* Height of navbar */
-      bottom: 0;
-      left: 100%;
-      width: 100%;
-      padding-right: 1rem;
-      padding-left: 1rem;
-      overflow-y: auto;
-      visibility: hidden;
-      background-color: #2B2D42;
-      transition: transform .3s ease-in-out, visibility .3s ease-in-out;
-    }
+#hamburger {
+	width: 60%;
 }
-    
 
+@media ( max-width : 991.98px) {
+	.offcanvas-collapse {
+		position: fixed;
+		top: 56px; /* Height of navbar */
+		bottom: 0;
+		left: 100%;
+		width: 100%;
+		padding-right: 1rem;
+		padding-left: 1rem;
+		overflow-y: auto;
+		visibility: hidden;
+		background-color: #2B2D42;
+		transition: transform .3s ease-in-out, visibility .3s ease-in-out;
+	}
+	.offcanvas-collapse.open {
+		visibility: visible;
+		transform: translateX(-100%);
+		z-index: 99;
+	}
+}
 
-.cta2 .btn-primary{
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background-color: #212529;
-    color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    font-size: 20px;
+.cta2 .btn-primary {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	background-color: #212529;
+	color: white;
+	padding-left: 50px;
+	padding-right: 50px;
+	font-size: 20px;
 }
