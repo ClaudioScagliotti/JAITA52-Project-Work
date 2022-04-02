@@ -7,53 +7,65 @@
 			</div>
 			<form th:action="@{/veicolo/upd}" method="post"
 					enctype="multipart/form-data">
+					<div class="container">
 			<div class="modal-body">
+				<div class="row">
+					<div class="col-5">
+						<input type="hidden" name="id" id="input_id">
 					<div>
-						<label></label> <input type="hidden" name="id" id="input_id">
-					</div>
-					<div>
-						<label>Categoria</label> <select id="input_categoria" name="categoria">
+						<label>Categoria</label><br> <select id="input_categoria" name="categoria">
 							<option th:each="cat: ${categorie}" th:value="${cat.id}" th:text="${cat.nome}"></option>
 						</select>
 					</div>
 					<div>
-						<label>Alimentazione</label> <select id="input_alimentazione" name="alimentazione">
+						<label>Alimentazione</label><br> <select id="input_alimentazione" name="alimentazione">
 							<option th:each="ali: ${alimentazioni}" th:value="${ali.id}" th:text="${ali.nome}"></option>
 						</select>
 					</div>
 					<div>
 						<label>Marca</label> <input type="text" id="input_marca" name="marca">
 					</div>
+				
+				
 					<div>
-						<label>modello</label> <input type="text" id="input_modello" name="modello">
+						<label>Modello</label> <input type="text" id="input_modello" name="modello">
 					</div>
 					<div>
-						<label>colore</label> <input type="text" id="input_colore" name="colore">
+						<label>Colore</label> <input type="text" id="input_colore" name="colore">
 					</div>
 					<div>
-						<label>disponibile</label> <input type="checkbox" id="input_disponibile" name="disponibile">
+						<label>Disponibile</label> <input type="checkbox" id="input_disponibile" name="disponibile">
 					</div>
+				
 					<div>
-						<label>visibile</label> <input type="checkbox" id="input_visibile" name="visibile">
+						<label>Visibile</label> <input type="checkbox" id="input_visibile" name="visibile">
 					</div>
+				
 					<div>
-						<label>descrizione</label> <input type="text" id="input_descrizione" name="descrizione">
+						<label>Descrizione</label> <input type="text" id="input_descrizione" name="descrizione">
 					</div>
+					
+				</div>
+				<div class="col-5">
 					<div>
-						<label>indirizzo</label> <input type="text" id="input_indirizzo" name="indirizzo">
-					</div>
-					<div>
-						<img id="v_img" alt="no img yet"> <label>immagine</label> 
+						<img id="v_img" alt="no img yet" src="/img/veicolo/teslona.jpg" class="img-fluid"> 
+						 <label>Immagine</label> 
 						<input type="file" name="file" id="input_file">
 					</div>
 					<div>
-						<label>x</label> <input type="number"  step="00.00000001" id="input_x" name="x">
+						<label>Indirizzo</label> <input type="text" id="input_indirizzo" name="indirizzo">
 					</div>
 					<div>
-						<label>y</label> <input type="number" step="000.00000001" id="input_y" name="y">
+						<label>Coordinata X</label><br> <input type="number"  step="00.00000001" id="input_x" name="x">
 					</div>
-
+					<div>
+						<label>Coordinata Y</label><br> <input type="number" step="000.00000001" id="input_y" name="y">
+					</div>
+					
+				</div>
 			</div>
+			</div>
+		</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Annulla</button>
 				<input type="submit" class="btn btn-primary" value="Salva modifiche">
