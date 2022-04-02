@@ -47,7 +47,11 @@
 
                         <!-- the username -->
                         <h1 th:text="|${utente.nome} ${utente.cognome}|"></h1>
-                        <h3 th:text="|Email: ${utente.email}|"></h3>
+                        <ul class="list-group list-group-flush">
+                            <li th:text="|Email: ${utente.email}|"class="list-group-item"></li>
+                            <li th:text="|Data di nascita: ${utente.dataNascita}|"class="list-group-item"></li>
+                        </ul>
+                        
 
 
                     </header>
@@ -68,8 +72,8 @@
                             <th scope="col">Data inizio</th>
                             <th scope="col">Data fine</th>
                             <th scope="col">Stato</th>
-                            <th scope="col">Modifica</th>
-                            <th scope="col">Termina</th>
+                            <th scope="col">Azione</th>
+                          
                         </tr>
                     </thead>
                     <tbody>
@@ -78,9 +82,9 @@
                             <td th:text="${prenotazione.inizio}"></td>
                             <td th:text="${prenotazione.fine}"></td>
                             <td th:text="${prenotazione.stato}"></td>
-                            <td><button class="btn btn-warning" th:onclick="#" data-bs-toggle="modal"
-                                    data-bs-target="#modPren">Modifica</button></td>
-                            <td><button class="btn btn-danger" th:onclick="#" data-bs-toggle="modal"
+                            <td><button class="btn btn-warning mb-1" th:onclick="#" data-bs-toggle="modal"
+                                    data-bs-target="#modPren">Modifica</button>
+                            <button class="btn btn-danger" th:onclick="#" data-bs-toggle="modal"
                                     data-bs-target="#elimPren">Termina</button></td>
                         </tr>
 
@@ -118,6 +122,14 @@
             </div>
         </div>
     </div>
+
+
+
+	<!--EDIT-MODAL-->
+	<div th:replace="fragments/utente/edit-modal.html"></div>
+
+	<!--DELETE-MODAL-->
+	<div th:replace="fragments/utente/del-modal.html"></div>
 
 
 
