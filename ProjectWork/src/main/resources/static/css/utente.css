@@ -16,6 +16,13 @@
     text-align: center;
 }
 
+.profile-card h3{
+    text-align: center;
+    font-size: small;
+    font-style: normal;
+    
+}
+
 .disp_utente{
     margin-bottom: 2rem;
 }
