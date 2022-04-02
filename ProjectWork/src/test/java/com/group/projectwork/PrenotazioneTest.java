@@ -2,6 +2,7 @@ package com.group.projectwork;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -88,5 +89,20 @@ class PrenotazioneTest {
 		}
 	}
 	
+	
+	@Test
+	@Transactional
+	void dateConversionPrenotazioneTest() {
+		var string = "2022-04-02T19:40";
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+		try {
+			Date date = format.parse(string);
+			System.out.println(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			fail();
+		}
+	}
 	
 }

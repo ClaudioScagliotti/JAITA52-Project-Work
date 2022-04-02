@@ -11,12 +11,27 @@
     padding: 3rem;
 }
 
-.map-container{
-    margin-bottom: 5rem;
+#map{
+	min-height: 150px;
+	height:100%;
+	border-radius: 1rem;	
 }
 
-#map {
- height: 180px; 
+#user-info{
+	border-right: dashed 2px #212529;
+	padding-right: 2rem;
+}
+
+#user-info .justify-content-between{
+	border-bottom: dotted;
+	margin: 1rem 0;
+}
+#user-info .justify-content-between h6{
+	margin:0;
+}
+
+.map-container{
+    margin-bottom: 5rem;
 }
 
 .offcanvas-collapse.open {
@@ -37,5 +52,85 @@
 }
 
 .titolo_veicolo{
+	text-align: center;
     text-shadow: 000 0rem 1rem rgb(138 139 138);
+    margin-bottom: 1rem;
+}
+
+.bg{
+	background-color: black;
+	color:black;
+	background-image: url(/img/index/viaggi.jpg);
+	position: fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background-size: cover;
+	background-position: 10% 0%;
+  	z-index: -1;
+}
+
+
+.bg::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+}
+
+
+.page-container{
+	padding-bottom: 1rem;
+	height:100%;
+	padding-top: 2rem;
+	background-color: #c0c0c080;
+}
+
+.carousel-image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+    border-radius: 1rem;
+}
+
+.carousel-image img{
+    position:absolute;
+    height:100%;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+}
+
+.page-container .row{
+	padding:2rem 1rem;
+	border-radius: 1rem;
+	background-color: #ffffff90;
+	margin:1rem 0;
+}
+
+p{
+	margin-bottom: 0;
+}
+
+form input{
+	margin-bottom: 2rem;
+}
+
+@media ( max-width : 991.98px) {
+	#user-info{
+		border-right: none;
+		padding-right: 1rem;
+		margin-bottom:2rem
+	}
+}
+
+#btn_prenota h2{
+	margin:0;
+}
+
+#btn_prenota:hover{
+	background-color: #ffffffb0;
 }
