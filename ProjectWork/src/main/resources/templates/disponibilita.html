@@ -43,10 +43,10 @@
 	<div class="blur">
 		<h2>VEICOLI DISPONIBILI</h2>
 		<div class="container">
-			<div>
+			<div id="ricerca">
 			<input id="searchbar" type="text"
-        name="search" placeholder="Search word..">
-		<button id="cerca">Cerca</button>
+			name="search" placeholder="Search word..">
+			<button id="cerca">Cerca</button>
 			</div>
 			<div class="contenitore">
 				<div th:each="veicolo : ${veicoli}"
