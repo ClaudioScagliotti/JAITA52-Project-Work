@@ -5,7 +5,7 @@ INSERT INTO veicolo
                         (1,4,'Fiat','Panda','blu','1269cc, velocità massima 160 Km/h','Via Carlo Alberto 22,Torino',
                               45.22325425,7.2342555,'/img/veicoli/citylife.jpg'),
                         (2,1,'Shimano','BiciXtreme','rossa','700 km di autonomia','Via Roma 39,Torino',
-                              45.22325425,9.2342555,'/img/veicoli/e-bike(2).jpg'),
+                              45.22325425,9.2342555,'/img/veicoli/e-bike1.jpg'),
                         (2,1,'BMX','iX','arancione','50 km di autonomia','Piazza Sabotino 39,Torino',
                               45.096675, 7.712280,'/img/veicoli/E-bike.jpg'),  
                         (1,1,'Tesla','Model S','Rossa','1020cc, velocità massima 322 Km/h','Via Gramsci 12,Torino',
@@ -23,9 +23,9 @@ INSERT INTO veicolo
                         (1,3,'Seat','Arona','Nero','1000cc, velocità massima 160 Km/h','Via Giuseppe Barbaroux 33,Torino',
                              45.025740, 7.624485,'/img/veicoli/arona.jpg'),
                         (2,1,'Vedra','Wave','Nero','70 km di autonomia','Corso vercelli 25,Torino',
-                             45.064180, 7.696408,'/img/veicoli/modelS.jpg'),
+                             45.064180, 7.696408,'/img/veicoli/vedra.jpg'),
                         (1,3,'Volkswagen','Polo','Bianco','Velocità massima 160 Km/h, 1000cc','Corso Novara 32,Torino',
-                              45.103427, 7.687120,'/img/veicoli/mono.jpg');
+                              45.103427, 7.687120,'/img/veicoli/polo.jpg');
 
 INSERT INTO prenotazione (cliente_id,veicolo_id,inizio_noleggio,fine_noleggio,stato)
       VALUES (2,1,'2022-03-23','2022-03-30','Corrente'),
