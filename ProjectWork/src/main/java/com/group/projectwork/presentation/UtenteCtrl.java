@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.group.projectwork.exception.AccessDeniedException;
 
 @Controller
@@ -40,12 +41,17 @@ public class UtenteCtrl {
     }
 
     @PostMapping("/login")
-    public String executeLogin(LoginDTO data, Model model, HttpSession session){
+    public String executeLogin(LoginDTO data, Model model, HttpSession session,
+    		@RequestParam(name = "redirect",required = false, defaultValue = "") String redirect){
         var email= data.getEmail();
         var utente= this.usrv.getByEmail(email);
         if(utente!= null && utente.getPassword().equals(data.getPassword())){
             session.setAttribute("utente", utente);
             this.tSrv.generate(utente);
+            
+            if(redirect!=null && !redirect.isBlank()) {
+            	return "redirect:"+redirect;
+            }
             return "redirect:index";
         }
         return "error";
