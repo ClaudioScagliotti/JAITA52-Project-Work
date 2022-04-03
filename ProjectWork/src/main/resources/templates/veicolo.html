@@ -88,12 +88,12 @@
 			</div>
 		</div>
 
-		<div id="btn_prenota" class="row" th:if="${session.utente==null}">
+		<div id="btn_prenota" class="row" th:if="${session.utente==null && veicolo.disponibile}">
 			<h2 class="titolo_veicolo">PRENOTA</h2>
 		</div>
 
 		<!-- FORM PRENOTAZIONE -->
-		<div id="prenotazione" class="row" th:if="${session.utente!=null}">
+		<div id="prenotazione" class="row" th:if="${session.utente!=null && veicolo.disponibile}">
 			<h2 class="titolo_veicolo">PRENOTA</h2>
 			<hr>
 			<div id="user-info" class="col-lg-6 mb-6">
