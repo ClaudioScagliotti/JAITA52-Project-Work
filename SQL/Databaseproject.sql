@@ -28,18 +28,18 @@ INSERT INTO veicolo
                               45.103427, 7.687120,'/img/veicoli/polo.jpg');
 
 INSERT INTO prenotazione (cliente_id,veicolo_id,inizio_noleggio,fine_noleggio,stato)
-      VALUES (2,1,'2022-03-23','2022-03-30','Corrente'),
+      VALUES (2,1,'2022-04-03','2022-04-05','Corrente'),
 		(2,2,'2022-03-20','2022-03-27','Completato'),
-            (2,3,'2022-03-15','2022-04-30','Annullato'),
-            (2,4,'2022-03-23','2022-03-30','Corrente'),
+            (2,3,'2022-03-15','2022-03-20','Annullato'),
+            (2,4,'2022-03-23','2022-04-10','Corrente'),
 		(2,5,'2022-02-20','2022-03-27','Completato'),
-            (2,6,'2022-01-15','2022-04-30','Annullato'),
-            (2,7,'2022-01-23','2022-04-30','Completato'),
-             (2,8,'2022-03-15','2022-04-30','Annullato'),
-            (2,9,'2022-03-23','2022-03-30','Corrente'),
+            (2,6,'2022-01-15','2022-02-21','Annullato'),
+            (2,7,'2022-01-23','2022-01-30','Completato'),
+             (2,8,'2022-03-15','2022-04-25','Annullato'),
+            (2,9,'2022-03-23','2022-05-03','Corrente'),
 		(2,10,'2022-02-20','2022-03-27','Completato'),
             (2,1,'2022-01-15','2022-04-30','Annullato'),
-            (2,2,'2022-01-23','2022-04-30','Completato');
+            (2,2,'2022-01-23','2022-03-30','Completato');
 
 INSERT INTO utente (nome,cognome,data_nascita,email,password,ruolo)
       VALUES 
