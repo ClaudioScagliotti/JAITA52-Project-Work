@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto.Io</title>
+
+<!--INIZIO DEL FAVICON-->
+<link th:replace="fragments/favicons.html">
+
+<!--IMPORT DI BOOTSTRAP-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!--IMPORT DEI FONT-->
+<link th:replace="fragments/fonts.html">
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/utente.css">
+
+</head>
+
+<body>
+
+	<div class="sfondo-utente">
+		<!--NAVBAR-->
+		<div id="header" th:insert="/fragments/navbar.html"></div>
+		<div class="blur spingi-footer">
+
+			<div class="container py-5">
+				<div class="contenitore">
+					<div class="row">
+						<!-- INFO UTENTE -->
+						<div class="col-lg-4">
+							<aside class="profile-card">
+								<header>
+									<!-- here’s the avatar -->
+									<img src="img/utente/avatino.jpg">
+									<!-- the username -->
+									<h1 th:text="|${utente.nome} ${utente.cognome}|"></h1>
+									<ul class="list-group list-group-flush">
+										<p th:text="|Email: ${utente.email}|"
+											class="font-weight-bold text-center"></p>
+										<p th:text="|Data di nascita: ${utente.dataNascita}|"
+											class="text-center font-weight-bold"></p>
+									</ul>
+								</header>
+							</aside>
+						</div>
+						<div class="col-lg-8 lista_pren">
+							<!-- PRENOTAZIONI IN CORSO -->
+							<div>
+								<h2>Prenotazioni in corso</h2>
+								<table class="table disp_utente">
+									<thead>
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">Veicolo</th>
+											<th scope="col">Inizio</th>
+											<th scope="col">Fine</th>
+											<th scope="col">Stato</th>
+											<th scope="col">Azione</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="prenotazione : ${attive}">
+											<td th:text="${prenotazione.id}"></td>
+											<td
+												th:text="|${prenotazione.veicolo.marca} ${prenotazione.veicolo.modello}|"></td>
+											<td th:with="date=${prenotazione.inizio}"
+												th:utext="|${date.year-100}/${date.month+1}/${date.date}<br>${date.hours}:${date.minutes}|"></td>
+											<td th:with="date=${prenotazione.fine}"
+												th:utext="|${date.year-100}/${date.month+1}/${date.date}<br>${date.hours}:${date.minutes}|"></td>
+											<td th:text="${prenotazione.stato}"></td>
+											<td><button class="btn btn-warning pb-1 btn_edit" th:onclick="#"
+													data-bs-toggle="modal" data-bs-target="#modPren" th:data-pid="${prenotazione.id}">Modifica</button>
+												<button class="btn btn-danger btn_delete" th:onclick="#"
+													data-bs-toggle="modal" data-bs-target="#elimPren" th:data-pid="${prenotazione.id}">Termina</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<br>
+							<!-- PRENOTAZIONI PASSATE -->
+							<div>
+								<h2>Prenotazioni passate</h2>
+								<table class="table disp_utente">
+									<thead>
+										<tr>
+											<th scope="col">ID</th>
+											<th scope="col">Veicolo</th>
+											<th scope="col">Data inizio</th>
+											<th scope="col">Data fine</th>
+											<th scope="col">Stato</th>
+
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="prenotazione : ${concluse}">
+											<td th:text="${prenotazione.id}"></td>
+											<td
+												th:text="|${prenotazione.veicolo.marca} ${prenotazione.veicolo.modello}|">
+											</td>
+											<td th:text="${prenotazione.inizio}"></td>
+											<td th:text="${prenotazione.fine}"></td>
+											<td th:text="${prenotazione.stato}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--FOOTER-->
+		<footer id="mainFooter" th:insert="fragments/footer.html"></footer>
+	</div>
+
+	<!--EDIT-MODAL-->
+	<div th:replace="fragments/utente/edit-modal.html"></div>
+
+	<!--DELETE-MODAL-->
+	<div th:replace="fragments/utente/del-modal.html"></div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<!--Gestione off-canvas navbar quando piccolo-->
+	<script src="/js/common/navbar_canvas.js"></script>
+	
+	<script src="/js/user_panel/script.js"></script>
+
+
+</body>
+
+</html>

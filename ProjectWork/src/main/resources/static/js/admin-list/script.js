@@ -49,10 +49,10 @@ function confirmed_delete(event){
 				row_deleted.remove();
 			}
 		}else if(res.status==422){
-			alert("CANNOT DELETE TO PRESERVE DATA INTEGRITY");
+			showAlert("CANNOT DELETE TO PRESERVE DATA INTEGRITY");
 		}
 		else{
-			alert("FAILED TO DELETE - [#"+res.status+"]");
+			showAlert("FAILED TO DELETE - [#"+res.status+"]");
 		}
 		deleteModal.hide();
 	}).catch();

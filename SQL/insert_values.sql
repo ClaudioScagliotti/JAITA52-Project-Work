@@ -7,6 +7,15 @@ INSERT INTO alimentazione (nome)
             ('ibrida'),
             ('nessuna');
 
+INSERT INTO categoria (fattore, nome)
+      value ('100', 'bicicletta'),
+            ('83', 'bicicletta elettrica'),
+            ('96', 'monopattino'),
+            ('51', 'auto elettrica'),
+            ('33', 'auto ibrida'),
+            ('0', 'auto benzina'),
+            ('0', 'auto diesel');
+
 
 INSERT INTO veicolo 
       (categoria_id,alimentazione_id,marca,modello,colore,descrizione,indirizzo,

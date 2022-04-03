@@ -9,8 +9,7 @@
     background-image: url("/img/pannello/stradaccia.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: calc(100vh - 187px);
-
+    height:100%;
     background-position: 50% 50%;
 }
 
@@ -36,5 +35,4 @@
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     background-color: rgba(0,0,0,.2);
-    min-height: calc(100vh - 187px);
 }

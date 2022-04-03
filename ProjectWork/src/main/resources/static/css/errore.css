@@ -1,0 +1,24 @@
+#errore{
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    background: url(/img/errore/erroremadornale.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:center;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#madornale{
+    color:#ff6666;
+    font-size: 4rem;
+}
+#scritta{
+    color:#ff6666;
+    font-size: 1.5rem;
+    padding: 2rem;
+    background-color: rgba(255,255,255,.8);
+    border-radius: 1rem;
+}

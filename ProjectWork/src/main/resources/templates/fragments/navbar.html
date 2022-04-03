@@ -1,7 +1,7 @@
 <div id="header">
     <nav class="navbar navbar-expand-lg bg-dark" aria-label="Main navigation">
       <div class="container-lg">
-        <a class="navbar-brand" href="index">
+        <a class="navbar-brand" href="/index">
           <img class="logo" src="/img/common/logo2.png">
         </a>
 
@@ -21,7 +21,7 @@
               <a class="nav-link" href="/index#ambiente"><i class="fa fa-seedling me-1"></i>Ambiente</a>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown text-end">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown"
                 aria-expanded="false"><i class="fa fa-car-on me-1"></i>Veicoli</a>
               <ul id="navbar-dropdown-categories" class="dropdown-menu" aria-labelledby="dropdown01">
@@ -30,7 +30,7 @@
             </li>
 
             <li th:if="${session.utente}" class="nav-item">
-              <a class="nav-link" th:href="${session.utente.ruolo.name() == 'RUOLO_ADMIN'}?'/pannello':'#'" >
+              <a class="nav-link" th:href="${session.utente.ruolo.name() == 'RUOLO_ADMIN'}?'/pannello':'/prenotazione'" >
               	<i class="fa fa-user me-1"></i>
               	<span th:text="${session.utente.nome}">Profilo</span>
               </a>

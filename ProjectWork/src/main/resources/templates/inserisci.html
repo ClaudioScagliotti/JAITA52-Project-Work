@@ -32,13 +32,13 @@
   <!--NAVBAR-->
   <div id="header" th:insert="/fragments/navbar.html"></div>
 
-  <div class="sfondo">
+  <div class="sfondo spingi-footer">
     
 
-    <form class="border-bottom-3" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post"
+    <form class="border-bottom-3 spingi-footer" action="#" th:action="${edit}?@{/veicolo/upd}:@{/veicolo/add}" method="post"
       enctype="multipart/form-data" th:object="${veicolo}">
-      <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
       <div class="container">
+      <h2 class="text-center mt-3 mb-3" th:text="${edit}?'Modifica veicolo':'Aggiungi veicolo'"></h2>
         <div class="row justify-content-center">
           <div class="col-md-6 col-lg-4 mb-6">
 

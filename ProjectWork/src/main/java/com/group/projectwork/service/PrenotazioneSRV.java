@@ -74,8 +74,9 @@ public class PrenotazioneSRV {
     		throw new AccessDeniedException();
     	if((dto.getFine().getTime()-dto.getInizio().getTime())/(60000)<15)
     		throw new PrenotazioneException("Durata non valida");
-    	if(dto.getFine().compareTo(new Date())<=0)
+    	if(dto.getFine().compareTo(new Date())<=0) {
     		throw new PrenotazioneException("Prenotazione terminata");
+    	}
     	
     	Veicolo newV = vSrv.getVeicoloById(dto.getvId());
 		
@@ -136,10 +137,10 @@ public class PrenotazioneSRV {
 			throw new AccessDeniedException();
 
 		Prenotazione p = getById(id);
-		if (loggedIn != p.getUtente())
+		if (loggedIn.getId() != p.getUtente().getId())
 			throw new AccessDeniedException();
 		else if (!this.isRunning(p)) 
-			throw new PrenotazioneException("Prenotazione not attiva");
+			throw new PrenotazioneException("Prenotazione non attiva");
 			
 		Date date = new Date();
 		if (p.getInizio().after(date)) {
@@ -147,8 +148,11 @@ public class PrenotazioneSRV {
 		} else if (p.getFine().after(date)) {
 			p.setFine(date);
 			p.setStato(State.Completato);
-		} else
+		} else {
+			p.setStato(State.Completato);			
+			this.pdb.save(p);
 			throw new PrenotazioneException("Prenotazione passata");
+		}
 
 		p.getVeicolo().setDisponibile(true);
 		return this.pdb.save(p);

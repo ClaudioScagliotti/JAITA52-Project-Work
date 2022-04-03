@@ -1,0 +1,70 @@
+.profile-card{
+	background-color: #ffffff90;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 1rem;
+    padding: 1.5rem 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.profile-card img{
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin:0 auto 1rem;
+    display:block;
+}
+
+.profile-card h1{
+    text-align: center;
+}
+
+.profile-card h3{
+    text-align: center;
+    font-size: small;
+    font-style: normal;
+    
+}
+
+
+.disp_utente li span{
+    width: 33.33%;
+}
+
+.lista_pren h2{
+    margin-bottom: 2rem;
+}
+
+.lista_pren div{
+	padding: 1rem;
+	border-radius: 1rem;
+	background-color: #ffffff90;
+}
+
+.sfondo-utente {
+    background-image: url("/img/disponibilita/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-position: 50% 50%;
+    overflow: hidden scroll;
+}
+
+.blur {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, .2);
+}
+
+.contenitore {
+	background-color: #c0c0c080;
+	padding: 1rem;
+	border-radius: 1rem;
+}
+
+#modPren .col-lg-6{
+	padding: 1rem 2rem;
+}
