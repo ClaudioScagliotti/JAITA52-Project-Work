@@ -22,6 +22,8 @@ import com.group.projectwork.exception.VeicoloNotFoundException;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.group.projectwork.service.PrenotazioneSRV;
 import com.group.projectwork.service.VeicoloSRV;
@@ -38,12 +40,14 @@ public class PrenotazioneCtrl {
 	VeicoloSRV vSrv;
 
 	@PostMapping("/add")
-	public String addPrenotazione( Utente loggedIn, Model model, PrenotazioneDTO dto) {
+	public String addPrenotazione(
+			@SessionAttribute(name="utente") Utente loggedIn,
+			Model model, PrenotazioneDTO dto) {
 
 		try {
 			var p = this.srv.addPrenotazione(dto, loggedIn);
 			model.addAttribute("prenotazione", p);
-			return "utente";
+			return "redirect:/prenotazione";
 		}catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		}catch (VeicoloNotFoundException e) {
@@ -52,7 +56,8 @@ public class PrenotazioneCtrl {
 	}
 
 	@GetMapping
-	public String get(Utente utente, Model model){
+	public String get(
+			@SessionAttribute(name="utente") Utente utente, Model model){
 		if (utente.getEmail()==null) {
 			model.addAttribute("redirectTo","/prenotazione");
 			return "redirect:/login-page";
@@ -73,12 +78,14 @@ public class PrenotazioneCtrl {
 	}
 	
 	@PostMapping("/termina")
-	public String terPrenotazione( Utente loggedIn, Model model, int id) {
+	public String terPrenotazione(
+			@SessionAttribute(name="utente") Utente loggedIn,
+			Model model, @RequestParam(name = "id") int id) {
 
 		try {
 			var p = this.srv.terminaPrenotazione(id, loggedIn);
 			model.addAttribute("prenotazione", p);
-			return "utente";
+			return "redirect:/prenotazione";
 		} catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		} catch (PrenotazioneException e) {
@@ -87,23 +94,26 @@ public class PrenotazioneCtrl {
 	}
 	
 	@PostMapping("/del")
-	public String delPrenotazione(Utente loggedIn, Model model, int id) {
+	public String delPrenotazione(
+			@SessionAttribute(name="utente") Utente loggedIn,
+			Model model, @RequestParam(name = "id") int id) {
 		
 		try {
 			this.srv.delPrenotazioneById(id, loggedIn);
-			return "utente";
+			return "redirect:/prenotazione";
 		}catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		}
 	}
 	
 	@PostMapping("/upd")
-	public String updPrenotazione(Utente loggedIn, Model model,
-			@RequestBody UpdatePrenotazioneDTO dto) {
+	public String updPrenotazione(
+			@SessionAttribute(name="utente") Utente loggedIn, Model model,
+			UpdatePrenotazioneDTO dto) {
 		
 		try {
 			this.srv.updPrenotazione(dto, loggedIn);
-			return "redirect:utente";
+			return "redirect:/prenotazione";
 		} catch (AccessDeniedException e) {
 			return accessDeniedMVC(model);
 		} catch (VeicoloNotFoundException e) {
