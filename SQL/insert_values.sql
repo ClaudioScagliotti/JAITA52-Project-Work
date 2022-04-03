@@ -14,7 +14,7 @@ INSERT INTO categoria (fattore, nome)
             ('51', 'auto elettrica'),
             ('33', 'auto ibrida'),
             ('0', 'auto benzina'),
-            ('0', 'auto diesel'),
+            ('0', 'auto diesel');
 
 
 INSERT INTO veicolo 
