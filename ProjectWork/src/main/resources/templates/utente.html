@@ -80,12 +80,12 @@
 											<td
 												th:text="|${prenotazione.veicolo.marca} ${prenotazione.veicolo.modello}|"></td>
 											<td th:with="date=${prenotazione.inizio}"
-												th:utext="|${date.year-100}/${date.month}/${date.day}<br>${date.hours}:${date.minutes}|"></td>
+												th:utext="|${date.year-100}/${date.month+1}/${date.date}<br>${date.hours}:${date.minutes}|"></td>
 											<td th:with="date=${prenotazione.fine}"
-												th:utext="|${date.year-100}/${date.month}/${date.day}<br>${date.hours}:${date.minutes}|"></td>
+												th:utext="|${date.year-100}/${date.month+1}/${date.date}<br>${date.hours}:${date.minutes}|"></td>
 											<td th:text="${prenotazione.stato}"></td>
 											<td><button class="btn btn-warning pb-1 btn_edit" th:onclick="#"
-													data-bs-toggle="modal" data-bs-target="#modPren">Modifica</button>
+													data-bs-toggle="modal" data-bs-target="#modPren" th:data-pid="${prenotazione.id}">Modifica</button>
 												<button class="btn btn-danger btn_delete" th:onclick="#"
 													data-bs-toggle="modal" data-bs-target="#elimPren" th:data-pid="${prenotazione.id}">Termina</button>
 											</td>

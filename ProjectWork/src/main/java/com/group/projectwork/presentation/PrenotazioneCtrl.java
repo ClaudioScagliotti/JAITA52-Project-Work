@@ -109,7 +109,7 @@ public class PrenotazioneCtrl {
 	@PostMapping("/upd")
 	public String updPrenotazione(
 			@SessionAttribute(name="utente") Utente loggedIn, Model model,
-			@RequestBody UpdatePrenotazioneDTO dto) {
+			UpdatePrenotazioneDTO dto) {
 		
 		try {
 			this.srv.updPrenotazione(dto, loggedIn);
