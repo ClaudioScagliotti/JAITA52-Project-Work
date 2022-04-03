@@ -136,10 +136,10 @@ public class PrenotazioneSRV {
 			throw new AccessDeniedException();
 
 		Prenotazione p = getById(id);
-		if (loggedIn != p.getUtente())
+		if (loggedIn.getId() != p.getUtente().getId())
 			throw new AccessDeniedException();
 		else if (!this.isRunning(p)) 
-			throw new PrenotazioneException("Prenotazione not attiva");
+			throw new PrenotazioneException("Prenotazione non attiva");
 			
 		Date date = new Date();
 		if (p.getInizio().after(date)) {
