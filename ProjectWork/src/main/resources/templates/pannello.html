@@ -35,10 +35,9 @@
 	<!--NAVBAR-->
 	<div id="header" th:insert="fragments/navbar.html"></div>
 	
-	
 	<div class="stradaccia">
 		<!--BOTTONI DASHBOARD-->
-		<div class="blur">
+		<div class="blur spingi-footer">
 			<div class="container">
 				<h2 class="title pb-3 mb-5" id="titolo_pannello" th:text="|Benvenuto alla
 					dashboard, ${session.utente.nome} ${session.utente.cognome}|"></h2>
@@ -76,7 +75,6 @@
 
 	<!--FOOTER-->
     <footer id="mainFooter" th:insert="fragments/footer.html"></footer>
-
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

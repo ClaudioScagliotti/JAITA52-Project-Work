@@ -36,8 +36,10 @@
 	<!--INIZIO DELLA NAVBAR-->
 	<div id="header" th:insert="fragments/navbar.html"></div>
 
+	<div class="spingi-footer">
 	<!--TABELLONE-->
 	<div th:replace="fragments/view/tabellone.html"></div>
+	</div>
 	
 	<!--FOOTER-->
 	<footer id="mainFooter" th:insert="fragments/footer.html"></footer>
@@ -58,12 +60,10 @@
         </script>
         
 	<!--Gestione off-canvas navbar quando piccolo-->
-    <script src="js/common/navbar_canvas.js"></script>
+    <script src="/js/common/navbar_canvas.js"></script>
 
 	<!--Aggiunto script per alertModal-->
-    <script src="js/common/script.js"></script>
-
-
+    <script src="/js/common/script.js"></script>
     
 </body>
 </html>
