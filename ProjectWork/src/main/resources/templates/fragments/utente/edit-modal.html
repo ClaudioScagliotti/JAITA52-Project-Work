@@ -1,0 +1,33 @@
+<div class="modal fade" tabindex="-1" id="modPren" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title">Modifica prenotazione</h5>
+        </div>
+        <form th:action="@{/prenotazione/upd}" method="post">
+			<div class="modal-body">
+					<div>
+						<label></label> <input type="hidden" name="id" id="input_id">
+					</div>
+					
+					<div>
+						<label for="input_vId">Veicolo id:</label> <input type="number" id="input_vId" name="vId">
+					</div>
+					<div>
+						<label>Data inizio:</label> <input type="datetime-local" id="input_inizio" name="inizio">
+					</div>
+                    <div>
+						<label>Data fine:</label> <input type="datetime-local" id="input_inizio" name="fine">
+					</div>
+
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Annulla</button>
+				<input type="submit" class="btn btn-primary" value="Salva modifiche">
+			</div>
+			</form>
+      </div>
+    </div>
+  </div> 

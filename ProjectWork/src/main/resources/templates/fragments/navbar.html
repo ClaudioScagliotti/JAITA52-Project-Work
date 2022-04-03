@@ -30,7 +30,7 @@
             </li>
 
             <li th:if="${session.utente}" class="nav-item">
-              <a class="nav-link" th:href="${session.utente.ruolo.name() == 'RUOLO_ADMIN'}?'/pannello':'#'" >
+              <a class="nav-link" th:href="${session.utente.ruolo.name() == 'RUOLO_ADMIN'}?'/pannello':'/prenotazione'" >
               	<i class="fa fa-user me-1"></i>
               	<span th:text="${session.utente.nome}">Profilo</span>
               </a>

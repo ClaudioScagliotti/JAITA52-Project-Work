@@ -1,0 +1,61 @@
+.profile-card{
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.5rem;
+    padding: 1.5rem 0.5rem;
+}
+
+.profile-card img{
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin:0 auto 1rem;
+    display:block;
+}
+
+.profile-card h1{
+    text-align: center;
+}
+
+.profile-card h3{
+    text-align: center;
+    font-size: small;
+    font-style: normal;
+    
+}
+
+.disp_utente{
+    margin-bottom: 2rem;
+}
+
+.disp_utente li span{
+    width: 33.33%;
+}
+
+.lista_pren h2{
+    margin-bottom: 2rem;
+}
+
+.sfondo-utente {
+    background-image: url("/img/disponibilita/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-position: 50% 50%;
+    overflow: scroll;
+}
+
+.blur {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, .2);
+    height: 100%;
+}
+
+.contenitore {
+	background-color: rgba(201, 201, 201, 0.838);
+	opacity: 1;
+}

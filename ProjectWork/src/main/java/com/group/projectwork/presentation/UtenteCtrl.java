@@ -3,6 +3,9 @@ package com.group.projectwork.presentation;
 import javax.servlet.http.HttpSession;
 
 import com.group.projectwork.dto.LoginDTO;
+import com.group.projectwork.entity.Utente;
+import com.group.projectwork.entity.Utente.Role;
+import com.group.projectwork.service.PrenotazioneSRV;
 import com.group.projectwork.service.TokenSRV;
 import com.group.projectwork.service.UtenteSRV;
 
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.group.projectwork.exception.AccessDeniedException;
 
 @Controller
 public class UtenteCtrl {
@@ -22,6 +26,9 @@ public class UtenteCtrl {
 	
 	@Autowired
     UtenteSRV usrv;
+
+    @Autowired
+    PrenotazioneSRV pSrv;
 	
     @GetMapping("/login-page")
 	public String loginForm(Model model, HttpSession session) {
@@ -49,6 +56,9 @@ public class UtenteCtrl {
         }
         return "error";
     }
+
+
+
 
     @GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
