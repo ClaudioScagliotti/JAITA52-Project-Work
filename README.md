@@ -1,3 +1,2 @@
 # JAITA52-Project-Work
-Final proj work JAITA
-test
+Progetto finale del Corso Generation per Junior Java Developer
